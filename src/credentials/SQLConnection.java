@@ -26,4 +26,9 @@ public class SQLConnection {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public void resetCredentials(){
+        this.username = null;
+        this.password = null;
+    }
 }

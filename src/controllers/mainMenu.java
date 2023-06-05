@@ -1,5 +1,6 @@
 package controllers;
 
+import Main.ZQRTApplication;
 import credentials.SQLConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,8 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -18,7 +22,15 @@ import java.util.ResourceBundle;
 
 public class mainMenu implements Initializable {
 
-
+    @FXML
+    public Label user;
+    //public ListView listView;
+    public HBox warehouseLister;
+    public HBox customerLister;
+    public HBox publisherLister;
+    public HBox bookLister;
+    public HBox authorLister;
+    public HBox orderLister;
     @FXML
     private Label bookNum;
     @FXML
@@ -29,63 +41,72 @@ public class mainMenu implements Initializable {
     private Label publisherNum;
     @FXML
     private Label warehouseNum;
-
+    @FXML
+    private Label orderNum;
     @FXML
     private VBox pnItems = null;
     @FXML
     private Button btnOverview;
-
     @FXML
-    private Button btnOrders;
-
+    public Button btnInserts;
     @FXML
-    private Button btnCustomers;
-
+    public Button btnDeletions;
     @FXML
-    private Button btnMenus;
-
+    public Button btnUpdates;
     @FXML
-    private Button btnPackages;
+    public Button btnStatistics;
 
     @FXML
     private Button btnSettings;
 
     @FXML
-    private Button btnSignOut;
+    private Button booksButtonOverview;
+    @FXML
+    private Button authorsButtonOverview;
+    @FXML
+    private Button publishersButtonOverview;
+    @FXML
+    private Button customersButtonOverview;
+    @FXML
+    private Button warehousesButtonOverview;
+    @FXML
+    private Button ordersButtonOverview;
 
     @FXML
-    private Pane pnlCustomer;
+    private Pane pnlInserts;
 
     @FXML
-    private Pane pnlOrders;
+    private Pane pnlDeletions;
 
     @FXML
     private Pane pnlOverview;
 
     @FXML
-    private Pane pnlMenus;
+    private Pane pnlUpdates;
+    @FXML
+    public Pane pnlStatistics;
+
+    @FXML
+    private Pane pnlSettings;
+
+    @FXML
+    private VBox bookOverview;
+
+
+
     SQLConnection credentials = SQLConnection.getInstance();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ZQRT", credentials.getUsername(), credentials.getPassword());
-            String[] tablesList = {"book", "author", "publisher", "customer", "warehouse"};
-            for(int i = 0; i < tablesList.length; i++){
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM "+ tablesList[i]);
-            rs.next();
-            if(i == 0)
-                bookNum.setText(rs.getString(1));
-            else if(i == 1)
-                authorNum.setText(rs.getString(1));
-            else if(i == 2)
-                publisherNum.setText(rs.getString(1));
-            else if(i == 3)
-                customerNum.setText(rs.getString(1));
-            else warehouseNum.setText(rs.getString(1));
-            }
+       setUsername();
+       try {
+              setFancyNumbers();
+         } catch (SQLException e) {
+              e.printStackTrace();
+       }
+        /*try {
 
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ZQRT", credentials.getUsername(), credentials.getPassword());
             Statement stmt = con.createStatement();
             Statement stmt2 = con.createStatement();
             ResultSet rsTemp= stmt2.executeQuery("SELECT count(*) FROM book");
@@ -138,23 +159,83 @@ public class mainMenu implements Initializable {
                 e.printStackTrace();
             }
         }
-
+*/
     }
 
 
+    public void setUsername(){
+        user.setText(credentials.getUsername());
+    }
+    public void setFancyNumbers() throws SQLException {
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ZQRT", credentials.getUsername(), credentials.getPassword());
+        String[] tablesList = {"book", "author", "publisher", "customer", "warehouse","orders"};
+        for(int i = 0; i < tablesList.length; i++){
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM "+ tablesList[i]);
+            rs.next();
+            if(i == 0)
+                bookNum.setText(rs.getString(1));
+            else if(i == 1)
+                authorNum.setText(rs.getString(1));
+            else if(i == 2)
+                publisherNum.setText(rs.getString(1));
+            else if(i == 3)
+                customerNum.setText(rs.getString(1));
+            else if (i==4)
+                warehouseNum.setText(rs.getString(1));
+            else
+                orderNum.setText(rs.getString(1));
+        }
+    con.close();
+    }
     public void handleClicks(ActionEvent actionEvent) {
-        if (actionEvent.getSource() == btnCustomers) {
-            pnlCustomer.toFront();
-        }
-        if (actionEvent.getSource() == btnMenus) {
-            pnlMenus.toFront();
-        }
         if (actionEvent.getSource() == btnOverview) {
             pnlOverview.toFront();
         }
-        if(actionEvent.getSource()==btnOrders)
-        {
-            pnlOrders.toFront();
+        if (actionEvent.getSource() == btnInserts) {
+            pnlInserts.toFront();
         }
+        if (actionEvent.getSource() == btnDeletions) {
+            pnlDeletions.toFront();
+        }
+        if (actionEvent.getSource() == btnUpdates) {
+            pnlUpdates.toFront();
+        }
+        if (actionEvent.getSource() == btnStatistics) {
+            pnlStatistics.toFront();
+        }
+        if (actionEvent.getSource() == btnSettings) {
+            pnlSettings.toFront();
+        }
+    }
+
+    public void handleOverview(ActionEvent actionEvent){
+        if(actionEvent.getSource() == booksButtonOverview){
+            bookLister.toFront();
+        }
+        if(actionEvent.getSource() == authorsButtonOverview){
+            authorLister.toFront();
+        }
+        if(actionEvent.getSource() == publishersButtonOverview){
+            publisherLister.toFront();
+        }
+        if(actionEvent.getSource() == customersButtonOverview){
+            customerLister.toFront();
+        }
+        if(actionEvent.getSource() == warehousesButtonOverview){
+            warehouseLister.toFront();
+        }
+        if(actionEvent.getSource() == ordersButtonOverview){
+            orderLister.toFront();
+        }
+
+    }
+
+    public void handleSignOut(ActionEvent actionEvent) throws Exception {
+        credentials.resetCredentials();
+        URL url = getClass().getResource("/resources/FXML/logInPage.fxml");
+        Stage stage = (Stage) user.getScene().getWindow();
+        ZQRTApplication z = new ZQRTApplication();
+        z.changeSceneInStage(stage, url);
     }
 }

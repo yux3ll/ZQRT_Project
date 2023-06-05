@@ -3,7 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -19,112 +19,14 @@
    <effect>
       <DropShadow color="#1b1eeb" />
    </effect>
-   <StackPane layoutX="258.0" prefHeight="720.0" prefWidth="1024.0" style="-fx-background-color: #2c2c2c;">
-      <Pane fx:id="pnlCustomer" style="-fx-background-color: #2c2c2c;" />
-      <Pane fx:id="pnlOrders" style="-fx-background-color: #2c2c2c;" />
-      <Pane fx:id="pnlMenus" style="-fx-background-color: #2c2c2c;" />
-      <Pane fx:id="pnlOverview" style="-fx-background-color: #2c2c2c;">
-         <TextField layoutX="827.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #2c2c2c; -fx-border-color: #B7C3D7; -fx-border-radius: 2em; -fx-text-fill: #B7C3D7;" />
-         <Label layoutX="45.0" layoutY="14.0" text="Restaurant Orders" textFill="#e7e5e5">
-            <font>
-               <Font size="24.0" />
-            </font>
-         </Label>
-         <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="72.0" prefHeight="92.0" prefWidth="661.0" spacing="50.0">
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-               <Label fx:id="bookNum" textFill="#ef4444">
-                  <font>
-                     <Font name="System Bold" size="26.0" />
-                  </font>
-               </Label>
-               <Label text="Books" textFill="#e7e5e5" />
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-               <Label fx:id="authorNum" textFill="#eab308">
-                  <font>
-                     <Font name="System Bold" size="26.0" />
-                  </font>
-               </Label>
-               <Label text="Authors" textFill="#e7e5e5" />
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-               <Label fx:id="publisherNum" textFill="#3b82f6">
-                  <font>
-                     <Font name="System Bold" size="26.0" />
-                  </font>
-               </Label>
-               <Label text="Publishers" textFill="#e7e5e5" />
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-               <Label fx:id="customerNum" textFill="#06b6d4">
-                  <font>
-                     <Font name="System Bold" size="26.0" />
-                  </font>
-               </Label>
-               <Label text="Customers" textFill="#e7e5e5" />
-            </VBox>
-            <VBox alignment="CENTER" layoutX="460.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <Label fx:id="warehouseNum" textFill="#ab55f7">
-                     <font>
-                        <Font name="System Bold" size="26.0" />
-                     </font>
-                  </Label>
-                  <Label text="Warehouses" textFill="#e7e5e5" />
-               </children>
-            </VBox>
-         </HBox>
-         <HBox alignment="CENTER_LEFT" layoutX="4.0" layoutY="178.0" prefHeight="42.0" prefWidth="994.0" spacing="70.0" style="-fx-background-color: #2c2c2c;">
-            <Label text="ISBN" textFill="#e7e5e5">
-               <HBox.margin>
-                  <Insets left="50.0" />
-               </HBox.margin>
-            </Label>
-            <Label text="Title" textFill="#e7e5e5">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Label>
-            <Label text="Author" textFill="#e7e5e5">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Label>
-            <Label text="Publisher" textFill="#e7e5e5">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Label>
-            <Label text="Price" textFill="#e7e5e5">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Label>
-            <Label layoutX="515.0" layoutY="23.0" text="Pages" textFill="#e7e5e5" />
-            <Label layoutX="621.0" layoutY="23.0" text="Stocks" textFill="#e7e5e5" />
-            <Label layoutX="733.0" layoutY="23.0" text="Release Date" textFill="#e7e5e5" />
-            <Label layoutX="848.0" layoutY="23.0" text="Genre" textFill="#e7e5e5" />
-         </HBox>
-         <ScrollPane layoutX="14.0" layoutY="232.0" prefHeight="454.0" prefWidth="994.0" stylesheets="@style.css">
-            <VBox fx:id="pnItems" prefHeight="467.0" prefWidth="996.0" spacing="5.0" style="-fx-background-color: #2c2c2c;">
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-            </VBox>
-         </ScrollPane>
-         <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../img/icons8_Search_52px.png" />
-         </ImageView>
-      </Pane>
-   </StackPane>
-   <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" style="-fx-background-color: #121212;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+   <VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="256.0" style="-fx-background-color: #121212;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1024.0" AnchorPane.topAnchor="0.0">
       <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
          <VBox.margin>
             <Insets bottom="10.0" top="50.0" />
          </VBox.margin>
          <Image url="@../img/logoOnly.png" />
       </ImageView>
-      <Label text="Jimmy Fallon" textFill="#e7e5e5">
+      <Label fx:id="user" textFill="#e7e5e5">
          <VBox.margin>
             <Insets bottom="20.0" />
          </VBox.margin>
@@ -145,7 +47,7 @@
             <Insets left="50.0" />
          </padding>
       </Button>
-      <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Orders">
+      <Button fx:id="btnInserts" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Inserts">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../img/icons8_Open_Envelope_32px.png" />
@@ -155,7 +57,7 @@
             <Insets left="50.0" />
          </padding>
       </Button>
-      <Button fx:id="btnCustomers" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Customers">
+      <Button fx:id="btnDeletions" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Deletions">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../img/icons8_Person_32px.png" />
@@ -165,7 +67,7 @@
             <Insets left="50.0" />
          </padding>
       </Button>
-      <Button fx:id="btnMenus" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Menus">
+      <Button fx:id="btnUpdates" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Updates">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../img/icons8_Xbox_Menu_32px.png" />
@@ -175,7 +77,7 @@
             <Insets left="50.0" />
          </padding>
       </Button>
-      <Button fx:id="btnPackages" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Packages">
+      <Button fx:id="btnStatistics" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Statistics">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../img/icons8_Box_32px.png" />
@@ -185,7 +87,7 @@
             <Insets left="50.0" />
          </padding>
       </Button>
-      <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Settings">
+      <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Settings">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../img/icons8_Slider__32px.png" />
@@ -195,7 +97,7 @@
             <Insets left="50.0" />
          </padding>
       </Button>
-      <Button fx:id="btnSignOut" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Sign Out">
+      <Button fx:id="btnSignOut" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleSignOut" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Sign Out">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../img/icons8_Sign_Out_32px.png" />
@@ -206,4 +108,233 @@
          </padding>
       </Button>
    </VBox>
+   <StackPane layoutX="256.0" prefHeight="720.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="256.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane fx:id="pnlSettings" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" />
+      <Pane fx:id="pnlStatistics" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" />
+      <Pane fx:id="pnlUpdates" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" />
+      <Pane fx:id="pnlDeletions" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" />
+      <Pane fx:id="pnlInserts" prefHeight="200.0" prefWidth="200.0" />
+      <Pane fx:id="pnlOverview" prefHeight="720.0" prefWidth="1024.0" style="-fx-background-color: #2c2c2c;">
+         <ListView fx:id="listView" layoutX="16.0" layoutY="220.0" prefHeight="484.0" prefWidth="992.0" style="-fx-background-color: #2c2c2c;">
+            <padding>
+               <Insets left="16.0" right="16.0" />
+            </padding>
+         </ListView>
+         <TextField layoutX="827.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #2c2c2c; -fx-border-color: #B7C3D7; -fx-border-radius: 2em; -fx-text-fill: #B7C3D7;" />
+         <Label layoutX="45.0" layoutY="14.0" prefHeight="35.0" prefWidth="210.0" text="Company Overview" textFill="#e7e5e5">
+            <font>
+               <Font size="24.0" />
+            </font>
+         </Label>
+         <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="72.0" prefHeight="92.0" prefWidth="763.0" spacing="50.0">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="128.0">
+               <Label fx:id="bookNum" text="1" textFill="#ef4444">
+                  <font>
+                     <Font name="System Bold" size="26.0" />
+                  </font>
+               </Label>
+               <Button fx:id="booksButtonOverview" mnemonicParsing="false" onAction="#handleOverview" prefHeight="0.0" prefWidth="68.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Books" textFill="#e7e5e5" />
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="128.0">
+               <Label fx:id="authorNum" text="1" textFill="#eab308">
+                  <font>
+                     <Font name="System Bold" size="26.0" />
+                  </font>
+               </Label>
+               <Button fx:id="authorsButtonOverview" mnemonicParsing="false" onAction="#handleOverview" prefHeight="0.0" prefWidth="68.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Authors" textFill="#e7e5e5" />
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="92.0" prefWidth="128.0">
+               <Label fx:id="publisherNum" text="1" textFill="#3b82f6">
+                  <font>
+                     <Font name="System Bold" size="26.0" />
+                  </font>
+               </Label>
+               <Button fx:id="publishersButtonOverview" mnemonicParsing="false" onAction="#handleOverview" prefHeight="27.0" prefWidth="81.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Publishers" textFill="#e7e5e5" />
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="92.0" prefWidth="128.0">
+               <Label fx:id="customerNum" text="1" textFill="#06b6d4">
+                  <font>
+                     <Font name="System Bold" size="26.0" />
+                  </font>
+               </Label>
+               <Button fx:id="customersButtonOverview" mnemonicParsing="false" onAction="#handleOverview" prefHeight="27.0" prefWidth="76.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Customers" textFill="#e7e5e5" />
+            </VBox>
+            <VBox alignment="CENTER" layoutX="460.0" layoutY="10.0" prefHeight="92.0" prefWidth="128.0">
+               <Label fx:id="warehouseNum" text="1" textFill="#ab55f7">
+                  <font>
+                     <Font name="System Bold" size="26.0" />
+                  </font>
+               </Label>
+               <Button fx:id="warehousesButtonOverview" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleOverview" prefHeight="27.0" prefWidth="86.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Warehouses" textFill="#e7e5e5" textOverrun="CLIP" />
+            </VBox>
+            <VBox alignment="CENTER" layoutX="436.0" layoutY="10.0" prefHeight="200.0" prefWidth="128.0">
+               <Label fx:id="orderNum" text="1" textFill="#f97316">
+                  <font>
+                     <Font name="System Bold" size="26.0" />
+                  </font>
+               </Label>
+               <Button fx:id="ordersButtonOverview" mnemonicParsing="false" onAction="#handleOverview" prefHeight="0.0" prefWidth="68.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Orders" textFill="#e7e5e5" />
+            </VBox>
+         </HBox>
+         <StackPane layoutY="178.0">
+            <HBox fx:id="warehouseLister" alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="1024.0" spacing="70.0" style="-fx-background-color: #2c2c2c;">
+               <Label text="ID" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets left="50.0" />
+                  </HBox.margin>
+               </Label>
+               <Label text="Name" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+               <Label text="Address" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+               <Label text="Total Stock" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+            </HBox>
+            <HBox fx:id="customerLister" alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="1024.0" spacing="70.0" style="-fx-background-color: #2c2c2c;">
+               <Label text="Customer ID" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets left="50.0" />
+                  </HBox.margin>
+               </Label>
+               <Label text="Full Name" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+               <Label text="Email" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+               <Label text="Phone Number" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+               <Label text="Address" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+               <Label layoutX="515.0" layoutY="23.0" text="Books in Basket" textFill="#e7e5e5" />
+               <Label layoutX="621.0" layoutY="23.0" text="Books Bought" textFill="#e7e5e5" />
+            </HBox>
+            <HBox fx:id="publisherLister" alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="1024.0" spacing="70.0" style="-fx-background-color: #2c2c2c;">
+               <Label text="ID" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets left="50.0" />
+                  </HBox.margin>
+               </Label>
+               <Label text="Company Name" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+               <Label text="Email" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+               <Label text="Phone Number" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+               <Label text="Address" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+               <Label layoutX="515.0" layoutY="23.0" text="Published Books" textFill="#e7e5e5" />
+               <Label layoutX="621.0" layoutY="23.0" text="Copies Sold" textFill="#e7e5e5" />
+            </HBox>
+            <HBox fx:id="bookLister" alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="1024.0" spacing="70.0" style="-fx-background-color: #2c2c2c;">
+               <Label text="ISBN" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets left="50.0" />
+                  </HBox.margin>
+               </Label>
+               <Label text="Title" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+               <Label text="Author" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+               <Label text="Publisher" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+               <Label text="Price" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+               <Label layoutX="515.0" layoutY="23.0" text="Pages" textFill="#e7e5e5" />
+               <Label layoutX="621.0" layoutY="23.0" text="Stocks" textFill="#e7e5e5" />
+               <Label layoutX="733.0" layoutY="23.0" text="Release Date" textFill="#e7e5e5" />
+               <Label layoutX="848.0" layoutY="23.0" text="Genre" textFill="#e7e5e5" />
+            </HBox>
+            <HBox fx:id="authorLister" alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="1024.0" spacing="70.0" style="-fx-background-color: #2c2c2c;">
+               <Label text="Full Name" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets left="50.0" />
+                  </HBox.margin>
+               </Label>
+               <Label text="Email Address" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+               <Label layoutX="733.0" layoutY="23.0" text="Published Books" textFill="#e7e5e5" />
+               <Label layoutX="848.0" layoutY="23.0" text="Copies Sold" textFill="#e7e5e5" />
+               <Label text="ID" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+            </HBox>
+            <HBox fx:id="orderLister" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="42.0" prefWidth="1024.0" spacing="70.0" style="-fx-background-color: #2c2c2c;">
+               <Label text="ID" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets left="50.0" />
+                  </HBox.margin>
+               </Label>
+               <Label text="Order Date" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+               <Label text="Address" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+               <Label text="Customer ID" textFill="#e7e5e5">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+               <Label layoutX="384.0" layoutY="23.0" text="Book 1" textFill="#e7e5e5" />
+               <Label layoutX="521.0" layoutY="23.0" text="Book 2" textFill="#e7e5e5" />
+               <Label layoutX="521.0" layoutY="23.0" text="Book 3" textFill="#e7e5e5" />
+               <Label layoutX="658.0" layoutY="23.0" text="Book 4" textFill="#e7e5e5" />
+               <Label layoutX="932.0" layoutY="23.0" text="Book 5" textFill="#e7e5e5" />
+            </HBox>
+         </StackPane>
+      </Pane>
+   </StackPane>
 </AnchorPane>
