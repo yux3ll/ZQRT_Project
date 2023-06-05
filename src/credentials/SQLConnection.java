@@ -1,5 +1,9 @@
 package credentials;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class SQLConnection {
     private static final SQLConnection instance = new SQLConnection();
     private String username;
@@ -30,5 +34,8 @@ public class SQLConnection {
     public void resetCredentials(){
         this.username = null;
         this.password = null;
+    }
+    public Connection getConnection() throws SQLException {
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/ZQRT", username, password);
     }
 }
