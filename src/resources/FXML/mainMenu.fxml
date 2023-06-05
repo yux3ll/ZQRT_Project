@@ -108,7 +108,7 @@
          <VBox.margin>
             <Insets bottom="10.0" top="50.0" />
          </VBox.margin>
-         <Image url="@../img/logo%20only.png" />
+         <Image url="@../img/logoOnly.png" />
       </ImageView>
       <Label text="Jimmy Fallon" textFill="#e7e5e5">
          <VBox.margin>
