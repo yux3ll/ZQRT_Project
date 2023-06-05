@@ -19,6 +19,7 @@ public class ZQRTApplication extends Application {
     //TODO edit mainMenu to add statistics page
     //TODO edit mainMenu to add settings page
     //TODO edit mainMenu to fix sign out page
+    //TODO edit mainMenu to add a new page for miscellaneous
 
 
     @Override

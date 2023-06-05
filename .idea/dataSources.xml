@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="ZQRT@localhost" uuid="26cde306-6411-4229-9217-c7e88ffc1a02">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <schema-control>FORBID</schema-control>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/ZQRT</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>

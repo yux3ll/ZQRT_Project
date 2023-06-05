@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox fx:id="itemC" alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="994.0" spacing="70.0" style="-fx-background-color: #2c2c2c;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.bookDefault">
+   <children>
+      <Label fx:id="ISBN" text="ISBN" textFill="#e7e5e5">
+         <HBox.margin>
+            <Insets left="50.0" />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="Title" text="Title" textFill="#e7e5e5">
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="Author" text="Author" textFill="#e7e5e5">
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="Publisher" text="Publisher" textFill="#e7e5e5">
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="Price" text="Price" textFill="#e7e5e5">
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="Pages" layoutX="515.0" layoutY="23.0" text="Pages" textFill="#e7e5e5" />
+      <Label fx:id="Stock" layoutX="621.0" layoutY="23.0" text="Stocks" textFill="#e7e5e5" />
+      <Label fx:id="releaseDate" layoutX="733.0" layoutY="23.0" text="Release Date" textFill="#e7e5e5" />
+      <Label fx:id="Genre" layoutX="848.0" layoutY="23.0" text="Genre" textFill="#e7e5e5" />
+   </children>
+</HBox>

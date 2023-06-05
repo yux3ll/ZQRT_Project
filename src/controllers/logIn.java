@@ -39,11 +39,7 @@ public class logIn {
             credentials.setPassword(password.getText());
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ZQRT", credentials.getUsername(), credentials.getPassword());
             wrongLogIn.setText("Success!");
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
             URL url = getClass().getResource("/resources/FXML/mainMenu.fxml");
             Stage stage = (Stage) button.getScene().getWindow();
             ZQRTApplication z = new ZQRTApplication();

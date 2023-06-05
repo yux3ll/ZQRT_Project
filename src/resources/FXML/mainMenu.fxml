@@ -32,67 +32,81 @@
          </Label>
          <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="72.0" prefHeight="92.0" prefWidth="661.0" spacing="50.0">
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-               <Label text="22000" textFill="#2a73ff">
+               <Label fx:id="bookNum" textFill="#ef4444">
                   <font>
                      <Font name="System Bold" size="26.0" />
                   </font>
                </Label>
-               <Label text="Total Orders" textFill="#e7e5e5" />
+               <Label text="Books" textFill="#e7e5e5" />
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-               <Label text="1500" textFill="#26bfbc">
+               <Label fx:id="authorNum" textFill="#eab308">
                   <font>
                      <Font name="System Bold" size="26.0" />
                   </font>
                </Label>
-               <Label text="Total delivered" textFill="#e7e5e5" />
+               <Label text="Authors" textFill="#e7e5e5" />
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-               <Label text="1000" textFill="#fa5f7e">
+               <Label fx:id="publisherNum" textFill="#3b82f6">
                   <font>
                      <Font name="System Bold" size="26.0" />
                   </font>
                </Label>
-               <Label text="Pending Orders" textFill="#e7e5e5" />
+               <Label text="Publishers" textFill="#e7e5e5" />
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-               <Label text="780" textFill="#de0000">
+               <Label fx:id="customerNum" textFill="#06b6d4">
                   <font>
                      <Font name="System Bold" size="26.0" />
                   </font>
                </Label>
-               <Label text="Orders on Hold" textFill="#e7e5e5" />
+               <Label text="Customers" textFill="#e7e5e5" />
+            </VBox>
+            <VBox alignment="CENTER" layoutX="460.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="warehouseNum" textFill="#ab55f7">
+                     <font>
+                        <Font name="System Bold" size="26.0" />
+                     </font>
+                  </Label>
+                  <Label text="Warehouses" textFill="#e7e5e5" />
+               </children>
             </VBox>
          </HBox>
-         <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="178.0" prefHeight="42.0" prefWidth="712.0" spacing="80.0" style="-fx-background-color: #2c2c2c;">
-            <Label text="Company Name" textFill="#e7e5e5">
+         <HBox alignment="CENTER_LEFT" layoutX="4.0" layoutY="178.0" prefHeight="42.0" prefWidth="994.0" spacing="70.0" style="-fx-background-color: #2c2c2c;">
+            <Label text="ISBN" textFill="#e7e5e5">
                <HBox.margin>
                   <Insets left="50.0" />
                </HBox.margin>
             </Label>
-            <Label text="Airport" textFill="#e7e5e5">
+            <Label text="Title" textFill="#e7e5e5">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Label>
-            <Label text="Delivery Date" textFill="#e7e5e5">
+            <Label text="Author" textFill="#e7e5e5">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Label>
-            <Label text="Amount" textFill="#e7e5e5">
+            <Label text="Publisher" textFill="#e7e5e5">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Label>
-            <Label text="Status" textFill="#e7e5e5">
+            <Label text="Price" textFill="#e7e5e5">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Label>
+            <Label layoutX="515.0" layoutY="23.0" text="Pages" textFill="#e7e5e5" />
+            <Label layoutX="621.0" layoutY="23.0" text="Stocks" textFill="#e7e5e5" />
+            <Label layoutX="733.0" layoutY="23.0" text="Release Date" textFill="#e7e5e5" />
+            <Label layoutX="848.0" layoutY="23.0" text="Genre" textFill="#e7e5e5" />
          </HBox>
-         <ScrollPane layoutX="14.0" layoutY="232.0" prefHeight="320.0" prefWidth="746.0" stylesheets="@style.css">
-            <VBox fx:id="pnItems" prefHeight="318.0" prefWidth="744.0" spacing="5.0" style="-fx-background-color: #2c2c2c;">
+         <ScrollPane layoutX="14.0" layoutY="232.0" prefHeight="454.0" prefWidth="994.0" stylesheets="@style.css">
+            <VBox fx:id="pnItems" prefHeight="467.0" prefWidth="996.0" spacing="5.0" style="-fx-background-color: #2c2c2c;">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
