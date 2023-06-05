@@ -24,13 +24,6 @@ public class mainMenu implements Initializable {
 
     @FXML
     public Label user;
-    //public ListView listView;
-    public HBox warehouseLister;
-    public HBox customerLister;
-    public HBox publisherLister;
-    public HBox bookLister;
-    public HBox authorLister;
-    public HBox orderLister;
     @FXML
     private Label bookNum;
     @FXML
@@ -163,6 +156,7 @@ public class mainMenu implements Initializable {
     }
 
 
+
     public void setUsername(){
         user.setText(credentials.getUsername());
     }
@@ -211,22 +205,22 @@ public class mainMenu implements Initializable {
 
     public void handleOverview(ActionEvent actionEvent){
         if(actionEvent.getSource() == booksButtonOverview){
-            bookLister.toFront();
+
         }
         if(actionEvent.getSource() == authorsButtonOverview){
-            authorLister.toFront();
+
         }
         if(actionEvent.getSource() == publishersButtonOverview){
-            publisherLister.toFront();
+
         }
         if(actionEvent.getSource() == customersButtonOverview){
-            customerLister.toFront();
+
         }
         if(actionEvent.getSource() == warehousesButtonOverview){
-            warehouseLister.toFront();
+
         }
         if(actionEvent.getSource() == ordersButtonOverview){
-            orderLister.toFront();
+
         }
 
     }
