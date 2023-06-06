@@ -10,7 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -37,7 +36,7 @@ public class logIn {
         try {
             credentials.setUsername(username.getText());
             credentials.setPassword(password.getText());
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ZQRT", credentials.getUsername(), credentials.getPassword());
+            DriverManager.getConnection("jdbc:mysql://localhost:3306/ZQRT", credentials.getUsername(), credentials.getPassword());
             wrongLogIn.setText("Success!");
 
             URL url = getClass().getResource("/resources/FXML/mainMenu.fxml");

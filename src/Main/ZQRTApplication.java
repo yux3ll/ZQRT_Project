@@ -7,24 +7,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.IOException;
 import java.net.URL;
 
 public class ZQRTApplication extends Application {
     private double x, y;
-    //TODO edit the item fxml according to sql queries(might need multiple fxmls for different items)
-    //TODO add a new fxml for the add item page
-    //TODO add a new fxml for the delete item page
-    //TODO edit overview page to show the items when clicked
-    //TODO edit mainMenu to add statistics page
-    //TODO edit mainMenu to add settings page
-    //TODO edit mainMenu to fix sign out page
-    //TODO edit mainMenu to add a new page for miscellaneous
-
-
-    @Override
+     @Override
     public void start(Stage primaryStage) throws Exception {
         URL url = getClass().getResource("/resources/FXML/logInPage.fxml");
+        assert url != null;
         Parent root = FXMLLoader.load(url);
         primaryStage.setScene(new Scene(root));
         primaryStage.initStyle(StageStyle.UNDECORATED);
@@ -39,12 +29,6 @@ public class ZQRTApplication extends Application {
 
         });
         primaryStage.show();
-    }
-
-    public void changeScene(Stage primaryStage, String fxml) throws IOException {
-        URL url = getClass().getResource("/resources/FXML/" + fxml);
-        Parent pane = FXMLLoader.load(url);
-        primaryStage.getScene().setRoot(pane);
     }
 
     public static void main(String[] args) {
