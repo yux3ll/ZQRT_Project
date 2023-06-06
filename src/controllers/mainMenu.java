@@ -2,6 +2,7 @@ package controllers;
 
 import Main.ZQRTApplication;
 import credentials.SQLConnection;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -93,15 +94,16 @@ public class mainMenu implements Initializable {
             String genre = rs.getString("genre");
             bookList.add(new book(ISBN, title, author, publisher, price, numberOfPages, stockAmount, releaseDate, genre));
         }
-        col1.setCellValueFactory(new PropertyValueFactory<>("ISBN"));
-        col2.setCellValueFactory(new PropertyValueFactory<>("title"));
-        col3.setCellValueFactory(new PropertyValueFactory<>("authorName"));
-        col4.setCellValueFactory(new PropertyValueFactory<>("publisherName"));
-        col5.setCellValueFactory(new PropertyValueFactory<>("price"));
-        col6.setCellValueFactory(new PropertyValueFactory<>("numberOfPages"));
-        col7.setCellValueFactory(new PropertyValueFactory<>("stockAmount"));
-        col8.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
-        col9.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        con.close();
+        col1.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().ISBN()));
+        col2.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().title()));
+        col3.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().authorName()));
+        col4.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().publisherName()));
+        col5.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().price()));
+        col6.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().numberOfPages()));
+        col7.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().stockAmount()));
+        col8.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().releaseDate()));
+        col9.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().genre()));
 
         bookTable.setItems(bookList);
         FilteredList<book> filteredData = new FilteredList<>(bookList, b -> true);
@@ -111,23 +113,23 @@ public class mainMenu implements Initializable {
                 return true;
             }
             String lowerCaseFilter = newValue.toLowerCase();
-            if (book.getISBN().toLowerCase().contains(lowerCaseFilter)) {
+            if (book.ISBN().toLowerCase().contains(lowerCaseFilter)) {
                 return true;
-            } else if (book.getTitle().toLowerCase().contains(lowerCaseFilter)) {
+            } else if (book.title().toLowerCase().contains(lowerCaseFilter)) {
                 return true;
-            } else if (book.getAuthorName().toLowerCase().contains(lowerCaseFilter)) {
+            } else if (book.authorName().toLowerCase().contains(lowerCaseFilter)) {
                 return true;
-            } else if (book.getPublisherName().toLowerCase().contains(lowerCaseFilter)) {
+            } else if (book.publisherName().toLowerCase().contains(lowerCaseFilter)) {
                 return true;
-            } else if (book.getPrice().toLowerCase().contains(lowerCaseFilter)) {
+            } else if (book.price().toLowerCase().contains(lowerCaseFilter)) {
                 return true;
-            } else if (book.getNumberOfPages().toLowerCase().contains(lowerCaseFilter)) {
+            } else if (book.numberOfPages().toLowerCase().contains(lowerCaseFilter)) {
                 return true;
-            } else if (book.getStockAmount().toLowerCase().contains(lowerCaseFilter)) {
+            } else if (book.stockAmount().toLowerCase().contains(lowerCaseFilter)) {
                 return true;
-            } else if (book.getReleaseDate().toLowerCase().contains(lowerCaseFilter)) {
+            } else if (book.releaseDate().toLowerCase().contains(lowerCaseFilter)) {
                 return true;
-            } else return book.getGenre().toLowerCase().contains(lowerCaseFilter);
+            } else return book.genre().toLowerCase().contains(lowerCaseFilter);
         }));
         SortedList<book> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(bookTable.comparatorProperty());
