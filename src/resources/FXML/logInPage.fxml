@@ -45,11 +45,9 @@
       <Label layoutX="1236.0" layoutY="681.0" prefHeight="25.0" prefWidth="30.0" text="Yux3l" textFill="WHITE" />
       <Button layoutX="1173.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeApplication" prefHeight="66.0" prefWidth="68.0" style="-fx-background-color: #121212;">
          <graphic>
-            <ImageView fitHeight="62.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/closeApp.png" />
-               </image>
-            </ImageView>
+             <ImageView fitHeight="62.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                 <Image url="@../img/closeApp.png"/>
+             </ImageView>
          </graphic>
       </Button>
     </Pane>
