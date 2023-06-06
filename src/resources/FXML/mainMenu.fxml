@@ -32,7 +32,7 @@
             <Insets bottom="20.0" />
          </VBox.margin>
       </Label>
-      <Button fx:id="btnOverview" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Overview" textFill="#e7e5e5">
+      <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#overviewBase" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Overview" textFill="#e7e5e5">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../img/icons8_Home_32px.png" />
@@ -48,7 +48,7 @@
             <Insets left="50.0" />
          </padding>
       </Button>
-      <Button fx:id="btnInserts" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Inserts">
+      <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#insertsBase" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Inserts">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../img/icons8_Open_Envelope_32px.png" />
@@ -58,7 +58,7 @@
             <Insets left="50.0" />
          </padding>
       </Button>
-      <Button fx:id="btnDeletions" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Deletions">
+      <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#deletionsBase" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Deletions">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../img/icons8_Person_32px.png" />
@@ -68,7 +68,7 @@
             <Insets left="50.0" />
          </padding>
       </Button>
-      <Button fx:id="btnUpdates" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Updates">
+      <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#updatesBase" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Updates">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../img/icons8_Xbox_Menu_32px.png" />
@@ -78,7 +78,7 @@
             <Insets left="50.0" />
          </padding>
       </Button>
-      <Button fx:id="btnStatistics" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Statistics">
+      <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#statisticsBase" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Statistics">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../img/icons8_Box_32px.png" />
@@ -88,7 +88,7 @@
             <Insets left="50.0" />
          </padding>
       </Button>
-      <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Settings">
+      <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#settingsBase" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Settings">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../img/icons8_Slider__32px.png" />
@@ -98,7 +98,7 @@
             <Insets left="50.0" />
          </padding>
       </Button>
-      <Button fx:id="btnSignOut" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Sign Out">
+      <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleSignOut" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Sign Out">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../img/icons8_Sign_Out_32px.png" />
@@ -132,7 +132,7 @@
                      <Font name="System Bold" size="26.0" />
                   </font>
                </Label>
-               <Button fx:id="booksButtonOverview" mnemonicParsing="false" onAction="#handleOverviewClick" prefHeight="0.0" prefWidth="68.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Books" textFill="#e7e5e5" underline="true" />
+               <Button mnemonicParsing="false" onAction="#overviewBook" prefHeight="0.0" prefWidth="68.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Books" textFill="#e7e5e5" underline="true" />
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="128.0">
                <Label fx:id="authorNum" text="1" textFill="#eab308">
@@ -140,7 +140,7 @@
                      <Font name="System Bold" size="26.0" />
                   </font>
                </Label>
-               <Button fx:id="authorsButtonOverview" mnemonicParsing="false" onAction="#handleOverviewClick" prefHeight="0.0" prefWidth="68.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Authors" textFill="#e7e5e5" underline="true" />
+               <Button mnemonicParsing="false" onAction="#overviewAuthor" prefHeight="0.0" prefWidth="68.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Authors" textFill="#e7e5e5" underline="true" />
             </VBox>
             <VBox alignment="CENTER" prefHeight="92.0" prefWidth="128.0">
                <Label fx:id="publisherNum" text="1" textFill="#3b82f6">
@@ -148,7 +148,7 @@
                      <Font name="System Bold" size="26.0" />
                   </font>
                </Label>
-               <Button fx:id="publishersButtonOverview" mnemonicParsing="false" onAction="#handleOverviewClick" prefHeight="27.0" prefWidth="81.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Publishers" textFill="#e7e5e5" underline="true" />
+               <Button mnemonicParsing="false" onAction="#overviewPublisher" prefHeight="27.0" prefWidth="81.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Publishers" textFill="#e7e5e5" underline="true" />
             </VBox>
             <VBox alignment="CENTER" prefHeight="92.0" prefWidth="128.0">
                <Label fx:id="customerNum" text="1" textFill="#06b6d4">
@@ -156,7 +156,7 @@
                      <Font name="System Bold" size="26.0" />
                   </font>
                </Label>
-               <Button fx:id="customersButtonOverview" mnemonicParsing="false" onAction="#handleOverviewClick" prefHeight="27.0" prefWidth="76.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Customers" textFill="#e7e5e5" underline="true" />
+               <Button mnemonicParsing="false" onAction="#overviewCustomer" prefHeight="27.0" prefWidth="76.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Customers" textFill="#e7e5e5" underline="true" />
             </VBox>
             <VBox alignment="CENTER" layoutX="460.0" layoutY="10.0" prefHeight="92.0" prefWidth="128.0">
                <Label fx:id="warehouseNum" text="1" textFill="#ab55f7">
@@ -164,7 +164,7 @@
                      <Font name="System Bold" size="26.0" />
                   </font>
                </Label>
-               <Button fx:id="warehousesButtonOverview" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleOverviewClick" prefHeight="27.0" prefWidth="86.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Warehouses" textFill="#e7e5e5" textOverrun="CLIP" underline="true" />
+               <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#overviewWarehouse" prefHeight="27.0" prefWidth="86.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Warehouses" textFill="#e7e5e5" textOverrun="CLIP" underline="true" />
             </VBox>
             <VBox alignment="CENTER" layoutX="436.0" layoutY="10.0" prefHeight="200.0" prefWidth="128.0">
                <Label fx:id="orderNum" text="1" textFill="#f97316">
@@ -172,7 +172,7 @@
                      <Font name="System Bold" size="26.0" />
                   </font>
                </Label>
-               <Button fx:id="ordersButtonOverview" mnemonicParsing="false" onAction="#handleOverviewClick" prefHeight="0.0" prefWidth="68.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Orders" textFill="#e7e5e5" underline="true" />
+               <Button mnemonicParsing="false" onAction="#overviewOrder" prefHeight="0.0" prefWidth="68.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Orders" textFill="#e7e5e5" underline="true" />
             </VBox>
          </HBox>
          <StackPane layoutX="16.0" layoutY="173.0" prefHeight="534.0" prefWidth="992.0">
@@ -185,7 +185,7 @@
                   <TableColumn fx:id="publisherTable5" editable="false" prefWidth="90.0" sortable="false" text="Address" />
                   <TableColumn fx:id="publisherTable6" editable="false" prefWidth="138.0" sortable="false" text="Published Books" />
                   <TableColumn fx:id="publisherTable7" editable="false" prefWidth="198.0" sortable="false" text="Copies Sold" />
-                  <TableColumn fx:id="publisherTable8" editable="false" prefWidth="198.0" sortable="false" text="Copies Sold" />
+                  <TableColumn fx:id="publisherTable8" editable="false" prefWidth="198.0" sortable="false" text="Total Revenue" />
                </columns>
             </TableView>
             <TableView fx:id="customerTable" prefHeight="484.0" prefWidth="992.0" style="-fx-border-color: transparent;" stylesheets="@style.css">
@@ -200,15 +200,6 @@
                   <TableColumn fx:id="customerTable8" editable="false" prefWidth="214.0" sortable="false" text="Money Spent" />
                </columns>
             </TableView>
-            <TableView fx:id="authorTable" prefHeight="484.0" prefWidth="992.0" style="-fx-border-color: transparent;" stylesheets="@style.css">
-               <columns>
-                  <TableColumn fx:id="authorTable1" editable="false" prefWidth="90.0" sortable="false" text="ID" />
-                  <TableColumn fx:id="authorTable2" editable="false" prefWidth="89.0" sortable="false" style="-fx-background-color: #2c2c2c;" text="Full Name" />
-                  <TableColumn fx:id="authorTable3" editable="false" minWidth="0.0" prefWidth="106.0" sortable="false" text="Email" />
-                  <TableColumn fx:id="authorTable4" editable="false" minWidth="0.0" prefWidth="69.0" sortable="false" text="Published Books" />
-                  <TableColumn fx:id="authorTable5" editable="false" prefWidth="86.0" sortable="false" text="Copies Sold" />
-               </columns>
-            </TableView>
             <TableView fx:id="warehouseTable" prefHeight="484.0" prefWidth="992.0" style="-fx-border-color: transparent;" stylesheets="@style.css">
                <columns>
                   <TableColumn fx:id="warehouseTable1" editable="false" prefWidth="89.0" sortable="false" style="-fx-background-color: #2c2c2c;" text="ID" />
@@ -217,7 +208,6 @@
                   <TableColumn fx:id="warehouseTable4" editable="false" prefWidth="86.0" sortable="false" text="Total Stock" />
                </columns>
             </TableView>
-            <Pane fx:id="hider" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2c2c2c;" />
             <TableView fx:id="bookTable" prefHeight="484.0" prefWidth="992.0" stylesheets="@style.css">
                <columns>
                   <TableColumn fx:id="col1" editable="false" prefWidth="95.0" sortable="false" text="ISBN" />
@@ -234,16 +224,24 @@
             <TableView fx:id="orderTable" prefHeight="484.0" prefWidth="992.0" stylesheets="@style.css">
                <columns>
                   <TableColumn fx:id="orderTable1" editable="false" prefWidth="89.0" style="-fx-background-color: #2c2c2c;" text="ID" />
-                  <TableColumn fx:id="orderTable2" editable="false" minWidth="0.0" prefWidth="106.0" text="Order Date" />
-                  <TableColumn fx:id="orderTable3" editable="false" minWidth="0.0" prefWidth="69.0" text="Address" />
-                  <TableColumn fx:id="orderTable4" editable="false" prefWidth="86.0" text="Customer Name" />
-                  <TableColumn fx:id="orderTable5" editable="false" prefWidth="90.0" text="Book 1" />
-                  <TableColumn fx:id="orderTable6" editable="false" prefWidth="138.0" text="Book 2" />
-                  <TableColumn fx:id="orderTable7" editable="false" prefWidth="198.0" text="Book 3" />
-                  <TableColumn fx:id="orderTable8" editable="false" prefWidth="95.0" text="Book 4" />
-                  <TableColumn fx:id="orderTable9" editable="false" prefWidth="120.0" text="Book 5" />
+                  <TableColumn fx:id="orderTable2" editable="false" minWidth="0.0" prefWidth="106.0" text="Customer Name" />
+                  <TableColumn fx:id="orderTable3" editable="false" minWidth="0.0" prefWidth="69.0" text="Date" />
+                  <TableColumn fx:id="orderTable4" editable="false" prefWidth="86.0" text="Status" />
+                  <TableColumn fx:id="orderTable5" editable="false" prefWidth="90.0" text="Number of Books" />
+                  <TableColumn fx:id="orderTable6" editable="false" prefWidth="138.0" text="Total Price" />
                </columns>
             </TableView>
+            <TableView fx:id="authorTable" prefHeight="484.0" prefWidth="992.0" style="-fx-border-color: transparent;" stylesheets="@style.css">
+               <columns>
+                  <TableColumn fx:id="authorTable1" editable="false" prefWidth="90.0" sortable="false" text="ID" />
+                  <TableColumn fx:id="authorTable2" editable="false" prefWidth="89.0" sortable="false" style="-fx-background-color: #2c2c2c;" text="Full Name" />
+                  <TableColumn fx:id="authorTable3" editable="false" minWidth="0.0" prefWidth="106.0" sortable="false" text="Email" />
+                  <TableColumn fx:id="authorTable4" editable="false" minWidth="0.0" prefWidth="120.0" sortable="false" text="Published Books" />
+                  <TableColumn fx:id="authorTable5" editable="false" prefWidth="103.0" sortable="false" text="Copies Sold" />
+                  <TableColumn fx:id="authorTable6" editable="false" prefWidth="203.0" sortable="false" text="Total Revenue" />
+               </columns>
+            </TableView>
+            <Pane fx:id="overviewHider" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2c2c2c;" />
          </StackPane>
       </Pane>
    </StackPane>

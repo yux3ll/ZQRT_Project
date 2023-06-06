@@ -7,10 +7,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import objects.*;
@@ -42,27 +44,25 @@ public class mainMenu implements Initializable {
     @FXML
     public TableColumn<customer, String> customerTable1, customerTable2, customerTable3, customerTable4, customerTable5, customerTable6, customerTable7, customerTable8;
     @FXML
-    public TableColumn<author,String> authorTable1, authorTable2, authorTable3, authorTable4, authorTable5;
+    public TableColumn<author,String> authorTable1, authorTable2, authorTable3, authorTable4, authorTable5, authorTable6;
     @FXML
     public TableColumn<warehouse, String> warehouseTable1, warehouseTable2, warehouseTable3, warehouseTable4;
     @FXML
-    public TableColumn<order, String> orderTable1, orderTable2, orderTable3, orderTable4, orderTable5, orderTable6, orderTable7, orderTable8, orderTable9;
+    public TableColumn<order, String> orderTable1, orderTable2, orderTable3, orderTable4, orderTable5, orderTable6;
     @FXML
     public TableColumn<book,String>col1, col2, col3, col4, col5, col6, col7, col8, col9;
     @FXML
     public TextField searchBar;
     ObservableList<book> bookList= FXCollections.observableArrayList();
-
     @FXML
-    private Button btnOverview, btnInserts, btnDeletions, btnUpdates, btnStatistics, btnSettings,btnSignOut, booksButtonOverview, authorsButtonOverview, publishersButtonOverview, customersButtonOverview, warehousesButtonOverview, ordersButtonOverview;
-    @FXML
-    private Pane pnlInserts, pnlDeletions, pnlOverview, pnlUpdates, pnlStatistics, pnlSettings, hider;
+    private Pane pnlInserts, pnlDeletions, pnlOverview, pnlUpdates, pnlStatistics, pnlSettings, overviewHider;
     SQLConnection credentials = SQLConnection.getInstance();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
        try {
-              overviewBase();
+           setUsername();
+           overviewBase();
          } catch (SQLException e) {
               e.printStackTrace();
        }
@@ -70,9 +70,28 @@ public class mainMenu implements Initializable {
 
     public void overviewBase() throws SQLException {
         pnlOverview.toFront();
-        setUsername();
         setFancyNumbers();
-        hider.toFront();
+        overviewHider.toFront();
+    }
+    public void insertsBase() throws SQLException {
+        pnlInserts.toFront();
+
+    }
+    public void updatesBase() throws SQLException {
+        pnlUpdates.toFront();
+
+    }
+    public void deletionsBase() throws SQLException {
+        pnlDeletions.toFront();
+
+    }
+    public void statisticsBase() throws SQLException {
+        pnlStatistics.toFront();
+
+    }
+    public void settingsBase() throws SQLException {
+        pnlSettings.toFront();
+
     }
     public void overviewBook() throws SQLException {
         bookTable.toFront();
@@ -141,58 +160,23 @@ public class mainMenu implements Initializable {
         authorTable.toFront();
 
     }
-    public void overviewPublisher() throws SQLException {}
-    public void overviewCustomer() throws SQLException {}
-    public void overviewWarehouse() throws SQLException {}
-    public void overviewOrder() throws SQLException {}
 
+    public void overviewPublisher() throws SQLException {
+        publisherTable.toFront();
 
-
-
-    public void handleOverviewClick(ActionEvent actionEvent){
-        if(actionEvent.getSource() == booksButtonOverview){
-            try {
-                overviewBook();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if(actionEvent.getSource() == authorsButtonOverview){
-            try {
-                overviewAuthor();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if(actionEvent.getSource() == publishersButtonOverview){
-            try {
-                overviewPublisher();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if(actionEvent.getSource() == customersButtonOverview){
-            try {
-                overviewCustomer();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if(actionEvent.getSource() == warehousesButtonOverview){
-            try {
-                overviewWarehouse();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if(actionEvent.getSource() == ordersButtonOverview){
-            try {
-                overviewOrder();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
     }
+    public void overviewCustomer() throws SQLException {
+        customerTable.toFront();
+    }
+    public void overviewWarehouse() throws SQLException {
+        warehouseTable.toFront();
+    }
+    public void overviewOrder() throws SQLException {
+        orderTable.toFront();
+
+    }
+
+
     public void handleSignOut() throws Exception {
         credentials.resetCredentials();
         URL url = getClass().getResource("/resources/FXML/logInPage.fxml");
@@ -220,31 +204,5 @@ public class mainMenu implements Initializable {
         orderNum.setText(rs.getString(6));
         con.close();
     }
-    public void handleClicks(ActionEvent actionEvent) {
-        if (actionEvent.getSource() == btnOverview) {
-            pnlOverview.toFront();
-        }
-        if (actionEvent.getSource() == btnInserts) {
-            pnlInserts.toFront();
-        }
-        if (actionEvent.getSource() == btnDeletions) {
-            pnlDeletions.toFront();
-        }
-        if (actionEvent.getSource() == btnUpdates) {
-            pnlUpdates.toFront();
-        }
-        if (actionEvent.getSource() == btnStatistics) {
-            pnlStatistics.toFront();
-        }
-        if (actionEvent.getSource() == btnSettings) {
-            pnlSettings.toFront();
-        }
-        if (actionEvent.getSource() == btnSignOut) {
-            try {
-                handleSignOut();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
+
 }
