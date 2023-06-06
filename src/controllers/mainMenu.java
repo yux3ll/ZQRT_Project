@@ -210,7 +210,7 @@ public class mainMenu implements Initializable {
                 "(SELECT COUNT(*) FROM author), (SELECT COUNT(*) FROM publisher), " +
                 "(SELECT COUNT(*) FROM customer), " +
                 "(SELECT COUNT(*) FROM warehouse), " +
-                "(SELECT COUNT(*) FROM orders);");
+                "(SELECT COUNT(*) FROM orderLogistics);");
         rs.next();
         bookNum.setText(rs.getString(1));
         authorNum.setText(rs.getString(2));
