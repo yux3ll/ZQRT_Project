@@ -1,7 +1,7 @@
 package controllers;
 
 import Main.ZQRTApplication;
-import credentials.SQLConnection;
+import dataCarrier.SQLConnection;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,7 +26,7 @@ public class mainMenu implements Initializable {
     @FXML
     public Label user, bookNum, authorNum, customerNum, publisherNum, warehouseNum, orderNum;
    @FXML
-   public TableView<book> bookTable;
+    public TableView<book> bookTable;
     @FXML
     public TableView<publisher> publisherTable;
     @FXML
@@ -38,7 +38,7 @@ public class mainMenu implements Initializable {
     @FXML
     public TableView<author> authorTable;
     @FXML
-    public TableColumn<publisher, String> publisherTable1, publisherTable2, publisherTable3, publisherTable4, publisherTable5, publisherTable6, publisherTable7;
+    public TableColumn<publisher, String> publisherTable1, publisherTable2, publisherTable3, publisherTable4, publisherTable5, publisherTable6, publisherTable7,publisherTable8;
     @FXML
     public TableColumn<customer, String> customerTable1, customerTable2, customerTable3, customerTable4, customerTable5, customerTable6, customerTable7, customerTable8;
     @FXML
@@ -137,7 +137,10 @@ public class mainMenu implements Initializable {
         sortedData.comparatorProperty().bind(bookTable.comparatorProperty());
         bookTable.setItems(sortedData);
     }
-    public void overviewAuthor() throws SQLException {}
+    public void overviewAuthor() throws SQLException {
+        authorTable.toFront();
+
+    }
     public void overviewPublisher() throws SQLException {}
     public void overviewCustomer() throws SQLException {}
     public void overviewWarehouse() throws SQLException {}
@@ -155,19 +158,39 @@ public class mainMenu implements Initializable {
             }
         }
         if(actionEvent.getSource() == authorsButtonOverview){
-
+            try {
+                overviewAuthor();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         if(actionEvent.getSource() == publishersButtonOverview){
-
+            try {
+                overviewPublisher();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         if(actionEvent.getSource() == customersButtonOverview){
-
+            try {
+                overviewCustomer();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         if(actionEvent.getSource() == warehousesButtonOverview){
-
+            try {
+                overviewWarehouse();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         if(actionEvent.getSource() == ordersButtonOverview){
-
+            try {
+                overviewOrder();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
     public void handleSignOut() throws Exception {

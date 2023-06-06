@@ -1,4 +1,3 @@
 package objects;
 
-public class author {
-}
+public record author(String ID, String name, String email, String publishedBooks, String copiesSold, String totalRevenue) {}

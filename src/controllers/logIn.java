@@ -1,7 +1,7 @@
 package controllers;
 
 import Main.ZQRTApplication;
-import credentials.SQLConnection;
+import dataCarrier.SQLConnection;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -34,20 +34,15 @@ public class logIn {
 
     private void checkLogin() {
         try {
+            credentials.resetCredentials();
             credentials.setUsername(username.getText());
             credentials.setPassword(password.getText());
             DriverManager.getConnection("jdbc:mysql://localhost:3306/ZQRT", credentials.getUsername(), credentials.getPassword());
             wrongLogIn.setText("Success!");
-
             URL url = getClass().getResource("/resources/FXML/mainMenu.fxml");
             Stage stage = (Stage) button.getScene().getWindow();
             ZQRTApplication z = new ZQRTApplication();
             z.changeSceneInStage(stage, url);
-
-
-
-
-            //    m.changeScene("mainPage.fxml");
         } catch (SQLException e) {
             if (username.getText().isEmpty() && password.getText().isEmpty()) {
                 wrongLogIn.setText("Please enter your credentials.");
@@ -57,5 +52,8 @@ public class logIn {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+    public void closeApplication(){
+        System.exit(0);
     }
 }

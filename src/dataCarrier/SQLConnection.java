@@ -1,4 +1,4 @@
-package credentials;
+package dataCarrier;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,4 +1,3 @@
 package objects;
 
-public class warehouse {
-}
+public record warehouse(String ID, String name, String address, String totalStock) {}

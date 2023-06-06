@@ -185,6 +185,7 @@
                   <TableColumn fx:id="publisherTable5" editable="false" prefWidth="90.0" sortable="false" text="Address" />
                   <TableColumn fx:id="publisherTable6" editable="false" prefWidth="138.0" sortable="false" text="Published Books" />
                   <TableColumn fx:id="publisherTable7" editable="false" prefWidth="198.0" sortable="false" text="Copies Sold" />
+                  <TableColumn fx:id="publisherTable8" editable="false" prefWidth="198.0" sortable="false" text="Copies Sold" />
                </columns>
             </TableView>
             <TableView fx:id="customerTable" prefHeight="484.0" prefWidth="992.0" style="-fx-border-color: transparent;" stylesheets="@style.css">
