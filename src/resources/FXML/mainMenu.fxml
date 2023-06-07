@@ -247,12 +247,10 @@
          <VBox alignment="CENTER" layoutX="795.0" layoutY="87.0" prefHeight="92.0" prefWidth="210.0">
             <Label fx:id="revenueNum" text="1" textFill="#54f716">
                <font>
-                  <Font name="System Bold" size="26.0"/>
+                  <Font name="System Bold" size="26.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="68.0"
-                    style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Revenue"
-                    textFill="#e7e5e5"/>
+            <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="68.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Revenue" textFill="#e7e5e5" />
          </VBox>
       </Pane>
    </StackPane>
