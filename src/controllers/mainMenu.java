@@ -168,23 +168,23 @@ public class mainMenu implements Initializable {
         Connection con = credentials.getConnection();
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("""
-                SELECT 
-                    author.authorID, 
-                    author.name, 
-                    author.email, 
-                    COUNT(DISTINCT book.ISBN) AS amountOfPublishedBooks, 
-                    SUM(orders.quantity) AS amountOfCopiesSold, 
-                    AVG(book.numberOfPages) AS averagePage, 
+                SELECT
+                    author.authorID,
+                    author.name,
+                    author.email,
+                    COUNT(DISTINCT book.ISBN) AS amountOfPublishedBooks,
+                    SUM(orders.quantity) AS amountOfCopiesSold,
+                    AVG(book.numberOfPages) AS averagePage,
                     SUM(book.price * orders.quantity) AS revenue
-                FROM 
+                FROM
                     author
                         LEFT JOIN book ON author.authorID = book.authorID
                         LEFT JOIN orders ON book.ISBN = orders.ISBN
-                GROUP BY 
-                    author.authorID, 
-                    author.name, 
+                GROUP BY
+                    author.authorID,
+                    author.name,
                     author.email
-                ORDER BY 
+                ORDER BY
                 author.authorID;""");
         while(rs.next()){
             String authorID = rs.getString("authorID");
@@ -253,10 +253,10 @@ public class mainMenu implements Initializable {
                         INNER JOIN book ON publisher.publisherID = book.publisherID
                         INNER JOIN orders ON book.ISBN = orders.ISBN
                 GROUP BY
-                    publisher.publisherID, 
-                    publisher.name, 
-                    publisher.email, 
-                    publisher.phoneNumber, 
+                    publisher.publisherID,
+                    publisher.name,
+                    publisher.email,
+                    publisher.phoneNumber,
                     publisher.address
                 ORDER BY
                     publisher.publisherID;
