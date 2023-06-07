@@ -168,12 +168,24 @@ public class mainMenu implements Initializable {
         Connection con = credentials.getConnection();
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("""
-                SELECT author.authorID, author.name, author.email, COUNT(DISTINCT book.ISBN) AS amountOfPublishedBooks, SUM(orders.quantity) AS amountOfCopiesSold, AVG(book.numberOfPages) AS averagePage, SUM(book.price * orders.quantity) AS revenue
-                FROM author
-                LEFT JOIN book ON author.authorID = book.authorID
-                LEFT JOIN orders ON book.ISBN = orders.ISBN
-                GROUP BY author.authorID, author.name, author.email
-                ORDER BY author.authorID;""");
+                SELECT 
+                    author.authorID, 
+                    author.name, 
+                    author.email, 
+                    COUNT(DISTINCT book.ISBN) AS amountOfPublishedBooks, 
+                    SUM(orders.quantity) AS amountOfCopiesSold, 
+                    AVG(book.numberOfPages) AS averagePage, 
+                    SUM(book.price * orders.quantity) AS revenue
+                FROM 
+                    author
+                        LEFT JOIN book ON author.authorID = book.authorID
+                        LEFT JOIN orders ON book.ISBN = orders.ISBN
+                GROUP BY 
+                    author.authorID, 
+                    author.name, 
+                    author.email
+                ORDER BY 
+                author.authorID;""");
         while(rs.next()){
             String authorID = rs.getString("authorID");
             String name = rs.getString("name");
@@ -185,6 +197,7 @@ public class mainMenu implements Initializable {
             authorList.add(new author(authorID, name, email, amountOfPublishedBooks, amountOfCopiesSold, averagePage, revenue));
         }
         con.close();
+
         authorTable1.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().ID()));
         authorTable2.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().name()));
         authorTable3.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().email()));
@@ -222,17 +235,205 @@ public class mainMenu implements Initializable {
 
     public void overviewPublisher() throws SQLException {
         publisherTable.toFront();
+        publisherList.clear();
+        Connection con = credentials.getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("""
+                SELECT
+                    publisher.publisherID,
+                    publisher.name AS publisherName,
+                    publisher.email,
+                    publisher.phoneNumber,
+                    publisher.address,
+                    SUM(orders.quantity) as copiesSold,
+                    COUNT(book.publisherID) AS bookCount,
+                    SUM(book.price * orders.quantity) AS revenue
+                FROM
+                    publisher
+                        INNER JOIN book ON publisher.publisherID = book.publisherID
+                        INNER JOIN orders ON book.ISBN = orders.ISBN
+                GROUP BY
+                    publisher.publisherID, 
+                    publisher.name, 
+                    publisher.email, 
+                    publisher.phoneNumber, 
+                    publisher.address
+                ORDER BY
+                    publisher.publisherID;
+                """);
+        while(rs.next()){
+            String ID = rs.getString("publisherID");
+            String name = rs.getString("publisherName");
+            String email = rs.getString("email");
+            String phone = rs.getString("phoneNumber");
+            String address = rs.getString("address");
+            String publishedBooks = rs.getString("bookCount");
+            String copiesSold = rs.getString("copiesSold");
+            String revenue = rs.getString("revenue");
+            publisherList.add(new publisher(ID, name, email, phone, address, publishedBooks, copiesSold, revenue));
+        }
+        con.close();
 
+        publisherTable1.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().ID()));
+        publisherTable2.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().name()));
+        publisherTable3.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().email()));
+        publisherTable4.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().phone()));
+        publisherTable5.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().address()));
+        publisherTable6.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().publishedBooks()));
+        publisherTable7.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().copiesSold()));
+        publisherTable8.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().totalRevenue()));
+
+        publisherTable.setItems(publisherList);
+        FilteredList<publisher> filteredData = new FilteredList<>(publisherList, b -> true);
+
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(publisher -> {
+            if (newValue == null || newValue.isEmpty()) {
+                return true;
+            }
+            String lowerCaseFilter = newValue.toLowerCase();
+            if (publisher.ID().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (publisher.name().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (publisher.email().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (publisher.phone().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (publisher.address().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (publisher.publishedBooks().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (publisher.copiesSold().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else return publisher.totalRevenue().toLowerCase().contains(lowerCaseFilter);
+        }));
+        SortedList<publisher> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(publisherTable.comparatorProperty());
+        publisherTable.setItems(sortedData);
     }
     public void overviewCustomer() throws SQLException {
         customerTable.toFront();
     }
     public void overviewWarehouse() throws SQLException {
         warehouseTable.toFront();
+        warehouseList.clear();
+        Connection con = credentials.getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("""
+            SELECT
+                warehouse.warehouseID,
+                warehouse.name,
+                warehouse.address,
+                SUM(bookwarehouse.stockAmount) AS totalStock
+            FROM
+                warehouse
+                    LEFT JOIN bookwarehouse ON warehouse.warehouseID = bookwarehouse.warehouseID
+            GROUP BY
+                warehouse.warehouseID,
+                warehouse.name,
+                warehouse.address
+            ORDER BY
+                warehouse.warehouseID;""");
+        while(rs.next()){
+            String ID = rs.getString("warehouseID");
+            String name = rs.getString("name");
+            String address = rs.getString("address");
+            String totalStock = rs.getString("totalStock");
+            warehouseList.add(new warehouse(ID, name, address, totalStock));
+        }
+        con.close();
+
+        warehouseTable1.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().ID()));
+        warehouseTable2.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().name()));
+        warehouseTable3.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().address()));
+        warehouseTable4.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().totalStock()));
+
+        warehouseTable.setItems(warehouseList);
+        FilteredList<warehouse> filteredData = new FilteredList<>(warehouseList, b -> true);
+
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(warehouse -> {
+            if (newValue == null || newValue.isEmpty()) {
+                return true;
+            }
+            String lowerCaseFilter = newValue.toLowerCase();
+            if (warehouse.ID().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (warehouse.name().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (warehouse.address().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else return warehouse.totalStock().toLowerCase().contains(lowerCaseFilter);
+        }));
+        SortedList<warehouse> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(warehouseTable.comparatorProperty());
+        warehouseTable.setItems(sortedData);
     }
     public void overviewOrder() throws SQLException {
         orderTable.toFront();
+        orderList.clear();
+        Connection con = credentials.getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("""
+            SELECT
+                orderlogistics.orderID,
+                customer.name AS customerName,
+                orderlogistics.date,
+                orderlogistics.status,
+                SUM(orders.quantity) AS amountOfBooks,
+                SUM(book.price * orders.quantity) AS totalPriceOfOrder
+            FROM
+                orderlogistics
+                    INNER JOIN customer ON orderlogistics.customerID = customer.customerID
+                    INNER JOIN orders ON orderlogistics.orderID = orders.orderID
+                    INNER JOIN book ON orders.ISBN = book.ISBN
+            GROUP BY
+                orderlogistics.orderID,
+                customer.name,
+                orderlogistics.date,
+                orderlogistics.status
+            ORDER BY
+                orderlogistics.orderID;""");
 
+        while(rs.next()){
+            String ID = rs.getString("orderID");
+            String customerName = rs.getString("customerName");
+            String date = rs.getString("date");
+            String status = rs.getString("status");
+            String amountOfBooks = rs.getString("amountOfBooks");
+            String totalPriceOfOrder = rs.getString("totalPriceOfOrder");
+            orderList.add(new order(ID, customerName, date, status, amountOfBooks, totalPriceOfOrder));
+        }
+        con.close();
+        orderTable1.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().ID()));
+        orderTable2.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().customerName()));
+        orderTable3.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().date()));
+        orderTable4.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().status()));
+        orderTable5.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().numberOfBooks()));
+        orderTable6.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().totalPrice()));
+
+        orderTable.setItems(orderList);
+        FilteredList<order> filteredData = new FilteredList<>(orderList, b -> true);
+
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(order -> {
+            if (newValue == null || newValue.isEmpty()) {
+                return true;
+            }
+            String lowerCaseFilter = newValue.toLowerCase();
+            if (order.ID().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (order.customerName().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (order.date().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (order.status().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (order.numberOfBooks().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else return order.totalPrice().toLowerCase().contains(lowerCaseFilter);
+        }));
+        SortedList<order> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(orderTable.comparatorProperty());
+        orderTable.setItems(sortedData);
     }
 
 

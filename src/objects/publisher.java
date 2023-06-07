@@ -1,3 +1,5 @@
 package objects;
 
-public record publisher(String ID, String name, String address, String phone, String email, String publishedBooks, String copiesSold, String totalRevenue) {}
+public record publisher(String ID, String name, String email,
+                        String phone, String address, String publishedBooks,
+                        String copiesSold, String totalRevenue) {}
