@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 
 public class mainMenu implements Initializable {
     @FXML
-    public Label user, bookNum, authorNum, customerNum, publisherNum, warehouseNum, orderNum;
+    public Label user, bookNum, authorNum, customerNum, publisherNum, warehouseNum, orderNum,revenueNum;
    @FXML
     public TableView<book> bookTable;
     @FXML
@@ -44,7 +44,7 @@ public class mainMenu implements Initializable {
     @FXML
     public TableColumn<customer, String> customerTable1, customerTable2, customerTable3, customerTable4, customerTable5, customerTable6, customerTable7, customerTable8;
     @FXML
-    public TableColumn<author,String> authorTable1, authorTable2, authorTable3, authorTable4, authorTable5, authorTable6;
+    public TableColumn<author,String> authorTable1, authorTable2, authorTable3, authorTable4, authorTable5, authorTable6, authorTable7;
     @FXML
     public TableColumn<warehouse, String> warehouseTable1, warehouseTable2, warehouseTable3, warehouseTable4;
     @FXML
@@ -54,6 +54,12 @@ public class mainMenu implements Initializable {
     @FXML
     public TextField searchBar;
     ObservableList<book> bookList= FXCollections.observableArrayList();
+    ObservableList<publisher> publisherList= FXCollections.observableArrayList();
+    ObservableList<customer> customerList= FXCollections.observableArrayList();
+    ObservableList<warehouse> warehouseList= FXCollections.observableArrayList();
+    ObservableList<order> orderList= FXCollections.observableArrayList();
+    ObservableList<author> authorList= FXCollections.observableArrayList();
+
     @FXML
     private Pane pnlInserts, pnlDeletions, pnlOverview, pnlUpdates, pnlStatistics, pnlSettings, overviewHider;
     SQLConnection credentials = SQLConnection.getInstance();
@@ -158,7 +164,60 @@ public class mainMenu implements Initializable {
     }
     public void overviewAuthor() throws SQLException {
         authorTable.toFront();
+        authorList.clear();
+        Connection con = credentials.getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("""
+                SELECT author.authorID, author.name, author.email, COUNT(DISTINCT book.ISBN) AS amountOfPublishedBooks, SUM(orders.quantity) AS amountOfCopiesSold, AVG(book.numberOfPages) AS averagePage, SUM(book.price * orders.quantity) AS revenue
+                FROM author
+                LEFT JOIN book ON author.authorID = book.authorID
+                LEFT JOIN orders ON book.ISBN = orders.ISBN
+                GROUP BY author.authorID, author.name, author.email
+                ORDER BY author.authorID;""");
+        while(rs.next()){
+            String authorID = rs.getString("authorID");
+            String name = rs.getString("name");
+            String email = rs.getString("email");
+            String amountOfPublishedBooks = rs.getString("amountOfPublishedBooks");
+            String amountOfCopiesSold = rs.getString("amountOfCopiesSold");
+            String averagePage = rs.getString("averagePage");
+            String revenue = rs.getString("revenue");
+            authorList.add(new author(authorID, name, email, amountOfPublishedBooks, amountOfCopiesSold, averagePage, revenue));
+        }
+        con.close();
+        authorTable1.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().ID()));
+        authorTable2.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().name()));
+        authorTable3.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().email()));
+        authorTable4.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().publishedBooks()));
+        authorTable5.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().copiesSold()));
+        authorTable6.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().avgPage()));
+        authorTable7.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().totalRevenue()));
 
+        authorTable.setItems(authorList);
+        FilteredList<author> filteredData = new FilteredList<>(authorList, b -> true);
+
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(author -> {
+            if (newValue == null || newValue.isEmpty()) {
+                return true;
+            }
+            String lowerCaseFilter = newValue.toLowerCase();
+            if (author.ID().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (author.name().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (author.email().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (author.publishedBooks().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (author.copiesSold().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (author.avgPage().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else return author.totalRevenue().toLowerCase().contains(lowerCaseFilter);
+        }));
+        SortedList<author> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(authorTable.comparatorProperty());
+        authorTable.setItems(sortedData);
     }
 
     public void overviewPublisher() throws SQLException {
@@ -202,6 +261,12 @@ public class mainMenu implements Initializable {
         customerNum.setText(rs.getString(4));
         warehouseNum.setText(rs.getString(5));
         orderNum.setText(rs.getString(6));
+        Statement stmt2 = con.createStatement();
+        ResultSet rs2 = stmt2.executeQuery("SELECT SUM(orders.quantity * book.price) AS biggBucks " +
+                "FROM orders " +
+                "INNER JOIN book ON book.ISBN=orders.ISBN;");
+        rs2.next();
+        revenueNum.setText(rs2.getString(1)+" ₺");
         con.close();
     }
 
