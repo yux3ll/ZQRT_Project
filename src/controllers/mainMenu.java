@@ -15,7 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import objects.*;
+import objects.overview.*;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 
 public class mainMenu implements Initializable {
     @FXML
-    public Label user, bookNum, authorNum, customerNum, publisherNum, warehouseNum, orderNum,revenueNum;
+    public Label user, bookNum, authorNum, customerNum, publisherNum, warehouseNum, orderNum,revenueNum, bookInsertResult;
    @FXML
     public TableView<book> bookTable;
     @FXML
@@ -52,7 +52,7 @@ public class mainMenu implements Initializable {
     @FXML
     public TableColumn<book,String>col1, col2, col3, col4, col5, col6, col7, col8, col9;
     @FXML
-    public TextField searchBar;
+    public TextField searchBar, bookInsertISBN, bookInsertPublisherID, bookInsertAuthorID, bookInsertTitle, bookInsertPrice, bookInsertNumberOfPages, bookInsertStockAmount, bookInsertReleaseDate, bookInsertGenre;
     ObservableList<book> bookList= FXCollections.observableArrayList();
     ObservableList<publisher> publisherList= FXCollections.observableArrayList();
     ObservableList<customer> customerList= FXCollections.observableArrayList();
@@ -61,7 +61,7 @@ public class mainMenu implements Initializable {
     ObservableList<author> authorList= FXCollections.observableArrayList();
 
     @FXML
-    private Pane pnlInserts, pnlDeletions, pnlOverview, pnlUpdates, pnlStatistics, pnlSettings, overviewHider;
+    private Pane pnlInserts, pnlDeletions, pnlOverview, pnlUpdates, pnlStatistics, pnlSettings, overviewHider, bookInsert, insertsMain;
     SQLConnection credentials = SQLConnection.getInstance();
 
     @Override
@@ -78,26 +78,6 @@ public class mainMenu implements Initializable {
         pnlOverview.toFront();
         setFancyNumbers();
         overviewHider.toFront();
-    }
-    public void insertsBase() throws SQLException {
-        pnlInserts.toFront();
-
-    }
-    public void updatesBase() throws SQLException {
-        pnlUpdates.toFront();
-
-    }
-    public void deletionsBase() throws SQLException {
-        pnlDeletions.toFront();
-
-    }
-    public void statisticsBase() throws SQLException {
-        pnlStatistics.toFront();
-
-    }
-    public void settingsBase() throws SQLException {
-        pnlSettings.toFront();
-
     }
     public void overviewBook() throws SQLException {
         bookTable.toFront();
@@ -435,7 +415,107 @@ public class mainMenu implements Initializable {
         sortedData.comparatorProperty().bind(orderTable.comparatorProperty());
         orderTable.setItems(sortedData);
     }
+    public void insertsBase() {
+        pnlInserts.toFront();
+        insertsMain.toFront();
+    }
+    public void insertsGoBack(){
+        insertsMain.toFront();
+    }
 
+    public void insertBook(){
+        bookInsert.toFront();
+    }
+    public void bookInsertClear(){
+        bookInsertISBN.clear();
+        bookInsertTitle.clear();
+        bookInsertPrice.clear();
+        bookInsertStockAmount.clear();
+        bookInsertAuthorID.clear();
+        bookInsertPublisherID.clear();
+        bookInsertGenre.clear();
+        bookInsertReleaseDate.clear();
+        bookInsertNumberOfPages.clear();
+        bookInsertResult.setText("");
+    }
+    public void attemptBookInsert(){
+        String ISBN = bookInsertISBN.getText();
+        String title = bookInsertTitle.getText();
+        String price = bookInsertPrice.getText();
+        String stockAmount = bookInsertStockAmount.getText();
+        String authorID = bookInsertAuthorID.getText();
+        String publisherID = bookInsertPublisherID.getText();
+        String genre = bookInsertGenre.getText();
+        String releaseDate = bookInsertReleaseDate.getText();
+        String numberOfPages = bookInsertNumberOfPages.getText();
+
+
+        // replace "'" with "/'" to avoid SQL syntax errors
+        title = title.replace("'", "/'");
+        genre = genre.replace("'", "/'");
+        //if isbn is not 13 digits, return error
+        if(ISBN.length() != 12){
+            bookInsertResult.setText("ISBN must be 12 digits");
+            return;
+        }
+        // if any of the fields are empty, return error
+        if(title.isEmpty() || price.isEmpty() || stockAmount.isEmpty() || authorID.isEmpty() || publisherID.isEmpty() || genre.isEmpty() || releaseDate.isEmpty() || numberOfPages.isEmpty()){
+            bookInsertResult.setText("All fields must be filled");
+            return;
+        }
+
+        String query = "INSERT INTO book (ISBN, title, authorID, publisherID, price, numberOfPages, stockAmount, releaseDate, genre) VALUES ('" + ISBN + "', '" + title + "', '" + authorID + "', '" + publisherID + "', '" + price + "', '" + numberOfPages + "', '" + stockAmount + "', '" + releaseDate + "', '" + genre + "');";
+        String query2 = "insert into bookWarehouse (ISBN, warehouseID, stockAmount) values ('" + ISBN + "', '10001', '" + stockAmount + "');";
+
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            stmt.executeUpdate(query2);
+            con.close();
+            bookInsertResult.setText("Book successfully added");
+        } catch (SQLException e) {
+            String error = e.getMessage();
+            if (error.contains("Duplicate entry")) {
+                error = "ISBN already exists";
+            }
+            if(error.contains("Incorrect date value")){
+                error = "Incorrect date format, please use YYYY-MM-DD";
+            }
+            if(error.contains("authorFK")){
+                error = "Author ID does not exist";
+            }
+            if(error.contains("publisherFK")){
+                error = "Publisher ID does not exist";
+            }
+            if(error.contains("Incorrect integer value")){
+                error = "Incorrect integer value";
+            }
+            bookInsertResult.setText(error);
+        }
+    }
+    public void insertAuthor(){}
+    public void insertPublisher(){}
+    public void insertCustomer(){}
+    public void insertWarehouse(){}
+    public void insertOrder(){}
+
+    public void updatesBase() {
+        pnlUpdates.toFront();
+
+    }
+    public void deletionsBase() {
+        pnlDeletions.toFront();
+
+    }
+    public void statisticsBase() {
+        pnlStatistics.toFront();
+
+    }
+    public void settingsBase() {
+        pnlSettings.toFront();
+
+    }
 
     public void handleSignOut() throws Exception {
         credentials.resetCredentials();
