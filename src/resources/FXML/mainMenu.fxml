@@ -465,6 +465,74 @@
                </Button>
             </children>
          </Pane>
+         <Pane fx:id="publisherInsert" layoutX="10.0" layoutY="10.0" prefHeight="720.0" prefWidth="1024.0" style="-fx-background-color: #2c2c2c;">
+            <children>
+               <Label layoutX="14.0" layoutY="14.0" prefHeight="66.0" prefWidth="210.0" text="Insert Publisher" textFill="#f7e5e5">
+                  <font>
+                     <Font size="24.0" />
+                  </font>
+               </Label>
+               <TextField fx:id="publisherInsertID" layoutX="70.0" layoutY="239.0" prefHeight="42.0" prefWidth="256.0" promptText="ID (Leave blank for automatic ID creation)" stylesheets="@insertText.css" />
+               <TextField fx:id="publisherInsertPhone" layoutX="70.0" layoutY="355.0" prefHeight="42.0" prefWidth="256.0" promptText="Phone Number" stylesheets="@insertText.css" />
+               <TextField fx:id="publisherInsertName" layoutX="370.0" layoutY="239.0" prefHeight="42.0" prefWidth="256.0" promptText="Name" stylesheets="@insertText.css" />
+               <TextField fx:id="publisherInsertAddress" layoutX="370.0" layoutY="355.0" prefHeight="42.0" prefWidth="256.0" promptText="Address" stylesheets="@insertText.css" />
+               <TextField fx:id="publisherInsertEmail" layoutX="670.0" layoutY="239.0" prefHeight="42.0" prefWidth="256.0" promptText="Email" stylesheets="@insertText.css" />
+               <Label fx:id="publisherInsertResult" graphicTextGap="10.0" layoutX="70.0" layoutY="552.0" prefHeight="42.0" prefWidth="560.0" stylesheets="@insertText.css">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <Button layoutX="732.0" layoutY="540.0" mnemonicParsing="false" onAction="#attemptPublisherInsert" prefHeight="67.0" prefWidth="194.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;" stylesheets="@styleInsertion.css" text="Attempt Insert" textFill="#121212">
+                  <font>
+                     <Font size="24.0" />
+                  </font>
+               </Button>
+               <Label layoutX="70.0" layoutY="511.0" prefHeight="27.0" prefWidth="165.0" text="Result &amp; Warnings" textFill="#f7e5e5">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label layoutX="70.0" layoutY="189.0" prefHeight="42.0" prefWidth="256.0" text="Publisher ID" textFill="#f7e5e5">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label layoutX="370.0" layoutY="189.0" prefHeight="42.0" prefWidth="256.0" text="Company Name" textFill="#f7e5e5">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label layoutX="670.0" layoutY="189.0" prefHeight="42.0" prefWidth="256.0" text="Company Email Address" textFill="#f7e5e5">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label layoutX="70.0" layoutY="305.0" prefHeight="42.0" prefWidth="256.0" text="Company Contact Number" textFill="#f7e5e5">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label layoutX="370.0" layoutY="305.0" prefHeight="42.0" prefWidth="256.0" text="Company Offices Address" textFill="#f7e5e5">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Button layoutX="949.0" layoutY="23.0" mnemonicParsing="false" onAction="#insertsGoBack" prefHeight="42.0" prefWidth="27.0" stylesheets="@styleInsertion.css">
+                  <graphic>
+                     <ImageView fitHeight="60.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../img/backButton.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </Button>
+               <Button layoutX="771.0" layoutY="622.0" mnemonicParsing="false" onAction="#publisherInsertClear" prefHeight="0.0" prefWidth="117.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;" stylesheets="@styleInsertion.css" text="Clear" textFill="#121212">
+                  <font>
+                     <Font size="16.0" />
+                  </font>
+               </Button>
+            </children>
+         </Pane>
       </Pane>
    </StackPane>
 </AnchorPane>

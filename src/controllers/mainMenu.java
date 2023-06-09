@@ -36,7 +36,8 @@ public class mainMenu implements Initializable {
             overviewHider,
             bookInsert,
             insertsMain,
-            authorInsert;
+            authorInsert,
+            publisherInsert;
     @FXML
     public Label
             user,
@@ -48,7 +49,8 @@ public class mainMenu implements Initializable {
             orderNum,
             revenueNum,
             bookInsertResult,
-            authorInsertResult;
+            authorInsertResult,
+            publisherInsertResult;
    @FXML
     public TableView<book>
            bookTable;
@@ -135,7 +137,12 @@ public class mainMenu implements Initializable {
             bookInsertGenre,
             authorInsertName,
             authorInsertID,
-            authorInsertEmail;
+            authorInsertEmail,
+            publisherInsertID,
+            publisherInsertPhone,
+            publisherInsertName,
+            publisherInsertAddress,
+            publisherInsertEmail;
     ObservableList<book> bookList= FXCollections.observableArrayList();
     ObservableList<publisher> publisherList= FXCollections.observableArrayList();
     ObservableList<customer> customerList= FXCollections.observableArrayList();
@@ -623,7 +630,11 @@ public class mainMenu implements Initializable {
             authorInsertResult.setText(error);
         }
     }
-    public void insertPublisher(){}
+    public void insertPublisher(){
+        publisherInsert.toFront();
+    }
+    public void publisherInsertClear(){}
+    public void attemptPublisherInsert(){}
     public void insertCustomer(){}
     public void insertWarehouse(){}
     public void insertOrder(){}
