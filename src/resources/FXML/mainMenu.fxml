@@ -257,364 +257,286 @@
             </Button>
          </Pane>
          <Pane fx:id="publisherInsert" prefHeight="720.0" prefWidth="1024.0" style="-fx-background-color: #2c2c2c;">
-            <Label layoutX="14.0" layoutY="14.0" prefHeight="66.0" prefWidth="210.0" text="Insert Publisher"
-                   textFill="#f7e5e5">
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="66.0" prefWidth="210.0" text="Insert Publisher" textFill="#f7e5e5">
                <font>
-                  <Font size="24.0"/>
+                  <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="publisherInsertID" layoutX="70.0" layoutY="239.0" prefHeight="42.0" prefWidth="256.0"
-                       promptText="ID (Leave blank for automatic ID creation)" stylesheets="@insertText.css"/>
-            <TextField fx:id="publisherInsertPhone" layoutX="70.0" layoutY="355.0" prefHeight="42.0" prefWidth="256.0"
-                       promptText="Phone Number" stylesheets="@insertText.css"/>
-            <TextField fx:id="publisherInsertName" layoutX="370.0" layoutY="239.0" prefHeight="42.0" prefWidth="256.0"
-                       promptText="Name" stylesheets="@insertText.css"/>
-            <TextField fx:id="publisherInsertAddress" layoutX="370.0" layoutY="355.0" prefHeight="42.0"
-                       prefWidth="256.0" promptText="Address" stylesheets="@insertText.css"/>
-            <TextField fx:id="publisherInsertEmail" layoutX="670.0" layoutY="239.0" prefHeight="42.0" prefWidth="256.0"
-                       promptText="Email" stylesheets="@insertText.css"/>
-            <Label fx:id="publisherInsertResult" graphicTextGap="10.0" layoutX="70.0" layoutY="552.0" prefHeight="42.0"
-                   prefWidth="560.0" stylesheets="@insertText.css">
+            <TextField fx:id="publisherInsertID" layoutX="70.0" layoutY="239.0" prefHeight="42.0" prefWidth="256.0" promptText="ID (Leave blank for automatic ID creation)" stylesheets="@insertText.css" />
+            <TextField fx:id="publisherInsertPhone" layoutX="70.0" layoutY="355.0" prefHeight="42.0" prefWidth="256.0" promptText="Phone Number" stylesheets="@insertText.css" />
+            <TextField fx:id="publisherInsertName" layoutX="370.0" layoutY="239.0" prefHeight="42.0" prefWidth="256.0" promptText="Name" stylesheets="@insertText.css" />
+            <TextField fx:id="publisherInsertAddress" layoutX="370.0" layoutY="355.0" prefHeight="42.0" prefWidth="256.0" promptText="Address" stylesheets="@insertText.css" />
+            <TextField fx:id="publisherInsertEmail" layoutX="670.0" layoutY="239.0" prefHeight="42.0" prefWidth="256.0" promptText="Email" stylesheets="@insertText.css" />
+            <Label fx:id="publisherInsertResult" graphicTextGap="10.0" layoutX="70.0" layoutY="552.0" prefHeight="42.0" prefWidth="560.0" stylesheets="@insertText.css">
                <font>
-                  <Font size="14.0"/>
+                  <Font size="14.0" />
                </font>
             </Label>
-            <Button layoutX="732.0" layoutY="540.0" mnemonicParsing="false" onAction="#attemptPublisherInsert"
-                    prefHeight="67.0" prefWidth="194.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;"
-                    stylesheets="@styleInsertion.css" text="Attempt Insert" textFill="#121212">
+            <Button layoutX="732.0" layoutY="540.0" mnemonicParsing="false" onAction="#attemptPublisherInsert" prefHeight="67.0" prefWidth="194.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;" stylesheets="@styleInsertion.css" text="Attempt Insert" textFill="#121212">
                <font>
-                  <Font size="24.0"/>
+                  <Font size="24.0" />
                </font>
             </Button>
-            <Label layoutX="70.0" layoutY="511.0" prefHeight="27.0" prefWidth="165.0" text="Result &amp; Warnings"
-                   textFill="#f7e5e5">
+            <Label layoutX="70.0" layoutY="511.0" prefHeight="27.0" prefWidth="165.0" text="Result &amp; Warnings" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="70.0" layoutY="189.0" prefHeight="42.0" prefWidth="256.0" text="Publisher ID"
-                   textFill="#f7e5e5">
+            <Label layoutX="70.0" layoutY="189.0" prefHeight="42.0" prefWidth="256.0" text="Publisher ID" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="370.0" layoutY="189.0" prefHeight="42.0" prefWidth="256.0" text="Company Name"
-                   textFill="#f7e5e5">
+            <Label layoutX="370.0" layoutY="189.0" prefHeight="42.0" prefWidth="256.0" text="Company Name" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="670.0" layoutY="189.0" prefHeight="42.0" prefWidth="256.0" text="Company Email Address"
-                   textFill="#f7e5e5">
+            <Label layoutX="670.0" layoutY="189.0" prefHeight="42.0" prefWidth="256.0" text="Company Email Address" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="70.0" layoutY="305.0" prefHeight="42.0" prefWidth="256.0" text="Company Contact Number"
-                   textFill="#f7e5e5">
+            <Label layoutX="70.0" layoutY="305.0" prefHeight="42.0" prefWidth="256.0" text="Company Contact Number" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="370.0" layoutY="305.0" prefHeight="42.0" prefWidth="256.0" text="Company Offices Address"
-                   textFill="#f7e5e5">
+            <Label layoutX="370.0" layoutY="305.0" prefHeight="42.0" prefWidth="256.0" text="Company Offices Address" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="949.0" layoutY="23.0" mnemonicParsing="false" onAction="#insertsGoBack" prefHeight="42.0"
-                    prefWidth="27.0" stylesheets="@styleInsertion.css">
+            <Button layoutX="949.0" layoutY="23.0" mnemonicParsing="false" onAction="#insertsGoBack" prefHeight="42.0" prefWidth="27.0" stylesheets="@styleInsertion.css">
                <graphic>
                   <ImageView fitHeight="60.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <Image url="@../img/backButton.png"/>
+                     <Image url="@../img/backButton.png" />
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="771.0" layoutY="622.0" mnemonicParsing="false" onAction="#insertPublisherClear"
-                    prefHeight="0.0" prefWidth="117.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;"
-                    stylesheets="@styleInsertion.css" text="Clear" textFill="#121212">
+            <Button layoutX="771.0" layoutY="622.0" mnemonicParsing="false" onAction="#insertPublisherClear" prefHeight="0.0" prefWidth="117.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;" stylesheets="@styleInsertion.css" text="Clear" textFill="#121212">
                <font>
-                  <Font size="16.0"/>
+                  <Font size="16.0" />
                </font>
             </Button>
          </Pane>
          <Pane fx:id="warehouseInsert" prefHeight="720.0" prefWidth="1024.0" style="-fx-background-color: #2c2c2c;">
-            <Label layoutX="14.0" layoutY="14.0" prefHeight="66.0" prefWidth="210.0" text="Insert Warehouse"
-                   textFill="#f7e5e5">
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="66.0" prefWidth="210.0" text="Insert Warehouse" textFill="#f7e5e5">
                <font>
-                  <Font size="24.0"/>
+                  <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="warehouseInsertID" layoutX="70.0" layoutY="318.0" prefHeight="42.0" prefWidth="256.0"
-                       promptText="ID (Leave blank for automatic ID creation)" stylesheets="@insertText.css"/>
-            <TextField fx:id="warehouseInsertName" layoutX="370.0" layoutY="318.0" prefHeight="42.0" prefWidth="256.0"
-                       promptText="Name" stylesheets="@insertText.css"/>
-            <TextField fx:id="warehouseInsertAddress" layoutX="670.0" layoutY="318.0" prefHeight="42.0"
-                       prefWidth="256.0" promptText="Address" stylesheets="@insertText.css"/>
-            <Label fx:id="warehouseInsertResult" graphicTextGap="10.0" layoutX="70.0" layoutY="552.0" prefHeight="42.0"
-                   prefWidth="560.0" stylesheets="@insertText.css">
+            <TextField fx:id="warehouseInsertID" layoutX="70.0" layoutY="318.0" prefHeight="42.0" prefWidth="256.0" promptText="ID (Leave blank for automatic ID creation)" stylesheets="@insertText.css" />
+            <TextField fx:id="warehouseInsertName" layoutX="370.0" layoutY="318.0" prefHeight="42.0" prefWidth="256.0" promptText="Name" stylesheets="@insertText.css" />
+            <TextField fx:id="warehouseInsertAddress" layoutX="670.0" layoutY="318.0" prefHeight="42.0" prefWidth="256.0" promptText="Address" stylesheets="@insertText.css" />
+            <Label fx:id="warehouseInsertResult" graphicTextGap="10.0" layoutX="70.0" layoutY="552.0" prefHeight="42.0" prefWidth="560.0" stylesheets="@insertText.css">
                <font>
-                  <Font size="14.0"/>
+                  <Font size="14.0" />
                </font>
             </Label>
-            <Button layoutX="732.0" layoutY="540.0" mnemonicParsing="false" onAction="#attemptWarehouseInsert"
-                    prefHeight="67.0" prefWidth="194.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;"
-                    stylesheets="@styleInsertion.css" text="Attempt Insert" textFill="#121212">
+            <Button layoutX="732.0" layoutY="540.0" mnemonicParsing="false" onAction="#attemptWarehouseInsert" prefHeight="67.0" prefWidth="194.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;" stylesheets="@styleInsertion.css" text="Attempt Insert" textFill="#121212">
                <font>
-                  <Font size="24.0"/>
+                  <Font size="24.0" />
                </font>
             </Button>
-            <Label layoutX="70.0" layoutY="511.0" prefHeight="27.0" prefWidth="165.0" text="Result &amp; Warnings"
-                   textFill="#f7e5e5">
+            <Label layoutX="70.0" layoutY="511.0" prefHeight="27.0" prefWidth="165.0" text="Result &amp; Warnings" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="70.0" layoutY="268.0" prefHeight="42.0" prefWidth="256.0" text="Warehouse ID"
-                   textFill="#f7e5e5">
+            <Label layoutX="70.0" layoutY="268.0" prefHeight="42.0" prefWidth="256.0" text="Warehouse ID" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="370.0" layoutY="268.0" prefHeight="42.0" prefWidth="256.0" text="Warehouse Name"
-                   textFill="#f7e5e5">
+            <Label layoutX="370.0" layoutY="268.0" prefHeight="42.0" prefWidth="256.0" text="Warehouse Name" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="670.0" layoutY="268.0" prefHeight="42.0" prefWidth="256.0" text="Address"
-                   textFill="#f7e5e5">
+            <Label layoutX="670.0" layoutY="268.0" prefHeight="42.0" prefWidth="256.0" text="Address" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="949.0" layoutY="23.0" mnemonicParsing="false" onAction="#insertsGoBack" prefHeight="42.0"
-                    prefWidth="27.0" stylesheets="@styleInsertion.css">
+            <Button layoutX="949.0" layoutY="23.0" mnemonicParsing="false" onAction="#insertsGoBack" prefHeight="42.0" prefWidth="27.0" stylesheets="@styleInsertion.css">
                <graphic>
                   <ImageView fitHeight="60.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <Image url="@../img/backButton.png"/>
+                     <Image url="@../img/backButton.png" />
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="771.0" layoutY="622.0" mnemonicParsing="false" onAction="#insertWarehouseClear"
-                    prefHeight="0.0" prefWidth="117.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;"
-                    stylesheets="@styleInsertion.css" text="Clear" textFill="#121212">
+            <Button layoutX="771.0" layoutY="622.0" mnemonicParsing="false" onAction="#insertWarehouseClear" prefHeight="0.0" prefWidth="117.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;" stylesheets="@styleInsertion.css" text="Clear" textFill="#121212">
                <font>
-                  <Font size="16.0"/>
+                  <Font size="16.0" />
                </font>
             </Button>
          </Pane>
          <Pane fx:id="authorInsert" prefHeight="720.0" prefWidth="1024.0" style="-fx-background-color: #2c2c2c;">
-            <Label layoutX="14.0" layoutY="14.0" prefHeight="66.0" prefWidth="210.0" text="Insert Author"
-                   textFill="#f7e5e5">
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="66.0" prefWidth="210.0" text="Insert Author" textFill="#f7e5e5">
                <font>
-                  <Font size="24.0"/>
+                  <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="authorInsertID" layoutX="70.0" layoutY="318.0" prefHeight="42.0" prefWidth="256.0"
-                       promptText="ID (Leave blank for automatic ID creation)" stylesheets="@insertText.css"/>
-            <TextField fx:id="authorInsertName" layoutX="370.0" layoutY="318.0" prefHeight="42.0" prefWidth="256.0"
-                       promptText="Name" stylesheets="@insertText.css"/>
-            <TextField fx:id="authorInsertEmail" layoutX="670.0" layoutY="318.0" prefHeight="42.0" prefWidth="256.0"
-                       promptText="Email" stylesheets="@insertText.css"/>
-            <Label fx:id="authorInsertResult" graphicTextGap="10.0" layoutX="70.0" layoutY="552.0" prefHeight="42.0"
-                   prefWidth="560.0" stylesheets="@insertText.css">
+            <TextField fx:id="authorInsertID" layoutX="70.0" layoutY="318.0" prefHeight="42.0" prefWidth="256.0" promptText="ID (Leave blank for automatic ID creation)" stylesheets="@insertText.css" />
+            <TextField fx:id="authorInsertName" layoutX="370.0" layoutY="318.0" prefHeight="42.0" prefWidth="256.0" promptText="Name" stylesheets="@insertText.css" />
+            <TextField fx:id="authorInsertEmail" layoutX="670.0" layoutY="318.0" prefHeight="42.0" prefWidth="256.0" promptText="Email" stylesheets="@insertText.css" />
+            <Label fx:id="authorInsertResult" graphicTextGap="10.0" layoutX="70.0" layoutY="552.0" prefHeight="42.0" prefWidth="560.0" stylesheets="@insertText.css">
                <font>
-                  <Font size="14.0"/>
+                  <Font size="14.0" />
                </font>
             </Label>
-            <Button layoutX="732.0" layoutY="540.0" mnemonicParsing="false" onAction="#attemptAuthorInsert"
-                    prefHeight="67.0" prefWidth="194.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;"
-                    stylesheets="@styleInsertion.css" text="Attempt Insert" textFill="#121212">
+            <Button layoutX="732.0" layoutY="540.0" mnemonicParsing="false" onAction="#attemptAuthorInsert" prefHeight="67.0" prefWidth="194.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;" stylesheets="@styleInsertion.css" text="Attempt Insert" textFill="#121212">
                <font>
-                  <Font size="24.0"/>
+                  <Font size="24.0" />
                </font>
             </Button>
-            <Label layoutX="70.0" layoutY="511.0" prefHeight="27.0" prefWidth="165.0" text="Result &amp; Warnings"
-                   textFill="#f7e5e5">
+            <Label layoutX="70.0" layoutY="511.0" prefHeight="27.0" prefWidth="165.0" text="Result &amp; Warnings" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="70.0" layoutY="268.0" prefHeight="42.0" prefWidth="256.0" text="Author ID"
-                   textFill="#f7e5e5">
+            <Label layoutX="70.0" layoutY="268.0" prefHeight="42.0" prefWidth="256.0" text="Author ID" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="370.0" layoutY="268.0" prefHeight="42.0" prefWidth="256.0" text="Full Name"
-                   textFill="#f7e5e5">
+            <Label layoutX="370.0" layoutY="268.0" prefHeight="42.0" prefWidth="256.0" text="Full Name" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
             <Label layoutX="670.0" layoutY="268.0" prefHeight="42.0" prefWidth="256.0" text="Email" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="949.0" layoutY="23.0" mnemonicParsing="false" onAction="#insertsGoBack" prefHeight="42.0"
-                    prefWidth="27.0" stylesheets="@styleInsertion.css">
+            <Button layoutX="949.0" layoutY="23.0" mnemonicParsing="false" onAction="#insertsGoBack" prefHeight="42.0" prefWidth="27.0" stylesheets="@styleInsertion.css">
                <graphic>
                   <ImageView fitHeight="60.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <Image url="@../img/backButton.png"/>
+                     <Image url="@../img/backButton.png" />
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="771.0" layoutY="622.0" mnemonicParsing="false" onAction="#insertAuthorClear"
-                    prefHeight="0.0" prefWidth="117.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;"
-                    stylesheets="@styleInsertion.css" text="Clear" textFill="#121212">
+            <Button layoutX="771.0" layoutY="622.0" mnemonicParsing="false" onAction="#insertAuthorClear" prefHeight="0.0" prefWidth="117.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;" stylesheets="@styleInsertion.css" text="Clear" textFill="#121212">
                <font>
-                  <Font size="16.0"/>
+                  <Font size="16.0" />
                </font>
             </Button>
          </Pane>
          <Pane fx:id="customerInsert" prefHeight="720.0" prefWidth="1024.0" style="-fx-background-color: #2c2c2c;">
-            <Label layoutX="14.0" layoutY="14.0" prefHeight="66.0" prefWidth="210.0" text="Insert Publisher"
-                   textFill="#f7e5e5">
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="66.0" prefWidth="210.0" text="Insert Publisher" textFill="#f7e5e5">
                <font>
-                  <Font size="24.0"/>
+                  <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="customerInsertID" layoutX="70.0" layoutY="239.0" prefHeight="42.0" prefWidth="256.0"
-                       promptText="ID (Leave blank for automatic ID creation)" stylesheets="@insertText.css"/>
-            <TextField fx:id="customerInsertPhone" layoutX="70.0" layoutY="355.0" prefHeight="42.0" prefWidth="256.0"
-                       promptText="Phone Number" stylesheets="@insertText.css"/>
-            <TextField fx:id="customerInsertName" layoutX="370.0" layoutY="239.0" prefHeight="42.0" prefWidth="256.0"
-                       promptText="Name" stylesheets="@insertText.css"/>
-            <TextField fx:id="customerInsertAddress" layoutX="370.0" layoutY="355.0" prefHeight="42.0" prefWidth="256.0"
-                       promptText="Address" stylesheets="@insertText.css"/>
-            <TextField fx:id="customerInsertEmail" layoutX="670.0" layoutY="239.0" prefHeight="42.0" prefWidth="256.0"
-                       promptText="Email" stylesheets="@insertText.css"/>
-            <Label fx:id="customerInsertResult" graphicTextGap="10.0" layoutX="70.0" layoutY="552.0" prefHeight="42.0"
-                   prefWidth="560.0" stylesheets="@insertText.css">
+            <TextField fx:id="customerInsertID" layoutX="70.0" layoutY="239.0" prefHeight="42.0" prefWidth="256.0" promptText="ID (Leave blank for automatic ID creation)" stylesheets="@insertText.css" />
+            <TextField fx:id="customerInsertPhone" layoutX="70.0" layoutY="355.0" prefHeight="42.0" prefWidth="256.0" promptText="Phone Number" stylesheets="@insertText.css" />
+            <TextField fx:id="customerInsertName" layoutX="370.0" layoutY="239.0" prefHeight="42.0" prefWidth="256.0" promptText="Name" stylesheets="@insertText.css" />
+            <TextField fx:id="customerInsertAddress" layoutX="370.0" layoutY="355.0" prefHeight="42.0" prefWidth="256.0" promptText="Address" stylesheets="@insertText.css" />
+            <TextField fx:id="customerInsertEmail" layoutX="670.0" layoutY="239.0" prefHeight="42.0" prefWidth="256.0" promptText="Email" stylesheets="@insertText.css" />
+            <Label fx:id="customerInsertResult" graphicTextGap="10.0" layoutX="70.0" layoutY="552.0" prefHeight="42.0" prefWidth="560.0" stylesheets="@insertText.css">
                <font>
-                  <Font size="14.0"/>
+                  <Font size="14.0" />
                </font>
             </Label>
-            <Button layoutX="732.0" layoutY="540.0" mnemonicParsing="false" onAction="#attemptCustomerInsert"
-                    prefHeight="67.0" prefWidth="194.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;"
-                    stylesheets="@styleInsertion.css" text="Attempt Insert" textFill="#121212">
+            <Button layoutX="732.0" layoutY="540.0" mnemonicParsing="false" onAction="#attemptCustomerInsert" prefHeight="67.0" prefWidth="194.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;" stylesheets="@styleInsertion.css" text="Attempt Insert" textFill="#121212">
                <font>
-                  <Font size="24.0"/>
+                  <Font size="24.0" />
                </font>
             </Button>
-            <Label layoutX="70.0" layoutY="511.0" prefHeight="27.0" prefWidth="165.0" text="Result &amp; Warnings"
-                   textFill="#f7e5e5">
+            <Label layoutX="70.0" layoutY="511.0" prefHeight="27.0" prefWidth="165.0" text="Result &amp; Warnings" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="70.0" layoutY="189.0" prefHeight="42.0" prefWidth="256.0" text="Customer ID"
-                   textFill="#f7e5e5">
+            <Label layoutX="70.0" layoutY="189.0" prefHeight="42.0" prefWidth="256.0" text="Customer ID" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="370.0" layoutY="189.0" prefHeight="42.0" prefWidth="256.0" text="Full Name"
-                   textFill="#f7e5e5">
+            <Label layoutX="370.0" layoutY="189.0" prefHeight="42.0" prefWidth="256.0" text="Full Name" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="670.0" layoutY="189.0" prefHeight="42.0" prefWidth="256.0" text="Email Address"
-                   textFill="#f7e5e5">
+            <Label layoutX="670.0" layoutY="189.0" prefHeight="42.0" prefWidth="256.0" text="Email Address" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="70.0" layoutY="305.0" prefHeight="42.0" prefWidth="256.0" text="Phone Number"
-                   textFill="#f7e5e5">
+            <Label layoutX="70.0" layoutY="305.0" prefHeight="42.0" prefWidth="256.0" text="Phone Number" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="370.0" layoutY="305.0" prefHeight="42.0" prefWidth="256.0"
-                   text="Shipment &amp; Invoice Address" textFill="#f7e5e5">
+            <Label layoutX="370.0" layoutY="305.0" prefHeight="42.0" prefWidth="256.0" text="Shipment &amp; Invoice Address" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="949.0" layoutY="23.0" mnemonicParsing="false" onAction="#insertsGoBack" prefHeight="42.0"
-                    prefWidth="27.0" stylesheets="@styleInsertion.css">
+            <Button layoutX="949.0" layoutY="23.0" mnemonicParsing="false" onAction="#insertsGoBack" prefHeight="42.0" prefWidth="27.0" stylesheets="@styleInsertion.css">
                <graphic>
                   <ImageView fitHeight="60.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <Image url="@../img/backButton.png"/>
+                     <Image url="@../img/backButton.png" />
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="771.0" layoutY="622.0" mnemonicParsing="false" onAction="#insertCustomerClear"
-                    prefHeight="0.0" prefWidth="117.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;"
-                    stylesheets="@styleInsertion.css" text="Clear" textFill="#121212">
+            <Button layoutX="771.0" layoutY="622.0" mnemonicParsing="false" onAction="#insertCustomerClear" prefHeight="0.0" prefWidth="117.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;" stylesheets="@styleInsertion.css" text="Clear" textFill="#121212">
                <font>
-                  <Font size="16.0"/>
+                  <Font size="16.0" />
                </font>
             </Button>
          </Pane>
          <Pane fx:id="orderInsert" prefHeight="720.0" prefWidth="1024.0" style="-fx-background-color: #2c2c2c;">
-            <Label layoutX="14.0" layoutY="14.0" prefHeight="66.0" prefWidth="210.0" text="Insert Publisher"
-                   textFill="#f7e5e5">
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="66.0" prefWidth="210.0" text="Insert Publisher" textFill="#f7e5e5">
                <font>
-                  <Font size="24.0"/>
+                  <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="orderInsertID" layoutX="224.0" layoutY="243.0" prefHeight="42.0" prefWidth="256.0"
-                       promptText="ID (Leave blank for automatic ID creation)" stylesheets="@insertText.css"/>
-            <TextField fx:id="orderInsertBooks" layoutX="222.0" layoutY="360.0" prefHeight="42.0" prefWidth="560.0"
-                       promptText="ISBNs (Please write the ISBNs with a &quot;-&quot;(dash), &quot; or &quot;(comma) in between)"
-                       stylesheets="@insertText.css"/>
-            <TextField fx:id="orderInsertCustomerID" layoutX="524.0" layoutY="243.0" prefHeight="42.0" prefWidth="256.0"
-                       promptText="Customer ID" stylesheets="@insertText.css"/>
-            <Label fx:id="orderInsertResult" graphicTextGap="10.0" layoutX="70.0" layoutY="552.0" prefHeight="42.0"
-                   prefWidth="560.0" stylesheets="@insertText.css">
+            <TextField fx:id="orderInsertID" layoutX="224.0" layoutY="243.0" prefHeight="42.0" prefWidth="256.0" promptText="ID (Leave blank for automatic ID creation)" stylesheets="@insertText.css" />
+            <TextField fx:id="orderInsertBooks" layoutX="222.0" layoutY="360.0" prefHeight="42.0" prefWidth="560.0" promptText="ISBNs (Please write the ISBNs with a &quot;-&quot;(dash), &quot; or &quot;(comma) in between)" stylesheets="@insertText.css" />
+            <TextField fx:id="orderInsertCustomerID" layoutX="524.0" layoutY="243.0" prefHeight="42.0" prefWidth="256.0" promptText="Customer ID" stylesheets="@insertText.css" />
+            <Label fx:id="orderInsertResult" graphicTextGap="10.0" layoutX="70.0" layoutY="552.0" prefHeight="42.0" prefWidth="560.0" stylesheets="@insertText.css">
                <font>
-                  <Font size="14.0"/>
+                  <Font size="14.0" />
                </font>
             </Label>
-            <Button layoutX="732.0" layoutY="540.0" mnemonicParsing="false" onAction="#attemptOrderInsert"
-                    prefHeight="67.0" prefWidth="194.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;"
-                    stylesheets="@styleInsertion.css" text="Attempt Insert" textFill="#121212">
+            <Button layoutX="732.0" layoutY="540.0" mnemonicParsing="false" onAction="#attemptOrderInsert" prefHeight="67.0" prefWidth="194.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;" stylesheets="@styleInsertion.css" text="Attempt Insert" textFill="#121212">
                <font>
-                  <Font size="24.0"/>
+                  <Font size="24.0" />
                </font>
             </Button>
-            <Label layoutX="70.0" layoutY="511.0" prefHeight="27.0" prefWidth="165.0" text="Result &amp; Warnings"
-                   textFill="#f7e5e5">
+            <Label layoutX="70.0" layoutY="511.0" prefHeight="27.0" prefWidth="165.0" text="Result &amp; Warnings" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="224.0" layoutY="193.0" prefHeight="42.0" prefWidth="256.0" text="Order ID"
-                   textFill="#f7e5e5">
+            <Label layoutX="224.0" layoutY="193.0" prefHeight="42.0" prefWidth="256.0" text="Order ID" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="524.0" layoutY="193.0" prefHeight="42.0" prefWidth="256.0" text="Customer ID"
-                   textFill="#f7e5e5">
+            <Label layoutX="524.0" layoutY="193.0" prefHeight="42.0" prefWidth="256.0" text="Customer ID" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="439.0" layoutY="305.0" prefHeight="42.0" prefWidth="126.0" text="Included Books"
-                   textFill="#f7e5e5">
+            <Label layoutX="439.0" layoutY="305.0" prefHeight="42.0" prefWidth="126.0" text="Included Books" textFill="#f7e5e5">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="949.0" layoutY="23.0" mnemonicParsing="false" onAction="#insertsGoBack" prefHeight="42.0"
-                    prefWidth="27.0" stylesheets="@styleInsertion.css">
+            <Button layoutX="949.0" layoutY="23.0" mnemonicParsing="false" onAction="#insertsGoBack" prefHeight="42.0" prefWidth="27.0" stylesheets="@styleInsertion.css">
                <graphic>
                   <ImageView fitHeight="60.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <Image url="@../img/backButton.png"/>
+                     <Image url="@../img/backButton.png" />
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="771.0" layoutY="622.0" mnemonicParsing="false" onAction="#insertOrderClear"
-                    prefHeight="0.0" prefWidth="117.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;"
-                    stylesheets="@styleInsertion.css" text="Clear" textFill="#121212">
+            <Button layoutX="771.0" layoutY="622.0" mnemonicParsing="false" onAction="#insertOrderClear" prefHeight="0.0" prefWidth="117.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;" stylesheets="@styleInsertion.css" text="Clear" textFill="#121212">
                <font>
-                  <Font size="16.0"/>
+                  <Font size="16.0" />
                </font>
             </Button>
          </Pane>
