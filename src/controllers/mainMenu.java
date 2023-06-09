@@ -1,7 +1,7 @@
 package controllers;
 
 import Main.ZQRTApplication;
-import dataCarrier.SQLConnection;
+import data.SQLConnection;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,7 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import objects.overview.*;
+import objects.*;
 
 import java.net.URL;
 import java.sql.Connection;

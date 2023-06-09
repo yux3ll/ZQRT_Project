@@ -1,7 +1,7 @@
 package controllers;
 
 import Main.ZQRTApplication;
-import dataCarrier.SQLConnection;
+import data.SQLConnection;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -29,7 +29,6 @@ public class logIn {
 
     public void userLogIn() {
         checkLogin();
-
     }
 
     private void checkLogin() {

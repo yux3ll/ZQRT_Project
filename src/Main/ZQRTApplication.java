@@ -35,8 +35,6 @@ public class ZQRTApplication extends Application {
         launch(args);
     }
 
-
-
     public void changeSceneInStage(Stage primaryStage, URL url) throws Exception {
 
            Parent pane = FXMLLoader.load(url);
@@ -55,19 +53,4 @@ public class ZQRTApplication extends Application {
 
     }
 }
-/* Parent root = FXMLLoader.load(url);
-        primaryStage.setScene(new Scene(root));
-        primaryStage.initStyle(StageStyle.UNDECORATED);
-        root.setOnMousePressed(event -> {
-            x = event.getSceneX();
-            y = event.getSceneY();
-        });
-        root.setOnMouseDragged(event -> {
-
-            primaryStage.setX(event.getScreenX() - x);
-            primaryStage.setY(event.getScreenY() - y);
-
-        });
-        primaryStage.show();*/
-
 
