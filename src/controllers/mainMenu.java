@@ -530,11 +530,14 @@ public class mainMenu implements Initializable {
     public void setFancyNumbers() throws SQLException {
         Connection con = credentials.getConnection();
         Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT (SELECT COUNT(*) FROM book), " +
-                "(SELECT COUNT(*) FROM author), (SELECT COUNT(*) FROM publisher), " +
-                "(SELECT COUNT(*) FROM customer), " +
-                "(SELECT COUNT(*) FROM warehouse), " +
-                "(SELECT COUNT(*) FROM orderLogistics);");
+        ResultSet rs = stmt.executeQuery("""
+                SELECT
+                (SELECT COUNT(*) FROM book),
+                (SELECT COUNT(*) FROM author),
+                (SELECT COUNT(*) FROM publisher),
+                (SELECT COUNT(*) FROM customer),
+                (SELECT COUNT(*) FROM warehouse),
+                (SELECT COUNT(*) FROM orderLogistics);""");
         rs.next();
         bookNum.setText(rs.getString(1));
         authorNum.setText(rs.getString(2));
