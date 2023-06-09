@@ -905,7 +905,8 @@ public class mainMenu implements Initializable {
                 String warehouseID = rs2.getString("warehouseID");
                 stmt.executeUpdate("UPDATE bookWarehouse SET stockAmount = stockAmount - 1 WHERE ISBN = '" + s + "' AND warehouseID = '" + warehouseID + "';");
                 rs2.close();
-                //if an orderID ISBN pair already exists, increase the quantity by 1,else create a new pair with quantity 1
+                //if an orderID ISBN pair already exists,
+                // increase the quantity by 1,else create a new pair with quantity 1
                 ResultSet rs1 = stmt.executeQuery("SELECT * FROM orders WHERE orderID = '" + ID + "' AND ISBN = '" + s + "';");
                 if (rs1.next()) {
                     stmt.executeUpdate("UPDATE orders SET quantity = quantity + 1 WHERE orderID = '" + ID + "' AND ISBN = '" + s + "';");
