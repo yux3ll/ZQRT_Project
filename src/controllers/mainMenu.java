@@ -23,6 +23,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class mainMenu implements Initializable {
     @FXML
@@ -37,7 +39,10 @@ public class mainMenu implements Initializable {
             bookInsert,
             insertsMain,
             authorInsert,
-            publisherInsert;
+            publisherInsert,
+            warehouseInsert,
+            customerInsert,
+            orderInsert;
     @FXML
     public Label
             user,
@@ -50,7 +55,10 @@ public class mainMenu implements Initializable {
             revenueNum,
             bookInsertResult,
             authorInsertResult,
-            publisherInsertResult;
+            publisherInsertResult,
+            warehouseInsertResult,
+            customerInsertResult,
+            orderInsertResult;
    @FXML
     public TableView<book>
            bookTable;
@@ -142,7 +150,18 @@ public class mainMenu implements Initializable {
             publisherInsertPhone,
             publisherInsertName,
             publisherInsertAddress,
-            publisherInsertEmail;
+            publisherInsertEmail,
+            warehouseInsertID,
+            warehouseInsertName,
+            warehouseInsertAddress,
+            customerInsertID,
+            customerInsertName,
+            customerInsertAddress,
+            customerInsertPhone,
+            customerInsertEmail,
+            orderInsertID,
+            orderInsertCustomerID,
+            orderInsertBooks;
     ObservableList<book> bookList= FXCollections.observableArrayList();
     ObservableList<publisher> publisherList= FXCollections.observableArrayList();
     ObservableList<customer> customerList= FXCollections.observableArrayList();
@@ -466,7 +485,13 @@ public class mainMenu implements Initializable {
             String ID = rs.getString("orderID");
             String customerName = rs.getString("customerName");
             String date = rs.getString("date");
-            String status = rs.getString("status");
+            String statusTemp = rs.getString("status");
+            String status;
+            if(statusTemp.equals("0")){
+                status = "Pending";
+            } else {
+                status = "Completed";
+            }
             String amountOfBooks = rs.getString("amountOfBooks");
             String totalPriceOfOrder = rs.getString("totalPriceOfOrder");
             orderList.add(new order(ID, customerName, date, status, amountOfBooks, totalPriceOfOrder));
@@ -514,7 +539,7 @@ public class mainMenu implements Initializable {
     public void insertBook(){
         bookInsert.toFront();
     }
-    public void bookInsertClear(){
+    public void insertBookClear(){
         bookInsertISBN.clear();
         bookInsertTitle.clear();
         bookInsertPrice.clear();
@@ -552,15 +577,20 @@ public class mainMenu implements Initializable {
         }
 
         String query = "INSERT INTO book (ISBN, title, authorID, publisherID, price, numberOfPages, stockAmount, releaseDate, genre) VALUES ('" + ISBN + "', '" + title + "', '" + authorID + "', '" + publisherID + "', '" + price + "', '" + numberOfPages + "', '" + stockAmount + "', '" + releaseDate + "', '" + genre + "');";
-        String query2 = "insert into bookWarehouse (ISBN, warehouseID, stockAmount) values ('" + ISBN + "', '10001', '" + stockAmount + "');";
 
         try {
             Connection con = credentials.getConnection();
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);
+            //randomly select warehouseID from the table warehouse
+            String query1 = "SELECT warehouseID FROM warehouse ORDER BY RAND() LIMIT 1;";
+            ResultSet rs = stmt.executeQuery(query1);
+            rs.next();
+            String warehouseID = rs.getString("warehouseID");
+            String query2 = "INSERT INTO bookWarehouse (ISBN, warehouseID,stockAmount) VALUES ('" + ISBN + "', '" + warehouseID + "', '" + stockAmount + "');";
             stmt.executeUpdate(query2);
             con.close();
-            bookInsertResult.setText("Book successfully added");
+            bookInsertResult.setText("Book successfully added. ISBN: " + ISBN);
         } catch (SQLException e) {
             String error = e.getMessage();
             if (error.contains("Duplicate entry")) {
@@ -584,9 +614,10 @@ public class mainMenu implements Initializable {
     public void insertAuthor(){
         authorInsert.toFront();
     }
-    public void authorInsertClear(){
+    public void insertAuthorClear(){
         authorInsertID.clear();
         authorInsertName.clear();
+        authorInsertEmail.clear();
         authorInsertResult.setText("");
     }
     public void attemptAuthorInsert(){
@@ -603,6 +634,7 @@ public class mainMenu implements Initializable {
                 while (rs.next()) {
                     ID = rs.getString("MAX(authorID)");
                 }
+                ID = Integer.toString(Integer.parseInt(ID) + 1);
                 con.close();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -633,11 +665,267 @@ public class mainMenu implements Initializable {
     public void insertPublisher(){
         publisherInsert.toFront();
     }
-    public void publisherInsertClear(){}
-    public void attemptPublisherInsert(){}
-    public void insertCustomer(){}
-    public void insertWarehouse(){}
-    public void insertOrder(){}
+    public void insertPublisherClear(){
+        publisherInsertID.clear();
+        publisherInsertName.clear();
+        publisherInsertResult.setText("");
+        publisherInsertAddress.clear();
+        publisherInsertPhone.clear();
+        publisherInsertEmail.clear();
+    }
+    public void attemptPublisherInsert(){
+        String ID = publisherInsertID.getText();
+        String name = publisherInsertName.getText();
+        String address = publisherInsertAddress.getText();
+        String phone = publisherInsertPhone.getText();
+        String email = publisherInsertEmail.getText();
+        // replace "'" with "/'" to avoid SQL syntax errors
+        name = name.replace("'", "/'");
+        address = address.replace("'", "/'");
+        if(ID.isEmpty()){
+            try {
+                Connection con = credentials.getConnection();
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT MAX(publisherID) FROM publisher;");
+                while (rs.next()) {
+                    ID = rs.getString("MAX(publisherID)");
+                }
+                ID = Integer.toString(Integer.parseInt(ID) + 1);
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        // if any of the fields are empty, return error
+        if(name.isEmpty()||address.isEmpty()||phone.isEmpty()||email.isEmpty()){
+            publisherInsertResult.setText("All fields except for ID must be filled");
+            return;
+        }
+        String query = "INSERT INTO publisher (publisherID, name, address, phoneNumber, email) VALUES ('" + ID + "', '" + name + "', '" + address + "', '" + phone + "', '" + email + "');";
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            con.close();
+            publisherInsertResult.setText("Publisher successfully added. ID: " + ID);
+        } catch (SQLException e) {
+            String error = e.getMessage();
+            if (error.contains("Duplicate entry")) {
+                error = "Publisher with identical ID already exists";
+            }
+            publisherInsertResult.setText(error);
+        }
+    }
+    public void insertCustomer(){
+        customerInsert.toFront();
+    }
+    public void insertCustomerClear(){
+        customerInsertID.clear();
+        customerInsertName.clear();
+        customerInsertAddress.clear();
+        customerInsertPhone.clear();
+        customerInsertEmail.clear();
+        customerInsertResult.setText("");
+    }
+    public void attemptCustomerInsert(){
+        String ID = customerInsertID.getText();
+        String name = customerInsertName.getText();
+        String address = customerInsertAddress.getText();
+        String phone = customerInsertPhone.getText();
+        String email = customerInsertEmail.getText();
+        // replace "'" with "/'" to avoid SQL syntax errors
+        name = name.replace("'", "/'");
+        address = address.replace("'", "/'");
+        if(ID.isEmpty()){
+            try {
+                Connection con = credentials.getConnection();
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT MAX(customerID) FROM customer;");
+                while (rs.next()) {
+                    ID = rs.getString("MAX(customerID)");
+                }
+                ID = Integer.toString(Integer.parseInt(ID) + 1);
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        // if any of the fields are empty, return error
+        if(name.isEmpty()||address.isEmpty()||phone.isEmpty()||email.isEmpty()){
+            customerInsertResult.setText("All fields except for ID must be filled");
+            return;
+        }
+        String query = "INSERT INTO customer (customerID, name, address, phoneNumber, email) VALUES ('" + ID + "', '" + name + "', '" + address + "', '" + phone + "', '" + email + "');";
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            con.close();
+            customerInsertResult.setText("Customer successfully added. ID: " + ID);
+        } catch (SQLException e) {
+            String error = e.getMessage();
+            if (error.contains("Duplicate entry")) {
+                error = "Customer with identical ID already exists";
+            }
+            customerInsertResult.setText(error);
+        }
+    }
+    public void insertWarehouse(){
+        warehouseInsert.toFront();
+    }
+    public void insertWarehouseClear(){
+        warehouseInsertID.clear();
+        warehouseInsertName.clear();
+        warehouseInsertAddress.clear();
+        warehouseInsertResult.setText("");
+    }
+    public void attemptWarehouseInsert(){
+        String ID = warehouseInsertID.getText();
+        String name = warehouseInsertName.getText();
+        String address = warehouseInsertAddress.getText();
+        // replace "'" with "/'" to avoid SQL syntax errors
+        name = name.replace("'", "/'");
+        address = address.replace("'", "/'");
+        if(ID.isEmpty()){
+            try {
+                Connection con = credentials.getConnection();
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT MAX(warehouseID) FROM warehouse;");
+                while (rs.next()) {
+                    ID = rs.getString("MAX(warehouseID)");
+                }
+                ID = Integer.toString(Integer.parseInt(ID) + 1);
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        // if any of the fields are empty, return error
+        if(name.isEmpty()||address.isEmpty()){
+            warehouseInsertResult.setText("All fields except for ID must be filled");
+            return;
+        }
+        String query = "INSERT INTO warehouse (warehouseID, name, address) VALUES ('" + ID + "', '" + name + "', '" + address + "');";
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            con.close();
+            warehouseInsertResult.setText("Warehouse successfully added. ID: " + ID);
+        } catch (SQLException e) {
+            String error = e.getMessage();
+            if (error.contains("Duplicate entry")) {
+                error = "Warehouse with identical ID already exists";
+            }
+            warehouseInsertResult.setText(error);
+        }
+    }
+    public void insertOrder(){
+        orderInsert.toFront();
+    }
+    public void insertOrderClear(){
+        orderInsertID.clear();
+        orderInsertCustomerID.clear();
+        orderInsertBooks.clear();
+        orderInsertResult.setText("");
+    }
+    public void attemptOrderInsert(){
+        String ID = orderInsertID.getText();
+        String customerID = orderInsertCustomerID.getText();
+        String books = orderInsertBooks.getText();
+        LocalDate dateObj = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String date = dateObj.format(formatter);
+        // replace "'" with "/'" to avoid SQL syntax errors
+        books = books.replace("'", "/'");
+        //for order M:N table
+        String[] bookList = books.split("[,\\-]");
+        for (String s : bookList) {
+            if (s.length() != 12) {
+                orderInsertResult.setText("ISBNs must be 12 characters long");
+                return;
+            }
+        }
+        // if any of the fields are empty, return error
+        if(customerID.isEmpty()||books.isEmpty()){
+            orderInsertResult.setText("All fields except for ID must be filled");
+            return;
+        }
+        //check if the books exist in the book table before inserting
+        for (String s : bookList) {
+            String query = "SELECT * FROM book WHERE ISBN = '" + s + "';";
+            try {
+                Connection con = credentials.getConnection();
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+                if (!rs.next()) {
+                    orderInsertResult.setText("Book with ISBN " + s + " does not exist");
+                    return;
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(ID.isEmpty()){
+            try {
+                Connection con = credentials.getConnection();
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT MAX(orderID) FROM orderlogistics;");
+                while (rs.next()) {
+                    ID = rs.getString("MAX(orderID)");
+                }
+                ID = Integer.toString(Integer.parseInt(ID) + 1);
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        // if any of the fields are empty, return error
+
+        String query = "INSERT INTO orderlogistics (orderID, customerID, date,status) VALUES ('" + ID + "', '" + customerID + "', '" + date + "', '" + 0 + "');";
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            for (String s : bookList) {
+                //check if a book has stock
+                ResultSet rs = stmt.executeQuery("SELECT * FROM book WHERE ISBN = '" + s + "' AND stockAmount > 0;");
+                if (!rs.next()) {
+                    orderInsertResult.setText("Book with ISBN " + s + " is out of stock");
+                    return;
+                }
+                rs.close();
+                //decrement 1 from the stockAmount of books in the table book and decrement 1 form the stockAmount of books in table bookWarehouse
+                // where the stockAmount is the largest and warehouse id is the smallest
+                stmt.executeUpdate("UPDATE book SET stockAmount = stockAmount - 1 WHERE ISBN = '" + s + "';");
+                ResultSet rs2 = stmt.executeQuery("SELECT * FROM bookWarehouse WHERE ISBN = '" + s + "' ORDER BY stockAmount DESC;");
+                rs2.next();
+                String warehouseID = rs2.getString("warehouseID");
+                stmt.executeUpdate("UPDATE bookWarehouse SET stockAmount = stockAmount - 1 WHERE ISBN = '" + s + "' AND warehouseID = '" + warehouseID + "';");
+                rs2.close();
+                //if an orderID ISBN pair already exists, increase the quantity by 1,else create a new pair with quantity 1
+                ResultSet rs1 = stmt.executeQuery("SELECT * FROM orders WHERE orderID = '" + ID + "' AND ISBN = '" + s + "';");
+                if (rs1.next()) {
+                    stmt.executeUpdate("UPDATE orders SET quantity = quantity + 1 WHERE orderID = '" + ID + "' AND ISBN = '" + s + "';");
+                } else {
+                    stmt.executeUpdate("INSERT INTO orders (orderID, ISBN, quantity) VALUES ('" + ID + "', '" + s + "', '" + 1 + "');");
+                }
+            }
+                con.close();
+                orderInsertResult.setText("Order successfully added. ID: " + ID);
+        } catch (SQLException e) {
+            String error = e.getMessage();
+            if (error.contains("Duplicate entry")) {
+                error = "Order with identical ID already exists";
+            }
+            if(error.contains("customerFK2")){
+                error = "Customer with ID " + customerID + " does not exist";
+            }
+            orderInsertResult.setText(error);
+        }
+    }
 
     public void updatesBase() {
         pnlUpdates.toFront();
