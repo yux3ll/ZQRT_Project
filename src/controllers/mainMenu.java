@@ -26,33 +26,116 @@ import java.util.ResourceBundle;
 
 public class mainMenu implements Initializable {
     @FXML
-    public Label user, bookNum, authorNum, customerNum, publisherNum, warehouseNum, orderNum,revenueNum, bookInsertResult;
+    private Pane
+            pnlInserts,
+            pnlDeletions,
+            pnlOverview,
+            pnlUpdates,
+            pnlStatistics,
+            pnlSettings,
+            overviewHider,
+            bookInsert,
+            insertsMain,
+            authorInsert;
+    @FXML
+    public Label
+            user,
+            bookNum,
+            authorNum,
+            customerNum,
+            publisherNum,
+            warehouseNum,
+            orderNum,
+            revenueNum,
+            bookInsertResult,
+            authorInsertResult;
    @FXML
-    public TableView<book> bookTable;
+    public TableView<book>
+           bookTable;
     @FXML
-    public TableView<publisher> publisherTable;
+    public TableView<publisher>
+            publisherTable;
     @FXML
-    public TableView<customer> customerTable;
+    public TableView<customer>
+            customerTable;
     @FXML
-    public TableView<warehouse> warehouseTable;
+    public TableView<warehouse>
+            warehouseTable;
     @FXML
-    public TableView<order> orderTable;
+    public TableView<order>
+            orderTable;
     @FXML
-    public TableView<author> authorTable;
+    public TableView<author>
+            authorTable;
     @FXML
-    public TableColumn<publisher, String> publisherTable1, publisherTable2, publisherTable3, publisherTable4, publisherTable5, publisherTable6, publisherTable7,publisherTable8;
+    public TableColumn<publisher, String>
+            publisherTable1,
+            publisherTable2,
+            publisherTable3,
+            publisherTable4,
+            publisherTable5,
+            publisherTable6,
+            publisherTable7,
+            publisherTable8;
     @FXML
-    public TableColumn<customer, String> customerTable1, customerTable2, customerTable3, customerTable4, customerTable5, customerTable6, customerTable7, customerTable8;
+    public TableColumn<customer, String>
+            customerTable1,
+            customerTable2,
+            customerTable3,
+            customerTable4,
+            customerTable5,
+            customerTable6,
+            customerTable7,
+            customerTable8;
     @FXML
-    public TableColumn<author,String> authorTable1, authorTable2, authorTable3, authorTable4, authorTable5, authorTable6, authorTable7;
+    public TableColumn<author,String>
+            authorTable1,
+            authorTable2,
+            authorTable3,
+            authorTable4,
+            authorTable5,
+            authorTable6,
+            authorTable7;
     @FXML
-    public TableColumn<warehouse, String> warehouseTable1, warehouseTable2, warehouseTable3, warehouseTable4;
+    public TableColumn<warehouse, String>
+            warehouseTable1,
+            warehouseTable2,
+            warehouseTable3,
+            warehouseTable4;
     @FXML
-    public TableColumn<order, String> orderTable1, orderTable2, orderTable3, orderTable4, orderTable5, orderTable6;
+    public TableColumn<order, String>
+            orderTable1,
+            orderTable2,
+            orderTable3,
+            orderTable4,
+            orderTable5,
+            orderTable6;
     @FXML
-    public TableColumn<book,String>col1, col2, col3, col4, col5, col6, col7, col8, col9;
+    public TableColumn<book,String>
+            col1,
+            col2,
+            col3,
+            col4,
+            col5,
+            col6,
+            col7,
+            col8,
+            col9;
     @FXML
-    public TextField searchBar, bookInsertISBN, bookInsertPublisherID, bookInsertAuthorID, bookInsertTitle, bookInsertPrice, bookInsertNumberOfPages, bookInsertStockAmount, bookInsertReleaseDate, bookInsertGenre;
+    public TextField
+            searchBar,
+            bookInsertISBN,
+            bookInsertPublisherID,
+            bookInsertAuthorID,
+            bookInsertTitle,
+            bookInsertPrice,
+            bookInsertNumberOfPages,
+            bookInsertStockAmount,
+            bookInsertReleaseDate,
+            bookInsertGenre,
+            authorInsertName,
+            authorInsertID,
+            authorInsertEmail;
     ObservableList<book> bookList= FXCollections.observableArrayList();
     ObservableList<publisher> publisherList= FXCollections.observableArrayList();
     ObservableList<customer> customerList= FXCollections.observableArrayList();
@@ -60,8 +143,6 @@ public class mainMenu implements Initializable {
     ObservableList<order> orderList= FXCollections.observableArrayList();
     ObservableList<author> authorList= FXCollections.observableArrayList();
 
-    @FXML
-    private Pane pnlInserts, pnlDeletions, pnlOverview, pnlUpdates, pnlStatistics, pnlSettings, overviewHider, bookInsert, insertsMain;
     SQLConnection credentials = SQLConnection.getInstance();
 
     @Override
@@ -449,7 +530,6 @@ public class mainMenu implements Initializable {
         String releaseDate = bookInsertReleaseDate.getText();
         String numberOfPages = bookInsertNumberOfPages.getText();
 
-
         // replace "'" with "/'" to avoid SQL syntax errors
         title = title.replace("'", "/'");
         genre = genre.replace("'", "/'");
@@ -494,7 +574,55 @@ public class mainMenu implements Initializable {
             bookInsertResult.setText(error);
         }
     }
-    public void insertAuthor(){}
+    public void insertAuthor(){
+        authorInsert.toFront();
+    }
+    public void authorInsertClear(){
+        authorInsertID.clear();
+        authorInsertName.clear();
+        authorInsertResult.setText("");
+    }
+    public void attemptAuthorInsert(){
+        String ID = authorInsertID.getText();
+        String name = authorInsertName.getText();
+        String email = authorInsertEmail.getText();
+        // replace "'" with "/'" to avoid SQL syntax errors
+        name = name.replace("'", "/'");
+        if(ID.isEmpty()){
+            try {
+                Connection con = credentials.getConnection();
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT MAX(authorID) FROM author;");
+                while (rs.next()) {
+                    ID = rs.getString("MAX(authorID)");
+                }
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        // if any of the fields are empty, return error
+        if(name.isEmpty()){
+            authorInsertResult.setText("All fields must be filled");
+            return;
+        }
+
+        String query = "INSERT INTO author (authorID, name, email) VALUES ('" + ID + "', '" + name + "', '" + email + "');";
+
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            con.close();
+            authorInsertResult.setText("Author successfully added. ID: " + ID);
+        } catch (SQLException e) {
+            String error = e.getMessage();
+            if (error.contains("Duplicate entry")) {
+                error = "Author ID already exists";
+            }
+            authorInsertResult.setText(error);
+        }
+    }
     public void insertPublisher(){}
     public void insertCustomer(){}
     public void insertWarehouse(){}
@@ -502,19 +630,15 @@ public class mainMenu implements Initializable {
 
     public void updatesBase() {
         pnlUpdates.toFront();
-
     }
     public void deletionsBase() {
         pnlDeletions.toFront();
-
     }
     public void statisticsBase() {
         pnlStatistics.toFront();
-
     }
     public void settingsBase() {
         pnlSettings.toFront();
-
     }
 
     public void handleSignOut() throws Exception {
