@@ -36,7 +36,6 @@ public class mainMenu implements Initializable {
             pnlOverview,
             pnlUpdates,
             pnlStatistics,
-            pnlSettings,
             overviewHider,
             bookInsert,
             insertsMain,
@@ -1098,10 +1097,6 @@ public class mainMenu implements Initializable {
         //best/worst selling author
         //best selling publisher
         //customer with most orders
-    }
-    public void settingsBase() {
-        pnlSettings.toFront();
-        //there is no meme, take off your clothes
     }
 
     public void handleSignOut() throws Exception {

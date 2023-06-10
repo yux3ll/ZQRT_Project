@@ -32,7 +32,7 @@
             <Insets bottom="20.0" />
          </VBox.margin>
       </Label>
-      <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#overviewBase" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Overview" textFill="#e7e5e5">
+      <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#overviewBase" prefHeight="65.0" prefWidth="259.0" stylesheets="@style.css" text="Overview" textFill="#f7e5e5">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../img/icons8_Home_32px.png" />
@@ -47,8 +47,11 @@
          <padding>
             <Insets left="50.0" />
          </padding>
+         <font>
+            <Font size="18.0" />
+         </font>
       </Button>
-      <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#insertsBase" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Inserts">
+      <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#insertsBase" prefHeight="65.0" prefWidth="259.0" stylesheets="@style.css" text="Inserts" textFill="#f7e5e5">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../img/icons8_Open_Envelope_32px.png" />
@@ -57,8 +60,11 @@
          <padding>
             <Insets left="50.0" />
          </padding>
+         <font>
+            <Font size="18.0" />
+         </font>
       </Button>
-      <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#deletionsBase" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Deletions">
+      <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#deletionsBase" prefHeight="65.0" prefWidth="259.0" stylesheets="@style.css" text="Deletions" textFill="#f7e5e5">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../img/icons8_Person_32px.png" />
@@ -67,8 +73,11 @@
          <padding>
             <Insets left="50.0" />
          </padding>
+         <font>
+            <Font size="18.0" />
+         </font>
       </Button>
-      <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#updatesBase" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Updates">
+      <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#updatesBase" prefHeight="65.0" prefWidth="259.0" stylesheets="@style.css" text="Updates" textFill="#f7e5e5">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../img/icons8_Xbox_Menu_32px.png" />
@@ -77,8 +86,11 @@
          <padding>
             <Insets left="50.0" />
          </padding>
+         <font>
+            <Font size="18.0" />
+         </font>
       </Button>
-      <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#statisticsBase" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Statistics">
+      <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#statisticsBase" prefHeight="65.0" prefWidth="259.0" stylesheets="@style.css" text="Statistics" textFill="#f7e5e5">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../img/icons8_Box_32px.png" />
@@ -87,18 +99,11 @@
          <padding>
             <Insets left="50.0" />
          </padding>
+         <font>
+            <Font size="18.0" />
+         </font>
       </Button>
-      <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#settingsBase" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Settings">
-         <graphic>
-            <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-               <Image url="@../img/icons8_Slider__32px.png" />
-            </ImageView>
-         </graphic>
-         <padding>
-            <Insets left="50.0" />
-         </padding>
-      </Button>
-      <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleSignOut" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Sign Out">
+      <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleSignOut" prefHeight="65.0" prefWidth="259.0" stylesheets="@style.css" text="Sign Out" textFill="#f7e5e5">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../img/icons8_Sign_Out_32px.png" />
@@ -107,10 +112,12 @@
          <padding>
             <Insets left="50.0" />
          </padding>
+         <font>
+            <Font size="18.0" />
+         </font>
       </Button>
    </VBox>
    <StackPane layoutX="256.0" prefHeight="720.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="256.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <Pane fx:id="pnlSettings" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2c2c2c;" />
       <Pane fx:id="pnlStatistics" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2c2c2c;" />
       <Pane fx:id="pnlDeletions" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2c2c2c;" />
       <Pane fx:id="pnlInserts" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2c2c2c;">
@@ -540,6 +547,160 @@
             </Button>
          </Pane>
       </Pane>
+      <Pane fx:id="pnlOverview" prefHeight="720.0" prefWidth="1024.0" style="-fx-background-color: #2c2c2c;">
+         <TextField fx:id="searchBar" layoutX="827.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="Search" style="-fx-background-color: #2c2c2c; -fx-border-color: #B7C3D7; -fx-border-radius: 2em; -fx-text-fill: #B7C3D7;" />
+         <ImageView fitHeight="27.0" fitWidth="33.0" layoutX="795.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../img/icons8_Search_52px.png" />
+         </ImageView>
+         <Label layoutX="45.0" layoutY="14.0" prefHeight="66.0" prefWidth="210.0" text="Company Overview" textFill="#e7e5e5">
+            <font>
+               <Font size="24.0" />
+            </font>
+         </Label>
+         <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="87.0" prefHeight="92.0" prefWidth="746.0" spacing="50.0">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="128.0">
+               <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#overviewBook" prefHeight="0.0" prefWidth="68.0" stylesheets="@styleInsertion.css" text="Books" textFill="#e7e5e5" underline="true">
+                  <graphic>
+                     <Label fx:id="bookNum" text="1" textFill="#ef4444">
+                        <font>
+                           <Font name="System Bold" size="26.0" />
+                        </font>
+                     </Label>
+                  </graphic>
+               </Button>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="128.0">
+               <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#overviewAuthor" prefHeight="0.0" prefWidth="68.0" stylesheets="@styleInsertion.css" text="Authors" textFill="#e7e5e5" underline="true">
+                  <graphic>
+                     <Label fx:id="authorNum" text="1" textFill="#eab308">
+                        <font>
+                           <Font name="System Bold" size="26.0" />
+                        </font>
+                     </Label>
+                  </graphic></Button>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="92.0" prefWidth="128.0">
+               <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#overviewPublisher" prefHeight="27.0" prefWidth="81.0" stylesheets="@styleInsertion.css" text="Publishers" textFill="#e7e5e5" underline="true">
+                  <graphic>
+                     <Label fx:id="publisherNum" text="1" textFill="#3b82f6">
+                        <font>
+                           <Font name="System Bold" size="26.0" />
+                        </font>
+                     </Label>
+                  </graphic></Button>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="92.0" prefWidth="128.0">
+               <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#overviewCustomer" prefHeight="27.0" prefWidth="76.0" stylesheets="@styleInsertion.css" text="Customers" textFill="#e7e5e5" underline="true">
+                  <graphic>
+                     <Label fx:id="customerNum" text="1" textFill="#06b6d4">
+                        <font>
+                           <Font name="System Bold" size="26.0" />
+                        </font>
+                     </Label>
+                  </graphic></Button>
+            </VBox>
+            <VBox alignment="CENTER" layoutX="460.0" layoutY="10.0" prefHeight="92.0" prefWidth="128.0">
+               <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#overviewWarehouse" prefHeight="27.0" prefWidth="86.0" stylesheets="@styleInsertion.css" text="Warehouses" textFill="#e7e5e5" textOverrun="CLIP" underline="true">
+                  <graphic>
+                     <Label fx:id="warehouseNum" text="1" textFill="#ab55f7">
+                        <font>
+                           <Font name="System Bold" size="26.0" />
+                        </font>
+                     </Label>
+                  </graphic></Button>
+            </VBox>
+            <VBox alignment="CENTER" layoutX="436.0" layoutY="10.0" prefHeight="200.0" prefWidth="128.0">
+               <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#overviewOrder" prefHeight="0.0" prefWidth="68.0" stylesheets="@styleInsertion.css" text="Orders" textFill="#e7e5e5" underline="true">
+                  <graphic>
+                     <Label fx:id="orderNum" text="1" textFill="#f97316">
+                        <font>
+                           <Font name="System Bold" size="26.0" />
+                        </font>
+                     </Label>
+                  </graphic></Button>
+            </VBox>
+         </HBox>
+         <StackPane layoutX="16.0" layoutY="173.0" prefHeight="534.0" prefWidth="992.0">
+            <TableView fx:id="customerTable" prefHeight="484.0" prefWidth="992.0" style="-fx-border-color: transparent;" stylesheets="@style.css">
+               <columns>
+                  <TableColumn fx:id="customerTable1" editable="false" prefWidth="63.0" sortable="false" style="-fx-background-color: #2c2c2c;" text="ID" />
+                  <TableColumn fx:id="customerTable2" editable="false" minWidth="0.0" prefWidth="162.0" sortable="false" text="Full Name" />
+                  <TableColumn fx:id="customerTable3" editable="false" minWidth="0.0" prefWidth="101.0" sortable="false" text="Email" />
+                  <TableColumn fx:id="customerTable4" editable="false" prefWidth="136.0" sortable="false" text="Phone Number" />
+                  <TableColumn fx:id="customerTable5" editable="false" prefWidth="173.0" sortable="false" text="Address" />
+                  <TableColumn fx:id="customerTable6" editable="false" prefWidth="116.0" sortable="false" text="Books in Basket" />
+                  <TableColumn fx:id="customerTable7" editable="false" prefWidth="113.0" sortable="false" text="Books Bought" />
+                  <TableColumn fx:id="customerTable8" editable="false" prefWidth="126.0" sortable="false" text="Money Spent" />
+               </columns>
+            </TableView>
+            <TableView fx:id="warehouseTable" prefHeight="484.0" prefWidth="992.0" style="-fx-border-color: transparent;" stylesheets="@style.css">
+               <columns>
+                  <TableColumn fx:id="warehouseTable1" editable="false" prefWidth="116.0" sortable="false" style="-fx-background-color: #2c2c2c;" text="ID" />
+                  <TableColumn fx:id="warehouseTable2" editable="false" minWidth="0.0" prefWidth="306.0" sortable="false" text="Name" />
+                  <TableColumn fx:id="warehouseTable3" editable="false" minWidth="0.0" prefWidth="381.0" sortable="false" text="Address" />
+                  <TableColumn fx:id="warehouseTable4" editable="false" prefWidth="187.0" sortable="false" text="Total Stock" />
+               </columns>
+            </TableView>
+            <TableView fx:id="bookTable" prefHeight="484.0" prefWidth="992.0" stylesheets="@style.css">
+               <columns>
+                  <TableColumn fx:id="col1" editable="false" prefWidth="95.0" sortable="false" text="ISBN" />
+                  <TableColumn fx:id="col2" editable="false" minWidth="0.0" prefWidth="247.0" sortable="false" text="Title" />
+                  <TableColumn fx:id="col3" editable="false" minWidth="0.0" prefWidth="135.0" sortable="false" text="Author" />
+                  <TableColumn fx:id="col4" editable="false" prefWidth="117.0" sortable="false" text="Publisher" />
+                  <TableColumn fx:id="col5" editable="false" prefWidth="77.0" sortable="false" text="Price" />
+                  <TableColumn fx:id="col6" editable="false" prefWidth="57.0" sortable="false" text="Pages" />
+                  <TableColumn fx:id="col7" editable="false" prefWidth="65.0" sortable="false" text="Stocks" />
+                  <TableColumn fx:id="col8" editable="false" prefWidth="97.0" sortable="false" text="Release Date" />
+                  <TableColumn fx:id="col9" editable="false" prefWidth="100.0" sortable="false" text="Genre" />
+               </columns>
+            </TableView>
+            <TableView fx:id="authorTable" prefHeight="484.0" prefWidth="992.0" style="-fx-border-color: transparent;" stylesheets="@style.css">
+               <columns>
+                  <TableColumn fx:id="authorTable1" editable="false" prefWidth="90.0" sortable="false" text="ID" />
+                  <TableColumn fx:id="authorTable2" editable="false" prefWidth="234.0" sortable="false" style="-fx-background-color: #2c2c2c;" text="Full Name" />
+                  <TableColumn fx:id="authorTable3" editable="false" minWidth="0.0" prefWidth="174.0" sortable="false" text="Email" />
+                  <TableColumn fx:id="authorTable4" editable="false" minWidth="0.0" prefWidth="112.0" sortable="false" text="Published Books" />
+                  <TableColumn fx:id="authorTable5" editable="false" prefWidth="110.0" sortable="false" text="Copies Sold" />
+                  <TableColumn fx:id="authorTable6" editable="false" prefWidth="152.0" sortable="false" text="Total Revenue" />
+                  <TableColumn fx:id="authorTable7" editable="false" prefWidth="118.0" sortable="false" text="Average Pages" />
+               </columns>
+            </TableView>
+            <TableView fx:id="publisherTable" prefHeight="484.0" prefWidth="992.0" style="-fx-border-color: transparent;" stylesheets="@style.css">
+               <columns>
+                  <TableColumn fx:id="publisherTable1" editable="false" prefWidth="62.0" sortable="false" style="-fx-background-color: #2c2c2c;" text="ID" />
+                  <TableColumn fx:id="publisherTable2" editable="false" minWidth="0.0" prefWidth="160.0" sortable="false" text="Company Name" />
+                  <TableColumn fx:id="publisherTable3" editable="false" minWidth="0.0" prefWidth="168.0" sortable="false" text="Email" />
+                  <TableColumn fx:id="publisherTable4" editable="false" prefWidth="117.0" sortable="false" text="Phone Number" />
+                  <TableColumn fx:id="publisherTable5" editable="false" prefWidth="159.0" sortable="false" text="Address" />
+                  <TableColumn fx:id="publisherTable6" editable="false" prefWidth="106.0" sortable="false" text="Published Books" />
+                  <TableColumn fx:id="publisherTable7" editable="false" prefWidth="79.0" sortable="false" text="Copies Sold" />
+                  <TableColumn fx:id="publisherTable8" editable="false" prefWidth="139.0" sortable="false" text="Total Revenue" />
+               </columns>
+            </TableView>
+            <Pane fx:id="overviewHider" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2c2c2c;" />
+            <TableView fx:id="orderTable" prefHeight="484.0" prefWidth="992.0" stylesheets="@style.css">
+               <columns>
+                  <TableColumn fx:id="orderTable1" editable="false" prefWidth="53.0" style="-fx-background-color: #2c2c2c;" text="ID" />
+                  <TableColumn fx:id="orderTable2" editable="false" minWidth="0.0" prefWidth="128.0" text="Customer Name" />
+                  <TableColumn fx:id="orderTable3" editable="false" minWidth="0.0" prefWidth="87.0" text="Date" />
+                  <TableColumn fx:id="orderTable4" editable="false" prefWidth="117.0" text="Status" />
+                  <TableColumn fx:id="orderTable5" editable="false" prefWidth="128.0" text="Number of Books" />
+                  <TableColumn fx:id="orderTable6" editable="false" prefWidth="137.0" text="Total Price" />
+                  <TableColumn fx:id="orderTable7" editable="false" prefWidth="341.0" text="Books In Order" />
+               </columns>
+            </TableView>
+         </StackPane>
+         <VBox alignment="CENTER" layoutX="795.0" layoutY="87.0" prefHeight="92.0" prefWidth="210.0">
+            <Button contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="68.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Revenue" textFill="#e7e5e5">
+               <graphic>
+                  <Label fx:id="revenueNum" text="1" textFill="#54f716">
+                     <font>
+                        <Font name="System Bold" size="26.0" />
+                     </font>
+                  </Label>
+               </graphic></Button>
+         </VBox>
+      </Pane>
       <Pane fx:id="pnlUpdates" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2c2c2c;">
          <Pane fx:id="orderUpdate" prefHeight="720.0" prefWidth="1024.0" style="-fx-background-color: #2c2c2c;">
             <Label layoutX="14.0" layoutY="14.0" prefHeight="66.0" prefWidth="210.0" text="Update Order" textFill="#f7e5e5">
@@ -607,99 +768,6 @@
                   <Font size="24.0" />
                </font>
             </Label>
-         </Pane>
-         <Pane fx:id="bookUpdate" prefHeight="720.0" prefWidth="1024.0" style="-fx-background-color: #2c2c2c;">
-            <Label layoutX="14.0" layoutY="14.0" prefHeight="66.0" prefWidth="210.0" text="Update Book" textFill="#f7e5e5">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <TextField fx:id="bookUpdateISBN" layoutX="70.0" layoutY="170.0" prefHeight="42.0" prefWidth="256.0" promptText="ISBN" stylesheets="@insertText.css" />
-            <TextField fx:id="bookUpdatePublisherID" layoutX="70.0" layoutY="290.0" prefHeight="42.0" prefWidth="256.0" promptText="Publisher ID" stylesheets="@insertText.css" />
-            <TextField fx:id="bookUpdateStockAmount" layoutX="70.0" layoutY="420.0" prefHeight="42.0" prefWidth="256.0" promptText="Stock Amount" stylesheets="@insertText.css" />
-            <TextField fx:id="bookUpdateTitle" layoutX="370.0" layoutY="170.0" prefHeight="42.0" prefWidth="256.0" promptText="Title" stylesheets="@insertText.css" />
-            <TextField fx:id="bookUpdatePrice" layoutX="370.0" layoutY="290.0" prefHeight="42.0" prefWidth="256.0" promptText="Price" stylesheets="@insertText.css" />
-            <TextField fx:id="bookUpdateReleaseDate" layoutX="370.0" layoutY="420.0" prefHeight="42.0" prefWidth="256.0" promptText="Release Date (YYYY-MM-DD)" stylesheets="@insertText.css" />
-            <TextField fx:id="bookUpdateNumberOfPages" layoutX="670.0" layoutY="290.0" prefHeight="42.0" prefWidth="256.0" promptText="Number of Pages" stylesheets="@insertText.css" />
-            <TextField fx:id="bookUpdateGenre" layoutX="670.0" layoutY="420.0" prefHeight="42.0" prefWidth="256.0" promptText="Genre" stylesheets="@insertText.css" />
-            <TextField fx:id="bookUpdateAuthorID" layoutX="670.0" layoutY="170.0" prefHeight="42.0" prefWidth="256.0" promptText="Author ID" stylesheets="@insertText.css" />
-            <Label fx:id="bookUpdateResult" graphicTextGap="10.0" layoutX="70.0" layoutY="552.0" prefHeight="42.0" prefWidth="560.0" stylesheets="@insertText.css">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Button layoutX="732.0" layoutY="540.0" mnemonicParsing="false" onAction="#attemptBookUpdate" prefHeight="67.0" prefWidth="194.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;" stylesheets="@styleInsertion.css" text="Update" textFill="#121212">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Button>
-            <Label layoutX="70.0" layoutY="511.0" prefHeight="27.0" prefWidth="165.0" text="Result &amp; Warnings" textFill="#f7e5e5">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="70.0" layoutY="120.0" prefHeight="42.0" prefWidth="256.0" text="ISBN" textFill="#f7e5e5">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="370.0" layoutY="120.0" prefHeight="42.0" prefWidth="256.0" text="Title" textFill="#f7e5e5">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="670.0" layoutY="120.0" prefHeight="42.0" prefWidth="256.0" text="Author ID" textFill="#f7e5e5">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="70.0" layoutY="240.0" prefHeight="42.0" prefWidth="256.0" text="Publisher ID" textFill="#f7e5e5">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="370.0" layoutY="240.0" prefHeight="42.0" prefWidth="256.0" text="Price" textFill="#f7e5e5">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="670.0" layoutY="240.0" prefHeight="42.0" prefWidth="256.0" text="Number of Pages" textFill="#f7e5e5">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="70.0" layoutY="370.0" prefHeight="42.0" prefWidth="256.0" text="Stock Amount" textFill="#f7e5e5">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="370.0" layoutY="370.0" prefHeight="42.0" prefWidth="256.0" text="Release Date" textFill="#f7e5e5">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="670.0" layoutY="370.0" prefHeight="42.0" prefWidth="256.0" text="Genre" textFill="#f7e5e5">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Button layoutX="949.0" layoutY="23.0" mnemonicParsing="false" onAction="#updatesGoBack" prefHeight="42.0" prefWidth="27.0" stylesheets="@styleInsertion.css">
-               <graphic>
-                  <ImageView fitHeight="60.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <Image url="@../img/backButton.png" />
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button layoutX="771.0" layoutY="669.0" mnemonicParsing="false" onAction="#updateBookClear" prefHeight="0.0" prefWidth="117.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;" stylesheets="@styleInsertion.css" text="Clear" textFill="#121212">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
-            <Button layoutX="732.0" layoutY="618.0" mnemonicParsing="false" onAction="#listBookElements" prefHeight="42.0" prefWidth="194.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;" stylesheets="@styleInsertion.css" text="List Book Elements" textFill="#121212">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
          </Pane>
          <Pane fx:id="customerUpdate" prefHeight="720.0" prefWidth="1024.0" style="-fx-background-color: #2c2c2c;">
             <Label layoutX="14.0" layoutY="14.0" prefHeight="66.0" prefWidth="210.0" text="Update Customer" textFill="#f7e5e5">
@@ -953,160 +1021,99 @@
                </font>
             </Button>
          </Pane>
-      </Pane>
-      <Pane fx:id="pnlOverview" prefHeight="720.0" prefWidth="1024.0" style="-fx-background-color: #2c2c2c;">
-         <TextField fx:id="searchBar" layoutX="827.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="Search" style="-fx-background-color: #2c2c2c; -fx-border-color: #B7C3D7; -fx-border-radius: 2em; -fx-text-fill: #B7C3D7;" />
-         <ImageView fitHeight="27.0" fitWidth="33.0" layoutX="795.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../img/icons8_Search_52px.png" />
-         </ImageView>
-         <Label layoutX="45.0" layoutY="14.0" prefHeight="66.0" prefWidth="210.0" text="Company Overview" textFill="#e7e5e5">
-            <font>
-               <Font size="24.0" />
-            </font>
-         </Label>
-         <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="87.0" prefHeight="92.0" prefWidth="746.0" spacing="50.0">
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="128.0">
-               <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#overviewBook" prefHeight="0.0" prefWidth="68.0" stylesheets="@styleInsertion.css" text="Books" textFill="#e7e5e5" underline="true">
-                  <graphic>
-                     <Label fx:id="bookNum" text="1" textFill="#ef4444">
-                        <font>
-                           <Font name="System Bold" size="26.0" />
-                        </font>
-                     </Label>
-                  </graphic>
-               </Button>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="128.0">
-               <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#overviewAuthor" prefHeight="0.0" prefWidth="68.0" stylesheets="@styleInsertion.css" text="Authors" textFill="#e7e5e5" underline="true">
-                  <graphic>
-                     <Label fx:id="authorNum" text="1" textFill="#eab308">
-                        <font>
-                           <Font name="System Bold" size="26.0" />
-                        </font>
-                     </Label>
-                  </graphic></Button>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="92.0" prefWidth="128.0">
-               <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#overviewPublisher" prefHeight="27.0" prefWidth="81.0" stylesheets="@styleInsertion.css" text="Publishers" textFill="#e7e5e5" underline="true">
-                  <graphic>
-                     <Label fx:id="publisherNum" text="1" textFill="#3b82f6">
-                        <font>
-                           <Font name="System Bold" size="26.0" />
-                        </font>
-                     </Label>
-                  </graphic></Button>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="92.0" prefWidth="128.0">
-               <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#overviewCustomer" prefHeight="27.0" prefWidth="76.0" stylesheets="@styleInsertion.css" text="Customers" textFill="#e7e5e5" underline="true">
-                  <graphic>
-                     <Label fx:id="customerNum" text="1" textFill="#06b6d4">
-                        <font>
-                           <Font name="System Bold" size="26.0" />
-                        </font>
-                     </Label>
-                  </graphic></Button>
-            </VBox>
-            <VBox alignment="CENTER" layoutX="460.0" layoutY="10.0" prefHeight="92.0" prefWidth="128.0">
-               <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#overviewWarehouse" prefHeight="27.0" prefWidth="86.0" stylesheets="@styleInsertion.css" text="Warehouses" textFill="#e7e5e5" textOverrun="CLIP" underline="true">
-                  <graphic>
-                     <Label fx:id="warehouseNum" text="1" textFill="#ab55f7">
-                        <font>
-                           <Font name="System Bold" size="26.0" />
-                        </font>
-                     </Label>
-                  </graphic></Button>
-            </VBox>
-            <VBox alignment="CENTER" layoutX="436.0" layoutY="10.0" prefHeight="200.0" prefWidth="128.0">
-               <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#overviewOrder" prefHeight="0.0" prefWidth="68.0" stylesheets="@styleInsertion.css" text="Orders" textFill="#e7e5e5" underline="true">
-                  <graphic>
-                     <Label fx:id="orderNum" text="1" textFill="#f97316">
-                        <font>
-                           <Font name="System Bold" size="26.0" />
-                        </font>
-                     </Label>
-                  </graphic></Button>
-            </VBox>
-         </HBox>
-         <StackPane layoutX="16.0" layoutY="173.0" prefHeight="534.0" prefWidth="992.0">
-            <TableView fx:id="customerTable" prefHeight="484.0" prefWidth="992.0" style="-fx-border-color: transparent;" stylesheets="@style.css">
-               <columns>
-                  <TableColumn fx:id="customerTable1" editable="false" prefWidth="63.0" sortable="false" style="-fx-background-color: #2c2c2c;" text="ID" />
-                  <TableColumn fx:id="customerTable2" editable="false" minWidth="0.0" prefWidth="162.0" sortable="false" text="Full Name" />
-                  <TableColumn fx:id="customerTable3" editable="false" minWidth="0.0" prefWidth="101.0" sortable="false" text="Email" />
-                  <TableColumn fx:id="customerTable4" editable="false" prefWidth="136.0" sortable="false" text="Phone Number" />
-                  <TableColumn fx:id="customerTable5" editable="false" prefWidth="173.0" sortable="false" text="Address" />
-                  <TableColumn fx:id="customerTable6" editable="false" prefWidth="116.0" sortable="false" text="Books in Basket" />
-                  <TableColumn fx:id="customerTable7" editable="false" prefWidth="113.0" sortable="false" text="Books Bought" />
-                  <TableColumn fx:id="customerTable8" editable="false" prefWidth="126.0" sortable="false" text="Money Spent" />
-               </columns>
-            </TableView>
-            <TableView fx:id="warehouseTable" prefHeight="484.0" prefWidth="992.0" style="-fx-border-color: transparent;" stylesheets="@style.css">
-               <columns>
-                  <TableColumn fx:id="warehouseTable1" editable="false" prefWidth="116.0" sortable="false" style="-fx-background-color: #2c2c2c;" text="ID" />
-                  <TableColumn fx:id="warehouseTable2" editable="false" minWidth="0.0" prefWidth="306.0" sortable="false" text="Name" />
-                  <TableColumn fx:id="warehouseTable3" editable="false" minWidth="0.0" prefWidth="381.0" sortable="false" text="Address" />
-                  <TableColumn fx:id="warehouseTable4" editable="false" prefWidth="187.0" sortable="false" text="Total Stock" />
-               </columns>
-            </TableView>
-            <TableView fx:id="bookTable" prefHeight="484.0" prefWidth="992.0" stylesheets="@style.css">
-               <columns>
-                  <TableColumn fx:id="col1" editable="false" prefWidth="95.0" sortable="false" text="ISBN" />
-                  <TableColumn fx:id="col2" editable="false" minWidth="0.0" prefWidth="247.0" sortable="false" text="Title" />
-                  <TableColumn fx:id="col3" editable="false" minWidth="0.0" prefWidth="135.0" sortable="false" text="Author" />
-                  <TableColumn fx:id="col4" editable="false" prefWidth="117.0" sortable="false" text="Publisher" />
-                  <TableColumn fx:id="col5" editable="false" prefWidth="77.0" sortable="false" text="Price" />
-                  <TableColumn fx:id="col6" editable="false" prefWidth="57.0" sortable="false" text="Pages" />
-                  <TableColumn fx:id="col7" editable="false" prefWidth="65.0" sortable="false" text="Stocks" />
-                  <TableColumn fx:id="col8" editable="false" prefWidth="97.0" sortable="false" text="Release Date" />
-                  <TableColumn fx:id="col9" editable="false" prefWidth="100.0" sortable="false" text="Genre" />
-               </columns>
-            </TableView>
-            <TableView fx:id="authorTable" prefHeight="484.0" prefWidth="992.0" style="-fx-border-color: transparent;" stylesheets="@style.css">
-               <columns>
-                  <TableColumn fx:id="authorTable1" editable="false" prefWidth="90.0" sortable="false" text="ID" />
-                  <TableColumn fx:id="authorTable2" editable="false" prefWidth="234.0" sortable="false" style="-fx-background-color: #2c2c2c;" text="Full Name" />
-                  <TableColumn fx:id="authorTable3" editable="false" minWidth="0.0" prefWidth="174.0" sortable="false" text="Email" />
-                  <TableColumn fx:id="authorTable4" editable="false" minWidth="0.0" prefWidth="112.0" sortable="false" text="Published Books" />
-                  <TableColumn fx:id="authorTable5" editable="false" prefWidth="110.0" sortable="false" text="Copies Sold" />
-                  <TableColumn fx:id="authorTable6" editable="false" prefWidth="152.0" sortable="false" text="Total Revenue" />
-                  <TableColumn fx:id="authorTable7" editable="false" prefWidth="118.0" sortable="false" text="Average Pages" />
-               </columns>
-            </TableView>
-            <TableView fx:id="publisherTable" prefHeight="484.0" prefWidth="992.0" style="-fx-border-color: transparent;" stylesheets="@style.css">
-               <columns>
-                  <TableColumn fx:id="publisherTable1" editable="false" prefWidth="62.0" sortable="false" style="-fx-background-color: #2c2c2c;" text="ID" />
-                  <TableColumn fx:id="publisherTable2" editable="false" minWidth="0.0" prefWidth="160.0" sortable="false" text="Company Name" />
-                  <TableColumn fx:id="publisherTable3" editable="false" minWidth="0.0" prefWidth="168.0" sortable="false" text="Email" />
-                  <TableColumn fx:id="publisherTable4" editable="false" prefWidth="117.0" sortable="false" text="Phone Number" />
-                  <TableColumn fx:id="publisherTable5" editable="false" prefWidth="159.0" sortable="false" text="Address" />
-                  <TableColumn fx:id="publisherTable6" editable="false" prefWidth="106.0" sortable="false" text="Published Books" />
-                  <TableColumn fx:id="publisherTable7" editable="false" prefWidth="79.0" sortable="false" text="Copies Sold" />
-                  <TableColumn fx:id="publisherTable8" editable="false" prefWidth="139.0" sortable="false" text="Total Revenue" />
-               </columns>
-            </TableView>
-            <Pane fx:id="overviewHider" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2c2c2c;" />
-            <TableView fx:id="orderTable" prefHeight="484.0" prefWidth="992.0" stylesheets="@style.css">
-               <columns>
-                  <TableColumn fx:id="orderTable1" editable="false" prefWidth="53.0" style="-fx-background-color: #2c2c2c;" text="ID" />
-                  <TableColumn fx:id="orderTable2" editable="false" minWidth="0.0" prefWidth="128.0" text="Customer Name" />
-                  <TableColumn fx:id="orderTable3" editable="false" minWidth="0.0" prefWidth="87.0" text="Date" />
-                  <TableColumn fx:id="orderTable4" editable="false" prefWidth="117.0" text="Status" />
-                  <TableColumn fx:id="orderTable5" editable="false" prefWidth="128.0" text="Number of Books" />
-                  <TableColumn fx:id="orderTable6" editable="false" prefWidth="137.0" text="Total Price" />
-                  <TableColumn fx:id="orderTable7" editable="false" prefWidth="341.0" text="Books In Order" />
-               </columns>
-            </TableView>
-         </StackPane>
-         <VBox alignment="CENTER" layoutX="795.0" layoutY="87.0" prefHeight="92.0" prefWidth="210.0">
-            <Button contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="68.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Revenue" textFill="#e7e5e5">
+         <Pane fx:id="bookUpdate" prefHeight="720.0" prefWidth="1024.0" style="-fx-background-color: #2c2c2c;">
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="66.0" prefWidth="210.0" text="Update Book" textFill="#f7e5e5">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="bookUpdateISBN" layoutX="70.0" layoutY="170.0" prefHeight="42.0" prefWidth="256.0" promptText="ISBN" stylesheets="@insertText.css" />
+            <TextField fx:id="bookUpdatePublisherID" layoutX="70.0" layoutY="290.0" prefHeight="42.0" prefWidth="256.0" promptText="Publisher ID" stylesheets="@insertText.css" />
+            <TextField fx:id="bookUpdateStockAmount" layoutX="70.0" layoutY="420.0" prefHeight="42.0" prefWidth="256.0" promptText="Stock Amount" stylesheets="@insertText.css" />
+            <TextField fx:id="bookUpdateTitle" layoutX="370.0" layoutY="170.0" prefHeight="42.0" prefWidth="256.0" promptText="Title" stylesheets="@insertText.css" />
+            <TextField fx:id="bookUpdatePrice" layoutX="370.0" layoutY="290.0" prefHeight="42.0" prefWidth="256.0" promptText="Price" stylesheets="@insertText.css" />
+            <TextField fx:id="bookUpdateReleaseDate" layoutX="370.0" layoutY="420.0" prefHeight="42.0" prefWidth="256.0" promptText="Release Date (YYYY-MM-DD)" stylesheets="@insertText.css" />
+            <TextField fx:id="bookUpdateNumberOfPages" layoutX="670.0" layoutY="290.0" prefHeight="42.0" prefWidth="256.0" promptText="Number of Pages" stylesheets="@insertText.css" />
+            <TextField fx:id="bookUpdateGenre" layoutX="670.0" layoutY="420.0" prefHeight="42.0" prefWidth="256.0" promptText="Genre" stylesheets="@insertText.css" />
+            <TextField fx:id="bookUpdateAuthorID" layoutX="670.0" layoutY="170.0" prefHeight="42.0" prefWidth="256.0" promptText="Author ID" stylesheets="@insertText.css" />
+            <Label fx:id="bookUpdateResult" graphicTextGap="10.0" layoutX="70.0" layoutY="552.0" prefHeight="42.0" prefWidth="560.0" stylesheets="@insertText.css">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button layoutX="732.0" layoutY="540.0" mnemonicParsing="false" onAction="#attemptBookUpdate" prefHeight="67.0" prefWidth="194.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;" stylesheets="@styleInsertion.css" text="Update" textFill="#121212">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+            <Label layoutX="70.0" layoutY="511.0" prefHeight="27.0" prefWidth="165.0" text="Result &amp; Warnings" textFill="#f7e5e5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="70.0" layoutY="120.0" prefHeight="42.0" prefWidth="256.0" text="ISBN" textFill="#f7e5e5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="370.0" layoutY="120.0" prefHeight="42.0" prefWidth="256.0" text="Title" textFill="#f7e5e5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="670.0" layoutY="120.0" prefHeight="42.0" prefWidth="256.0" text="Author ID" textFill="#f7e5e5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="70.0" layoutY="240.0" prefHeight="42.0" prefWidth="256.0" text="Publisher ID" textFill="#f7e5e5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="370.0" layoutY="240.0" prefHeight="42.0" prefWidth="256.0" text="Price" textFill="#f7e5e5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="670.0" layoutY="240.0" prefHeight="42.0" prefWidth="256.0" text="Number of Pages" textFill="#f7e5e5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="70.0" layoutY="370.0" prefHeight="42.0" prefWidth="256.0" text="Stock Amount" textFill="#f7e5e5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="370.0" layoutY="370.0" prefHeight="42.0" prefWidth="256.0" text="Release Date" textFill="#f7e5e5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="670.0" layoutY="370.0" prefHeight="42.0" prefWidth="256.0" text="Genre" textFill="#f7e5e5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="949.0" layoutY="23.0" mnemonicParsing="false" onAction="#updatesGoBack" prefHeight="42.0" prefWidth="27.0" stylesheets="@styleInsertion.css">
                <graphic>
-                  <Label fx:id="revenueNum" text="1" textFill="#54f716">
-                     <font>
-                        <Font name="System Bold" size="26.0" />
-                     </font>
-                  </Label>
-               </graphic></Button>
-         </VBox>
+                  <ImageView fitHeight="60.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <Image url="@../img/backButton.png" />
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="771.0" layoutY="669.0" mnemonicParsing="false" onAction="#updateBookClear" prefHeight="0.0" prefWidth="117.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;" stylesheets="@styleInsertion.css" text="Clear" textFill="#121212">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="732.0" layoutY="618.0" mnemonicParsing="false" onAction="#listBookElements" prefHeight="42.0" prefWidth="194.0" style="-fx-border-color: #f7e5e5; -fx-border-radius: 1em;" stylesheets="@styleInsertion.css" text="List Book Elements" textFill="#121212">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </Pane>
       </Pane>
    </StackPane>
 </AnchorPane>
