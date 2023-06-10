@@ -927,18 +927,33 @@ public class mainMenu implements Initializable {
             orderInsertResult.setText(error);
         }
     }
-
     public void updatesBase() {
         pnlUpdates.toFront();
+        //TODO insert stock of books in the table bookWarehouse and book
+        //TODO add/remove from shopping basket
+        //TODO edit values except isbn of book(leave empty if no change)
+        //TODO editvalues of customer(leave empty if no change)
+        //TODO edit values of warehouse(leave empty if no change)
+        //TODO edit values of author(leave empty if no change)
+        //TODO edit values of order(leave empty if no change)
     }
     public void deletionsBase() {
         pnlDeletions.toFront();
+        //TODO delete from all tables
     }
     public void statisticsBase() {
         pnlStatistics.toFront();
+        //TODO total books in basket
+        //TODO total books in stock
+        //total books sold
+        //best/worst selling book
+        //best/worst selling author
+        //best selling publisher
+        //customer with most orders
     }
     public void settingsBase() {
         pnlSettings.toFront();
+        //there is no meme, take off your clothes
     }
 
     public void handleSignOut() throws Exception {
