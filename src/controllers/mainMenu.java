@@ -22,11 +22,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ResourceBundle;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
 
 public class mainMenu implements Initializable {
+
+
     @FXML
     private Pane
             pnlInserts,
@@ -42,7 +44,15 @@ public class mainMenu implements Initializable {
             publisherInsert,
             warehouseInsert,
             customerInsert,
-            orderInsert;
+            orderInsert,
+            updatesMain,
+            bookUpdate,
+            authorUpdate,
+            publisherUpdate,
+            warehouseUpdate,
+            customerUpdate,
+            orderUpdate;
+
     @FXML
     public Label
             user,
@@ -58,7 +68,13 @@ public class mainMenu implements Initializable {
             publisherInsertResult,
             warehouseInsertResult,
             customerInsertResult,
-            orderInsertResult;
+            orderInsertResult,
+            bookUpdateResult,
+            authorUpdateResult,
+            publisherUpdateResult,
+            warehouseUpdateResult,
+            customerUpdateResult,
+            orderUpdateResult;
    @FXML
     public TableView<book>
            bookTable;
@@ -119,7 +135,8 @@ public class mainMenu implements Initializable {
             orderTable3,
             orderTable4,
             orderTable5,
-            orderTable6;
+            orderTable6,
+            orderTable7;
     @FXML
     public TableColumn<book,String>
             col1,
@@ -161,15 +178,42 @@ public class mainMenu implements Initializable {
             customerInsertEmail,
             orderInsertID,
             orderInsertCustomerID,
-            orderInsertBooks;
-    ObservableList<book> bookList= FXCollections.observableArrayList();
-    ObservableList<publisher> publisherList= FXCollections.observableArrayList();
-    ObservableList<customer> customerList= FXCollections.observableArrayList();
-    ObservableList<warehouse> warehouseList= FXCollections.observableArrayList();
-    ObservableList<order> orderList= FXCollections.observableArrayList();
-    ObservableList<author> authorList= FXCollections.observableArrayList();
+            orderInsertBooks,
+            bookUpdateISBN,
+            bookUpdatePublisherID,
+            bookUpdateAuthorID,
+            bookUpdateTitle,
+            bookUpdatePrice,
+            bookUpdateNumberOfPages,
+            bookUpdateStockAmount,
+            bookUpdateReleaseDate,
+            bookUpdateGenre,
+            authorUpdateName,
+            authorUpdateID,
+            authorUpdateEmail,
+            publisherUpdateID,
+            publisherUpdatePhone,
+            publisherUpdateName,
+            publisherUpdateAddress,
+            publisherUpdateEmail,
+            warehouseUpdateID,
+            warehouseUpdateName,
+            warehouseUpdateAddress,
+            customerUpdateID,
+            customerUpdateName,
+            customerUpdateAddress,
+            customerUpdatePhone,
+            customerUpdateEmail;
 
-    SQLConnection credentials = SQLConnection.getInstance();
+
+    final ObservableList<book> bookList= FXCollections.observableArrayList();
+    final ObservableList<publisher> publisherList= FXCollections.observableArrayList();
+    ObservableList<customer> customerList= FXCollections.observableArrayList();
+    final ObservableList<warehouse> warehouseList= FXCollections.observableArrayList();
+    final ObservableList<order> orderList= FXCollections.observableArrayList();
+    final ObservableList<author> authorList= FXCollections.observableArrayList();
+
+    final SQLConnection credentials = SQLConnection.getInstance();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -179,6 +223,35 @@ public class mainMenu implements Initializable {
          } catch (SQLException e) {
               e.printStackTrace();
        }
+    }
+    public void setUsername(){
+        user.setText(credentials.getUsername());
+    }
+    public void setFancyNumbers() throws SQLException {
+        Connection con = credentials.getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("""
+                SELECT
+                (SELECT COUNT(*) FROM book),
+                (SELECT COUNT(*) FROM author),
+                (SELECT COUNT(*) FROM publisher),
+                (SELECT COUNT(*) FROM customer),
+                (SELECT COUNT(*) FROM warehouse),
+                (SELECT COUNT(*) FROM orderLogistics);""");
+        rs.next();
+        bookNum.setText(rs.getString(1));
+        authorNum.setText(rs.getString(2));
+        publisherNum.setText(rs.getString(3));
+        customerNum.setText(rs.getString(4));
+        warehouseNum.setText(rs.getString(5));
+        orderNum.setText(rs.getString(6));
+        Statement stmt2 = con.createStatement();
+        ResultSet rs2 = stmt2.executeQuery("SELECT SUM(orders.quantity * book.price) AS biggBucks " +
+                "FROM orders " +
+                "INNER JOIN book ON book.ISBN=orders.ISBN;");
+        rs2.next();
+        revenueNum.setText(rs2.getString(1)+" ₺");
+        con.close();
     }
 
     public void overviewBase() throws SQLException {
@@ -400,6 +473,83 @@ public class mainMenu implements Initializable {
     }
     public void overviewCustomer() throws SQLException {
         customerTable.toFront();
+        customerList.clear();
+        Connection con = credentials.getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("""
+                SELECT
+                    customer.customerID,
+                    customer.name,
+                    customer.email,
+                    customer.phoneNumber,
+                    customer.address,
+                    COUNT(shoppingbasket.customerID) AS booksInBasket,
+                    COALESCE(SUM(orders.quantity), 0) AS booksBought,
+                    COALESCE(SUM(book.price), 0) AS moneySpent
+                FROM
+                    customer
+                        LEFT JOIN shoppingBasket ON shoppingBasket.customerID = customer.customerID
+                        LEFT JOIN orderlogistics ON orderlogistics.customerID = customer.customerID
+                        LEFT JOIN orders ON orderlogistics.orderID = orders.orderID
+                        LEFT JOIN book ON book.ISBN = shoppingBasket.ISBN
+                GROUP BY
+                    customer.customerID,
+                    customer.name,
+                    customer.email,
+                    customer.phoneNumber,
+                    customer.address
+                ORDER BY
+                    customer.customerID;
+                """);
+        while(rs.next()){
+            String ID = rs.getString("customerID");
+            String name = rs.getString("name");
+            String email = rs.getString("email");
+            String phone = rs.getString("phoneNumber");
+            String address = rs.getString("address");
+            String booksInBasket = rs.getString("booksInBasket");
+            String booksBought = rs.getString("booksBought");
+            String moneySpent = rs.getString("moneySpent");
+            customerList.add(new customer(ID, name, email, phone, address, booksInBasket, booksBought, moneySpent));
+        }
+        con.close();
+
+        customerTable1.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().ID()));
+        customerTable2.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().name()));
+        customerTable3.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().email()));
+        customerTable4.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().phone()));
+        customerTable5.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().address()));
+        customerTable6.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().booksInBasket()));
+        customerTable7.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().booksBought()));
+        customerTable8.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().moneySpent()));
+
+        customerTable.setItems(customerList);
+        FilteredList<customer> filteredData = new FilteredList<>(customerList, b -> true);
+
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(customer -> {
+            if (newValue == null || newValue.isEmpty()) {
+                return true;
+            }
+            String lowerCaseFilter = newValue.toLowerCase();
+            if (customer.ID().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (customer.name().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (customer.email().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (customer.phone().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (customer.address().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (customer.booksInBasket().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (customer.booksBought().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else return customer.moneySpent().toLowerCase().contains(lowerCaseFilter);
+        }));
+        SortedList<customer> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(customerTable.comparatorProperty());
+        customerTable.setItems(sortedData);
     }
     public void overviewWarehouse() throws SQLException {
         warehouseTable.toFront();
@@ -467,7 +617,8 @@ public class mainMenu implements Initializable {
                 orderlogistics.date,
                 orderlogistics.status,
                 SUM(orders.quantity) AS amountOfBooks,
-                SUM(book.price * orders.quantity) AS totalPriceOfOrder
+                SUM(book.price * orders.quantity) AS totalPriceOfOrder,
+                GROUP_CONCAT(DISTINCT book.title) AS booksInOrder
             FROM
                 orderlogistics
                     INNER JOIN customer ON orderlogistics.customerID = customer.customerID
@@ -479,7 +630,8 @@ public class mainMenu implements Initializable {
                 orderlogistics.date,
                 orderlogistics.status
             ORDER BY
-                orderlogistics.orderID;""");
+                orderlogistics.orderID;
+                """);
 
         while(rs.next()){
             String ID = rs.getString("orderID");
@@ -494,15 +646,18 @@ public class mainMenu implements Initializable {
             }
             String amountOfBooks = rs.getString("amountOfBooks");
             String totalPriceOfOrder = rs.getString("totalPriceOfOrder");
-            orderList.add(new order(ID, customerName, date, status, amountOfBooks, totalPriceOfOrder));
-        }
+            String booksInOrder = rs.getString("booksInOrder");
+            orderList.add(new order(ID, customerName, date, status, amountOfBooks, totalPriceOfOrder, booksInOrder));
+    }
         con.close();
+
         orderTable1.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().ID()));
         orderTable2.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().customerName()));
         orderTable3.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().date()));
         orderTable4.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().status()));
-        orderTable5.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().numberOfBooks()));
-        orderTable6.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().totalPrice()));
+        orderTable5.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().amountOfBooks()));
+        orderTable6.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().totalPriceOfOrder()));
+        orderTable7.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().booksInOrder()));
 
         orderTable.setItems(orderList);
         FilteredList<order> filteredData = new FilteredList<>(orderList, b -> true);
@@ -520,9 +675,11 @@ public class mainMenu implements Initializable {
                 return true;
             } else if (order.status().toLowerCase().contains(lowerCaseFilter)) {
                 return true;
-            } else if (order.numberOfBooks().toLowerCase().contains(lowerCaseFilter)) {
+            } else if (order.amountOfBooks().toLowerCase().contains(lowerCaseFilter)) {
                 return true;
-            } else return order.totalPrice().toLowerCase().contains(lowerCaseFilter);
+            } else if (order.totalPriceOfOrder().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else return order.booksInOrder().toLowerCase().contains(lowerCaseFilter);
         }));
         SortedList<order> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(orderTable.comparatorProperty());
@@ -927,16 +1084,7 @@ public class mainMenu implements Initializable {
             orderInsertResult.setText(error);
         }
     }
-    public void updatesBase() {
-        pnlUpdates.toFront();
-        //TODO insert stock of books in the table bookWarehouse and book
-        //TODO add/remove from shopping basket
-        //TODO edit values except isbn of book(leave empty if no change)
-        //TODO editvalues of customer(leave empty if no change)
-        //TODO edit values of warehouse(leave empty if no change)
-        //TODO edit values of author(leave empty if no change)
-        //TODO edit values of order(leave empty if no change)
-    }
+
     public void deletionsBase() {
         pnlDeletions.toFront();
         //TODO delete from all tables
@@ -963,34 +1111,72 @@ public class mainMenu implements Initializable {
         ZQRTApplication z = new ZQRTApplication();
         z.changeSceneInStage(stage, url);
     }
-    public void setUsername(){
-        user.setText(credentials.getUsername());
+
+    public void updatesBase() {
+        pnlUpdates.toFront();
+        updatesMain.toFront();
+        //TODO insert stock of books in the table bookWarehouse and book
+        //TODO add/remove from shopping basket
+        //TODO edit values except isbn of book(leave empty if no change)
+        //TODO edit values of customer(leave empty if no change)
+        //TODO edit values of warehouse(leave empty if no change)
+        //TODO edit values of author(leave empty if no change)
+        //TODO edit values of order(leave empty if no change)
     }
-    public void setFancyNumbers() throws SQLException {
-        Connection con = credentials.getConnection();
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("""
-                SELECT
-                (SELECT COUNT(*) FROM book),
-                (SELECT COUNT(*) FROM author),
-                (SELECT COUNT(*) FROM publisher),
-                (SELECT COUNT(*) FROM customer),
-                (SELECT COUNT(*) FROM warehouse),
-                (SELECT COUNT(*) FROM orderLogistics);""");
-        rs.next();
-        bookNum.setText(rs.getString(1));
-        authorNum.setText(rs.getString(2));
-        publisherNum.setText(rs.getString(3));
-        customerNum.setText(rs.getString(4));
-        warehouseNum.setText(rs.getString(5));
-        orderNum.setText(rs.getString(6));
-        Statement stmt2 = con.createStatement();
-        ResultSet rs2 = stmt2.executeQuery("SELECT SUM(orders.quantity * book.price) AS biggBucks " +
-                "FROM orders " +
-                "INNER JOIN book ON book.ISBN=orders.ISBN;");
-        rs2.next();
-        revenueNum.setText(rs2.getString(1)+" ₺");
-        con.close();
+    public void updatesGoBack() {
+        updatesMain.toFront();
     }
+    public void updateBook() {
+        bookUpdate.toFront();
+    }
+    public void listBookElements(){
+        //read isbn, fill in the rest of the text values from the database
+        String ISBN = bookUpdateISBN.getText();
+    }
+    public void updateBookClear() {
+    }
+    public void attemptBookUpdate() {
+    }
+    public void updateCustomer() {
+        customerUpdate.toFront();
+    }
+    public void listCustomerElements(){
+    }
+    public void updateCustomerClear() {
+    }
+    public void attemptCustomerUpdate() {
+    }
+    public void updateWarehouse() {
+        warehouseUpdate.toFront();
+    }
+    public void listWarehouseElements(){
+    }
+    public void updateWarehouseClear() {
+    }
+    public void attemptWarehouseUpdate() {
+    }
+    public void updateAuthor() {
+        authorUpdate.toFront();
+    }
+    public void listAuthorElements(){
+    }
+    public void updateAuthorClear() {
+    }
+    public void attemptAuthorUpdate() {
+    }
+    public void updatePublisher() {
+        publisherUpdate.toFront();
+    }
+    public void listPublisherElements(){
+    }
+    public void updatePublisherClear() {
+    }
+    public void attemptPublisherUpdate() {
+    }
+    public void updateOrder() {
+        orderUpdate.toFront();
+    }
+
+
 
 }

@@ -25,7 +25,7 @@ public class logIn {
     @FXML
     public PasswordField password;
 
-    SQLConnection credentials = SQLConnection.getInstance();
+    final SQLConnection credentials = SQLConnection.getInstance();
 
     public void userLogIn() {
         checkLogin();
