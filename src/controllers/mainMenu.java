@@ -1115,13 +1115,6 @@ public class mainMenu implements Initializable {
     public void updatesBase() {
         pnlUpdates.toFront();
         updatesMain.toFront();
-        //TODO insert stock of books in the table bookWarehouse and book
-        //TODO add/remove from shopping basket
-        //TODO edit values except isbn of book(leave empty if no change)
-        //TODO edit values of customer(leave empty if no change)
-        //TODO edit values of warehouse(leave empty if no change)
-        //TODO edit values of author(leave empty if no change)
-        //TODO edit values of order(leave empty if no change)
     }
     public void updatesGoBack() {
         updatesMain.toFront();
@@ -1130,48 +1123,278 @@ public class mainMenu implements Initializable {
         bookUpdate.toFront();
     }
     public void listBookElements(){
-        //read isbn, fill in the rest of the text values from the database
         String ISBN = bookUpdateISBN.getText();
-    }
+        String query = "SELECT * FROM book WHERE ISBN = '" + ISBN + "';";
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                bookUpdateTitle.setText(rs.getString("title"));
+                bookUpdateAuthorID.setText(rs.getString("authorID"));
+                bookUpdatePublisherID.setText(rs.getString("publisherID"));
+                bookUpdateGenre.setText(rs.getString("genre"));
+                bookUpdatePrice.setText(rs.getString("price"));
+                bookUpdateStockAmount.setText(rs.getString("stockAmount"));
+                bookUpdateReleaseDate.setText(rs.getString("releaseDate"));
+                bookUpdateNumberOfPages.setText(rs.getString("numberOfPages"));
+            }
+            if(bookUpdateTitle.getText().isEmpty()){
+                bookUpdateResult.setText("Book with ISBN " + ISBN + " does not exist");
+            }
+            con.close();
+            bookUpdateResult.setText("Book with ISBN " + ISBN + " successfully listed");
+        } catch (SQLException e) {
+            bookUpdateResult.setText(e.getMessage());
+            }
+        }
+
     public void updateBookClear() {
+        bookUpdateISBN.clear();
+        bookUpdateTitle.clear();
+        bookUpdateAuthorID.clear();
+        bookUpdatePublisherID.clear();
+        bookUpdateGenre.clear();
+        bookUpdatePrice.clear();
+        bookUpdateStockAmount.clear();
+        bookUpdateReleaseDate.clear();
+        bookUpdateNumberOfPages.clear();
+        bookUpdateResult.setText("");
     }
     public void attemptBookUpdate() {
+        String ISBN = bookUpdateISBN.getText();
+        String title = bookUpdateTitle.getText();
+        String authorID = bookUpdateAuthorID.getText();
+        String publisherID = bookUpdatePublisherID.getText();
+        String genre = bookUpdateGenre.getText();
+        String price = bookUpdatePrice.getText();
+        String stockAmount = bookUpdateStockAmount.getText();
+        String releaseDate = bookUpdateReleaseDate.getText();
+        String numberOfPages = bookUpdateNumberOfPages.getText();
+        String error;
+        //date format error
+
+        String query = "UPDATE book SET title = '" + title + "', authorID = '" + authorID + "', publisherID = '" + publisherID + "', genre = '" + genre + "', price = '" + price + "', stockAmount = '" + stockAmount + "', releaseDate = '" + releaseDate + "', numberOfPages = '" + numberOfPages + "' WHERE ISBN = '" + ISBN + "';";
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            con.close();
+            bookUpdateResult.setText("Book with ISBN " + ISBN + " successfully updated");
+        } catch (SQLException e) {
+            error = e.getMessage();
+            if(error.contains("authorFK")){
+                error = "Author with ID " + authorID + " does not exist";
+            }
+            if(error.contains("publisherFK")){
+                error = "Publisher with ID " + publisherID + " does not exist";
+            }
+            if(error.contains("Incorrect date")){
+                error = "Incorrect date format, please use YYYY-MM-DD";
+            }
+            bookUpdateResult.setText(error);
+        }
     }
     public void updateCustomer() {
         customerUpdate.toFront();
     }
     public void listCustomerElements(){
+        String ID = customerUpdateID.getText();
+        String query = "SELECT * FROM customer WHERE customerID = '" + ID + "';";
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                customerUpdateName.setText(rs.getString("name"));
+                customerUpdateAddress.setText(rs.getString("address"));
+                customerUpdateEmail.setText(rs.getString("email"));
+                customerUpdatePhone.setText(rs.getString("phoneNumber"));
+            }
+            if(customerUpdateName.getText().isEmpty()){
+                customerUpdateResult.setText("Customer with ID " + ID + " does not exist");
+            }
+            con.close();
+            customerUpdateResult.setText("Customer with ID " + ID + " successfully listed");
+        } catch (SQLException e) {
+            customerUpdateResult.setText(e.getMessage());
+        }
+
     }
     public void updateCustomerClear() {
+        customerUpdateID.clear();
+        customerUpdateName.clear();
+        customerUpdateAddress.clear();
+        customerUpdateEmail.clear();
+        customerUpdatePhone.clear();
+        customerUpdateResult.setText("");
     }
     public void attemptCustomerUpdate() {
+        String ID = customerUpdateID.getText();
+        String name = customerUpdateName.getText();
+        String address = customerUpdateAddress.getText();
+        String email = customerUpdateEmail.getText();
+        String phone = customerUpdatePhone.getText();
+        String error;
+
+        String query = "UPDATE customer SET name = '" + name + "', address = '" + address + "', email = '" + email + "', phoneNumber = '" + phone + "' WHERE customerID = '" + ID + "';";
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            con.close();
+            customerUpdateResult.setText("Customer with ID " + ID + " successfully updated");
+        } catch (SQLException e) {
+            error = e.getMessage();
+            customerUpdateResult.setText(error);
+        }
     }
     public void updateWarehouse() {
         warehouseUpdate.toFront();
     }
     public void listWarehouseElements(){
+        String ID = warehouseUpdateID.getText();
+        String query = "SELECT * FROM warehouse WHERE warehouseID = '" + ID + "';";
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                warehouseUpdateName.setText(rs.getString("name"));
+                warehouseUpdateAddress.setText(rs.getString("address"));
+            }
+            if(warehouseUpdateAddress.getText().isEmpty()){
+                warehouseUpdateResult.setText("Warehouse with ID " + ID + " does not exist");
+            }
+            con.close();
+            warehouseUpdateResult.setText("Warehouse with ID " + ID + " successfully listed");
+        } catch (SQLException e) {
+            warehouseUpdateResult.setText(e.getMessage());
+        }
     }
     public void updateWarehouseClear() {
+        warehouseUpdateID.clear();
+        warehouseUpdateName.clear();
+        warehouseUpdateAddress.clear();
+        warehouseUpdateResult.setText("");
     }
     public void attemptWarehouseUpdate() {
+        String ID = warehouseUpdateID.getText();
+        String name = warehouseUpdateName.getText();
+        String address = warehouseUpdateAddress.getText();
+        String error;
+
+        String query = "UPDATE warehouse SET name = '" + name + "', address = '" + address + "' WHERE warehouseID = '" + ID + "';";
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            con.close();
+            warehouseUpdateResult.setText("Warehouse with ID " + ID + " successfully updated");
+        } catch (SQLException e) {
+            error = e.getMessage();
+            warehouseUpdateResult.setText(error);
+        }
     }
     public void updateAuthor() {
         authorUpdate.toFront();
     }
     public void listAuthorElements(){
+        String ID = authorUpdateID.getText();
+        String query = "SELECT * FROM author WHERE authorID = '" + ID + "';";
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                authorUpdateName.setText(rs.getString("name"));
+                authorUpdateEmail.setText(rs.getString("email"));
+            }
+            if(authorUpdateName.getText().isEmpty()){
+                authorUpdateResult.setText("Author with ID " + ID + " does not exist");
+            }
+            con.close();
+            authorUpdateResult.setText("Author with ID " + ID + " successfully listed");
+        } catch (SQLException e) {
+            authorUpdateResult.setText(e.getMessage());
+        }
     }
     public void updateAuthorClear() {
+        authorUpdateID.clear();
+        authorUpdateName.clear();
+        authorUpdateEmail.clear();
+        authorUpdateResult.setText("");
     }
     public void attemptAuthorUpdate() {
+        String ID = authorUpdateID.getText();
+        String name = authorUpdateName.getText();
+        String email = authorUpdateEmail.getText();
+        String error;
+
+        String query = "UPDATE author SET name = '" + name + "', email = '" + email + "' WHERE authorID = '" + ID + "';";
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            con.close();
+            authorUpdateResult.setText("Author with ID " + ID + " successfully updated");
+        } catch (SQLException e) {
+            error = e.getMessage();
+            authorUpdateResult.setText(error);
+        }
     }
     public void updatePublisher() {
         publisherUpdate.toFront();
     }
     public void listPublisherElements(){
+        String ID = publisherUpdateID.getText();
+        String query = "SELECT * FROM publisher WHERE publisherID = '" + ID + "';";
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                publisherUpdateName.setText(rs.getString("name"));
+                publisherUpdateAddress.setText(rs.getString("address"));
+                publisherUpdateEmail.setText(rs.getString("email"));
+                publisherUpdatePhone.setText(rs.getString("phoneNumber"));
+            }
+            if(publisherUpdateName.getText().isEmpty()){
+                publisherUpdateResult.setText("Publisher with ID " + ID + " does not exist");
+            }
+            con.close();
+            publisherUpdateResult.setText("Publisher with ID " + ID + " successfully listed");
+        } catch (SQLException e) {
+            publisherUpdateResult.setText(e.getMessage());
+        }
     }
     public void updatePublisherClear() {
+        publisherUpdateID.clear();
+        publisherUpdateName.clear();
+        publisherUpdateAddress.clear();
+        publisherUpdateEmail.clear();
+        publisherUpdatePhone.clear();
+        publisherUpdateResult.setText("");
     }
     public void attemptPublisherUpdate() {
+        String ID = publisherUpdateID.getText();
+        String name = publisherUpdateName.getText();
+        String address = publisherUpdateAddress.getText();
+        String email = publisherUpdateEmail.getText();
+        String phone = publisherUpdatePhone.getText();
+        String error;
+
+        String query = "UPDATE publisher SET name = '" + name + "', address = '" + address + "', email = '" + email + "', phoneNumber = '" + phone + "' WHERE publisherID = '" + ID + "';";
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            con.close();
+            publisherUpdateResult.setText("Publisher with ID " + ID + " successfully updated");
+        } catch (SQLException e) {
+            error = e.getMessage();
+            publisherUpdateResult.setText(error);
+        }
     }
     public void updateOrder() {
         orderUpdate.toFront();
