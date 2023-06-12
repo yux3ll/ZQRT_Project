@@ -72,7 +72,13 @@ public class mainMenu implements Initializable {
             publisherUpdateResult,
             warehouseUpdateResult,
             customerUpdateResult,
-            orderUpdateResult;
+            orderUpdateResult,
+            bestCustomer,
+            bestAuthor,
+            trBook,
+            bestBook,
+            bestPublisher,
+            bigBasket;
    @FXML
     public TableView<book>
            bookTable;
@@ -1090,16 +1096,77 @@ public class mainMenu implements Initializable {
     }
 
 
-    public void statisticsBase() {
+    public void statisticsBase() throws Exception{
         pnlStatistics.toFront();
-        //TODO total books in basket
-        //TODO total books in stock
-        //total books sold
-        //best/worst selling book
-        //best/worst selling author
-        //best selling publisher
-        //customer with most orders
+        Connection con = credentials.getConnection();
+        Statement stmt = con.createStatement();
+
+        ResultSet rs = stmt.executeQuery("SELECT ISBN, SUM(quantity) AS total FROM orders GROUP BY ISBN ORDER BY total DESC LIMIT 1;");
+        rs.next();
+        String ISBN = rs.getString("ISBN");
+        String total = rs.getString("total");
+        ResultSet rs1 = stmt.executeQuery("SELECT * FROM book WHERE ISBN = '" + ISBN + "';");
+        rs1.next();
+        String title = rs1.getString("title");
+        bestBook.setText(title + " with " + total + " copies sold");
+        rs1.close();
+
+        ResultSet rs2 = stmt.executeQuery("SELECT authorID, SUM(quantity) AS total FROM orders NATURAL JOIN book GROUP BY authorID ORDER BY total DESC LIMIT 1;");
+        rs2.next();
+        String authorID = rs2.getString("authorID");
+        String total1 = rs2.getString("total");
+        rs2.close();
+        ResultSet rs3 = stmt.executeQuery("SELECT * FROM author WHERE authorID = '" + authorID + "';");
+        rs3.next();
+        String name = rs3.getString("name");
+        rs3.close();
+        bestAuthor.setText(name + " with " + total1 + " copies sold");
+
+        ResultSet rs4 = stmt.executeQuery("SELECT publisherID, SUM(quantity) AS total FROM orders NATURAL JOIN book GROUP BY publisherID ORDER BY total DESC LIMIT 1;");
+        rs4.next();
+        String publisherID = rs4.getString("publisherID");
+        String total2 = rs4.getString("total");
+        rs4.close();
+        ResultSet rs5 = stmt.executeQuery("SELECT * FROM publisher WHERE publisherID = '" + publisherID + "';");
+        rs5.next();
+        String name1 = rs5.getString("name");
+        rs5.close();
+        bestPublisher.setText(name1 + " with " + total2 + " copies sold");
+
+        ResultSet rs6 = stmt.executeQuery("SELECT customerID, COUNT(ISBN) AS total FROM shoppingBasket GROUP BY customerID ORDER BY total DESC LIMIT 1;");
+        rs6.next();
+        String customerID = rs6.getString("customerID");
+        String total3 = rs6.getString("total");
+        rs6.close();
+        ResultSet rs7 = stmt.executeQuery("SELECT * FROM customer WHERE customerID = '" + customerID + "';");
+        rs7.next();
+        String name2 = rs7.getString("name");
+        rs7.close();
+        bigBasket.setText(name2 + " with " + total3 + " books");
+
+        ResultSet rs8 = stmt.executeQuery("SELECT customerID, SUM(price) AS total FROM orders NATURAL JOIN orderLogistics NATURAL JOIN book GROUP BY customerID ORDER BY total DESC LIMIT 1;");
+        rs8.next();
+        String customerID1 = rs8.getString("customerID");
+        String total4 = rs8.getString("total");
+        rs8.close();
+        ResultSet rs9 = stmt.executeQuery("SELECT * FROM customer WHERE customerID = '" + customerID1 + "';");
+        rs9.next();
+        String name3 = rs9.getString("name");
+        rs9.close();
+        bestCustomer.setText(name3 + " with " + total4 + " lira spent");
+
+        ResultSet rs10 = stmt.executeQuery("SELECT ISBN, price FROM book ORDER BY price DESC LIMIT 1;");
+        rs10.next();
+        String ISBN1 = rs10.getString("ISBN");
+        String price = rs10.getString("price");
+        rs10.close();
+        ResultSet rs11 = stmt.executeQuery("SELECT * FROM book WHERE ISBN = '" + ISBN1 + "';");
+        rs11.next();
+        String title1 = rs11.getString("title");
+        rs11.close();
+        trBook.setText(title1 + " with price " + price + " euros");
     }
+
 
     public void handleSignOut() throws Exception {
         credentials.resetCredentials();
