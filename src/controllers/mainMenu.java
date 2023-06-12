@@ -32,7 +32,6 @@ public class mainMenu implements Initializable {
     @FXML
     private Pane
             pnlInserts,
-            pnlDeletions,
             pnlOverview,
             pnlUpdates,
             pnlStatistics,
@@ -202,7 +201,9 @@ public class mainMenu implements Initializable {
             customerUpdateName,
             customerUpdateAddress,
             customerUpdatePhone,
-            customerUpdateEmail;
+            customerUpdateEmail,
+            orderUpdateID,
+            orderUpdateStatus;
 
 
     final ObservableList<book> bookList= FXCollections.observableArrayList();
@@ -818,6 +819,7 @@ public class mainMenu implements Initializable {
             authorInsertResult.setText(error);
         }
     }
+
     public void insertPublisher(){
         publisherInsert.toFront();
     }
@@ -872,6 +874,7 @@ public class mainMenu implements Initializable {
             publisherInsertResult.setText(error);
         }
     }
+
     public void insertCustomer(){
         customerInsert.toFront();
     }
@@ -926,6 +929,7 @@ public class mainMenu implements Initializable {
             customerInsertResult.setText(error);
         }
     }
+
     public void insertWarehouse(){
         warehouseInsert.toFront();
     }
@@ -976,6 +980,7 @@ public class mainMenu implements Initializable {
             warehouseInsertResult.setText(error);
         }
     }
+
     public void insertOrder(){
         orderInsert.toFront();
     }
@@ -1084,10 +1089,7 @@ public class mainMenu implements Initializable {
         }
     }
 
-    public void deletionsBase() {
-        pnlDeletions.toFront();
-        //TODO delete from all tables
-    }
+
     public void statisticsBase() {
         pnlStatistics.toFront();
         //TODO total books in basket
@@ -1190,6 +1192,20 @@ public class mainMenu implements Initializable {
             bookUpdateResult.setText(error);
         }
     }
+    public void attemptBookDelete() {
+        String ISBN = bookUpdateISBN.getText();
+        String query = "DELETE FROM book WHERE ISBN = '" + ISBN + "';";
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            con.close();
+            bookUpdateResult.setText("Book with ISBN " + ISBN + " successfully deleted");
+        } catch (SQLException e) {
+            bookUpdateResult.setText(e.getMessage());
+        }
+    }
+
     public void updateCustomer() {
         customerUpdate.toFront();
     }
@@ -1244,6 +1260,19 @@ public class mainMenu implements Initializable {
             customerUpdateResult.setText(error);
         }
     }
+    public void attemptCustomerDelete() {
+        String ID = customerUpdateID.getText();
+        String query = "DELETE FROM customer WHERE customerID = '" + ID + "';";
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            con.close();
+            customerUpdateResult.setText("Customer with ID " + ID + " successfully deleted");
+        } catch (SQLException e) {
+            customerUpdateResult.setText(e.getMessage());
+        }
+    }
     public void updateWarehouse() {
         warehouseUpdate.toFront();
     }
@@ -1291,6 +1320,19 @@ public class mainMenu implements Initializable {
             warehouseUpdateResult.setText(error);
         }
     }
+    public void attemptWarehouseDelete() {
+        String ID = warehouseUpdateID.getText();
+        String query2 = "DELETE FROM warehouse WHERE warehouseID = '" + ID + "';";
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query2);
+            con.close();
+            warehouseUpdateResult.setText("Warehouse with ID " + ID + " successfully deleted");
+        } catch (SQLException e) {
+            warehouseUpdateResult.setText(e.getMessage());
+        }
+    }
     public void updateAuthor() {
         authorUpdate.toFront();
     }
@@ -1336,6 +1378,22 @@ public class mainMenu implements Initializable {
         } catch (SQLException e) {
             error = e.getMessage();
             authorUpdateResult.setText(error);
+        }
+    }
+    public void attemptAuthorDelete() {
+        String ID = authorUpdateID.getText();
+        //null from book table
+        String query = "UPDATE book SET authorID = NULL WHERE authorID = '" + ID + "';";
+        String query2 = "DELETE FROM author WHERE authorID = '" + ID + "';";
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            stmt.executeUpdate(query2);
+            con.close();
+            authorUpdateResult.setText("Author with ID " + ID + " successfully deleted");
+        } catch (SQLException e) {
+            authorUpdateResult.setText(e.getMessage());
         }
     }
     public void updatePublisher() {
@@ -1391,10 +1449,96 @@ public class mainMenu implements Initializable {
             publisherUpdateResult.setText(error);
         }
     }
+    public void attemptPublisherDelete() {
+        String ID = publisherUpdateID.getText();
+        String query1=  "UPDATE book SET publisherID = NULL WHERE publisherID = '" + ID + "';";
+        String query2 = "DELETE FROM publisher WHERE publisherID = '" + ID + "';";
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query1);
+            stmt.executeUpdate(query2);
+            con.close();
+            publisherUpdateResult.setText("Publisher with ID " + ID + ", and their books have been successfully deleted");
+        } catch (SQLException e) {
+            publisherUpdateResult.setText(e.getMessage());
+        }
+    }
     public void updateOrder() {
         orderUpdate.toFront();
     }
+    public void listOrderElements() {
+        String ID = orderUpdateID.getText();
+        String query = "SELECT * FROM orders WHERE orderID = '" + ID + "';";
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                String orderStatus = rs.getString("status");
+                int orderStatusInt = Integer.parseInt(orderStatus);
+                if(orderStatusInt==0){
+                    orderUpdateStatus.setText("Pending");
+                }
+                else if(orderStatusInt==1){
+                    orderUpdateStatus.setText("Completed");
+                }
+            }
+            if(orderUpdateID.getText().isEmpty()){
+                orderUpdateResult.setText("Order with ID " + ID + " does not exist");
+            }
+            con.close();
+            orderUpdateResult.setText("Order with ID " + ID + " successfully listed");
+        } catch (SQLException e) {
+            orderUpdateResult.setText(e.getMessage());
+        }
+    }
+    public void updateOrderClear() {
+        orderUpdateID.clear();
+        orderUpdateStatus.clear();
+        orderUpdateResult.setText("");
+    }
+    public void attemptOrderUpdate() {
+        String ID = orderUpdateID.getText();
+        String statusTemp = orderUpdateStatus.getText();
+        String status;
+        String error;
+        if(statusTemp.equals("Pending")){
+            status = "0";
+        }
+        else if(statusTemp.equals("Completed")){
+            status = "1";
+        }
+        else{
+            orderUpdateResult.setText("Invalid status");
+            return;
+        }
 
-
-
+        String query = "UPDATE orderlogistics SET status = '" + status + "' WHERE orderID = '" + ID + "';";
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            con.close();
+            orderUpdateResult.setText("Order with ID " + ID + " successfully updated");
+        } catch (SQLException e) {
+            error = e.getMessage();
+            orderUpdateResult.setText(error);
+        }
+    }
+    public void attemptOrderDelete() {
+        String ID = orderUpdateID.getText();
+        String query1 = "DELETE FROM orders WHERE orderID = '" + ID + "';";
+        String query = "DELETE FROM orderlogistics WHERE orderID = '" + ID + "';";
+        try {
+            Connection con = credentials.getConnection();
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query1);
+            stmt.executeUpdate(query);
+            con.close();
+            orderUpdateResult.setText("Order with ID " + ID + " successfully deleted");
+        } catch (SQLException e) {
+            orderUpdateResult.setText(e.getMessage());
+        }
+    }
 }
