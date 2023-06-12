@@ -1205,6 +1205,7 @@ public class mainMenu implements Initializable {
             }
             if(bookUpdateTitle.getText().isEmpty()){
                 bookUpdateResult.setText("Book with ISBN " + ISBN + " does not exist");
+                return;
             }
             con.close();
             bookUpdateResult.setText("Book with ISBN " + ISBN + " successfully listed");
@@ -1291,6 +1292,7 @@ public class mainMenu implements Initializable {
             }
             if(customerUpdateName.getText().isEmpty()){
                 customerUpdateResult.setText("Customer with ID " + ID + " does not exist");
+                return;
             }
             con.close();
             customerUpdateResult.setText("Customer with ID " + ID + " successfully listed");
@@ -1356,6 +1358,7 @@ public class mainMenu implements Initializable {
             }
             if(warehouseUpdateAddress.getText().isEmpty()){
                 warehouseUpdateResult.setText("Warehouse with ID " + ID + " does not exist");
+                return;
             }
             con.close();
             warehouseUpdateResult.setText("Warehouse with ID " + ID + " successfully listed");
@@ -1482,6 +1485,7 @@ public class mainMenu implements Initializable {
             }
             if(publisherUpdateName.getText().isEmpty()){
                 publisherUpdateResult.setText("Publisher with ID " + ID + " does not exist");
+                return;
             }
             con.close();
             publisherUpdateResult.setText("Publisher with ID " + ID + " successfully listed");
@@ -1554,6 +1558,7 @@ public class mainMenu implements Initializable {
             }
             if(orderUpdateID.getText().isEmpty()){
                 orderUpdateResult.setText("Order with ID " + ID + " does not exist");
+                return;
             }
             con.close();
             orderUpdateResult.setText("Order with ID " + ID + " successfully listed");
