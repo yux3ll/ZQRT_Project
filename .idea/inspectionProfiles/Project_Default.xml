@@ -6,6 +6,5 @@
         <language minSize="66" name="Java" />
       </Languages>
     </inspection_tool>
-    <inspection_tool class="SqlAggregatesInspection" enabled="false" level="WARNING" enabled_by_default="false" />
   </profile>
 </component>

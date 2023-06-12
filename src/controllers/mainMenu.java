@@ -1416,6 +1416,7 @@ public class mainMenu implements Initializable {
             }
             if(authorUpdateName.getText().isEmpty()){
                 authorUpdateResult.setText("Author with ID " + ID + " does not exist");
+                return;
             }
             con.close();
             authorUpdateResult.setText("Author with ID " + ID + " successfully listed");
@@ -1536,7 +1537,7 @@ public class mainMenu implements Initializable {
     }
     public void listOrderElements() {
         String ID = orderUpdateID.getText();
-        String query = "SELECT * FROM orders WHERE orderID = '" + ID + "';";
+        String query = "SELECT * FROM orderlogistics WHERE orderID = '" + ID + "';";
         try {
             Connection con = credentials.getConnection();
             Statement stmt = con.createStatement();
